@@ -22,6 +22,8 @@
 
 3. run from web browser:
 
+	`gulp watch-build --app "fd_mobile" --prod`
+
 	`gulp watch --app "fd_mobile" --prod`
 
 4. add/rm platform:
@@ -39,6 +41,6 @@
 	`cordova plugin rm/add some-plugin-name`
 
 
-	`gulp --cordova "build android" --app "fd" --prod`
+	`gulp --cordova "build android" --app "fd_mobile" --prod`
 
 	
