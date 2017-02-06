@@ -32,7 +32,9 @@
 
 5. build android/ios:
 
-	`cordova build ios/android`
+	`gulp --cordova "build android/ios" --app "fd_mobile" --prod`
+
+	`cordova build ios/android`   --- dont use this.
 
 6. show/add/remove cordova plugin:
 
@@ -40,7 +42,16 @@
 
 	`cordova plugin rm/add some-plugin-name`
 
+7. debug on iPhone:
+	
+	after build ios, open xproj file under platforms ios, then you can debug ObjectC with xCode and remotely debug js with safari
 
-	`gulp --cordova "build android" --app "fd_mobile" --prod`
+8. debug on android
+
+	after build android, import platforms/android to android stadio(AS). then you can debug java code with AS and remotely debug js with chrome
+
+	note: if you want debug js code only , you dont need to import the project into AS, just build apk and install , that will work.
+
+	
 
 	
