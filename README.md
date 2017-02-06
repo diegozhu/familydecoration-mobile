@@ -14,11 +14,13 @@
 
 	note:we're using ionic1 .
 
-3. goes to root path(familydecoration-mobile) run below commands:
+2. goes to root path(familydecoration-mobile) run below commands:
 
 	`npm install`
 
 	`bower install`
+
+3. other command you might use:
 
 	`cordova platform add/rm ios/android`
 
