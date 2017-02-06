@@ -2,7 +2,7 @@
 
 	`npm install -g cordova ionic gulp bower`
 
-	I guess you've already have nodejs and git .
+	I guess you've already have nodejs and git . now , grab a cup of coffee, this will take a long time. remember to turn on your shadowsocks. :)
 
 	ref:
 
@@ -32,7 +32,7 @@
 
 5. build android/ios:
 
-	`gulp --cordova "build android/ios" --app "fd_mobile" --prod`
+	`gulp --cordova "build android/ios" --app "fd_mobile" --prod`   #long time downloading android sdk and xcode. shadowsocks required.
 
 	`cordova build ios/android`   --- dont use this.
 
