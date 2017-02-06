@@ -20,7 +20,7 @@
 
 	`bower install`
 
-3. run from web browser:
+3. run from web browser: (skip when setting up)
 
 	`gulp watch-build --app "fd_mobile" --prod`
 
