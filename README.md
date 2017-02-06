@@ -20,11 +20,19 @@
 
 	`bower install`
 
-3. other command you might use:
+3. run from web browser:
 
+	`gulp watch --app "fd_mobile" --prod`
+
+4. add/rm platform:
+	
 	`cordova platform add/rm ios/android`
 
+5. build android/ios:
+
 	`cordova build ios/android`
+
+6. show/add/remove cordova plugin:
 
 	`cordova plugin list`
 
@@ -33,4 +41,4 @@
 
 	`gulp --cordova "build android" --app "fd" --prod`
 
-	`gulp "build watch" --app "fd" --prod`
+	
