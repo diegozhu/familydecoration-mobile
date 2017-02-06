@@ -1,6 +1,8 @@
-1. first install git,nodejs,ionic,gulp,bower, run:
+1. first install ionic,gulp,bower, run:
 
-	`npm install -g cordova ionic gulp bower, I guess nodejs and git you've already have.`
+	`npm install -g cordova ionic gulp bower`
+
+	I guess you've already have nodejs and git .
 
 	ref:
 
@@ -14,18 +16,19 @@
 
 3. goes to root path(familydecoration-mobile) run below commands:
 
-`npm install`
-`bower install`
+	`npm install`
 
-cordova platform add/rm ios/android
+	`bower install`
 
-cordova build ios/android
+	`cordova platform add/rm ios/android`
 
-cordova plugin list
+	`cordova build ios/android`
 
-cordova plugin rm/add xxx
+	`cordova plugin list`
+
+	`cordova plugin rm/add some-plugin-name`
 
 
-gulp --cordova "build android" --app "fd" --prod
+	`gulp --cordova "build android" --app "fd" --prod`
 
-gulp "build watch" --app "fd" --prod
+	`gulp "build watch" --app "fd" --prod`
