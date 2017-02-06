@@ -1,0 +1,98 @@
+.add-report {
+  width: 48px;
+  height: 48px;
+  border: 0 none;
+  background: #189383;
+  color: #fff;
+  position: fixed;
+  bottom: 75px;
+  left: 50%;
+  padding: 0;
+  margin-left: -24px;
+  border-radius: 50%;
+} 
+
+.symptom-list {
+  background: #fff;
+
+  > div {
+    padding: 20px 16px;
+
+    + div {
+      border-top: 1px solid #e6eff3;
+    }
+  }
+
+  p {
+    margin: 10px 0;
+    color: #7cc0d9;
+  }
+
+  .pics > div {
+    float: left;
+    width: 76px;
+    height: 76px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-right: 16px;
+  }
+}
+
+.add-report-modal {
+  padding: 24px 16px;
+
+  .tags {
+    label {
+      float: left;
+    }
+
+    div {
+      color: $niceBlue;
+      padding: 6px 12px;
+      border-radius: 2px;
+      background: #daf1f7;
+      margin: 12px 6px 0 0;
+    }
+
+    input {
+      display: none;
+
+      &:checked + div {
+        color: $white;
+        background: #225a9b;
+      }
+    }
+  }
+
+  .photos {
+    > div {
+      float: left;
+      width: 112px;
+      height: 112px;
+      overflow: hidden;
+      background: #9bd0e3;
+      margin: 16px 12px 0 0;
+    }
+
+    .camera {
+      line-height: 112px;
+      text-align: center;
+    }
+  }
+
+  .fd-input {
+    position: relative;
+    margin: 16px -16px;
+
+    label {
+      color: $pumpkin;
+      position: absolute;
+      right: 24px;
+      bottom: 8px;
+    }
+  }
+
+  .fd-button {
+    margin: 16px -16px;
+  }
+}

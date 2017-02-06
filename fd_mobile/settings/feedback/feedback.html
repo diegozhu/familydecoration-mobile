@@ -1,0 +1,41 @@
+<ion-view view-title="{{'HELP' | translate}}">
+  <ion-nav-buttons side="left">
+    <back-button></back-button>
+  </ion-nav-buttons>
+  <ion-content class="settings-feedback">
+    <div class="item">
+      <h2>{{'SUBJECT' | translate}} : </h2>
+      <div class="fd-input">
+        <div class="input">
+          <input class="border-nice-blue" type="text" ng-model="vm.feedback.subject" placeholder="{{'SUBJECT' | translate}}"></input>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <h2>{{'YOUR_CONTACT' | translate}} : </h2>
+      <div class="fd-input">
+        <div class="input">
+          <input class="border-nice-blue" type="text" ng-model="vm.feedback.author" placeholder="{{'YOUR_CONTACT' | translate}}"></input>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <h2>{{'CONTENT' | translate}} : </h2>
+      <div class="fd-input">
+        <div class="input">
+          <textarea class="border-nice-blue" placeholder="{{'CONTENT' | translate}}" ng-model="vm.feedback.content"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="item" ng-show="!vm.submitting" ng-click="vm.post()">
+      <div class="fd-button">
+        <button class="font-white bg-nice-blue">{{'CONFIRM' | translate}}</button>
+      </div>
+    </div>
+    <div class="item" ng-show="vm.submitting">
+      <div class="fd-button">
+        <button class="font-white">{{'SUBMITTING' | translate}}</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

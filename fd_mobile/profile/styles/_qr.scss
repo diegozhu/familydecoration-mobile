@@ -1,0 +1,17 @@
+.configure-qr {
+  .qr-card {
+    display:flex;
+    align-items:center;
+    margin:100px auto;
+    height:214px;
+    width:214px;
+    background-color:white;
+    justify-content:space-around;
+    
+    .qr-img{
+      height: 100%;
+      width: 100%;
+      background: url(#{$img-path}/qr.jpg) no-repeat center center;
+    }
+  }
+}

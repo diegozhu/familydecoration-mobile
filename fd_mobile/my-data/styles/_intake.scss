@@ -1,0 +1,54 @@
+.intake {
+  .scroll {
+    height: 100%;
+  }
+
+  .info-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    background: #142857;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 50%;
+    z-index: 99;
+  }
+}
+
+.intake-modal {
+  margin: 20px 24px;
+
+  .intake-item {
+    line-height: 48px;
+
+    + .intake-item {
+      border-top: 1px solid #e6eff3;
+    }
+  }
+
+  .right {
+    text-align: right;
+  }
+}
+
+.legend-modal {
+  width: 185px;
+  margin: 40px auto;
+
+  .legend {
+    line-height: 24px;
+    margin-bottom: 18px;
+  }
+
+  .pic {
+    float: left;
+    margin-right: 26px;
+  }
+
+  .text {
+    float: left;
+  }
+}

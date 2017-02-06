@@ -1,0 +1,34 @@
+<ion-view view-title="intake">
+  <ion-nav-buttons side="right">
+    <a class="profile" ui-sref="profile"></a>
+  </ion-nav-buttons>
+  <ion-content class="intake has-footer">
+    <div class="fd-calendar">
+      <div class="fd-cal-ctrl clearfix">
+        <div mwl-date-modifier class="left font-large ion-ios-arrow-left" decrement="vm.calendarView" date="vm.viewDate"></div>
+        <span mwl-date-modifier set-to-today class="font-nice-blue" date="vm.viewDate">{{vm.viewDate | date:'M'}}月</span>
+        <div mwl-date-modifier class="right font-large ion-ios-arrow-right" increment="vm.calendarView" date="vm.viewDate"></div>
+      </div>
+
+      <mwl-calendar
+        view="vm.calendarView"
+        view-date="vm.viewDate"
+        events="vm.events"
+        template-scope="vm.templateScope"
+        cell-modifier="vm.cellModifier(calendarCell)"></mwl-calendar>
+    </div>
+    <div class="info-button icon ion-information" ng-click="vm.showLegend()"></div>
+  </ion-content>
+</ion-view>
+
+<!-- custom-template-urls="{
+          calendarMonthView: 'calendar-month-view.html',
+          calendarMonthCell: 'calendar-month-cell.html'
+        }"
+<script id="calendar-month-view.html" type="text/ng-template">
+    <ng-include src="common/templates/calendar-month-view.html"></ng-include>
+  </script>
+
+  <script id="calendar-month-cell.html" type="text/ng-template">
+    <ng-include src="common/templates/calendar-month-cell.html"></ng-include>
+  </script> -->

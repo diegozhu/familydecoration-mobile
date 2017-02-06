@@ -1,0 +1,36 @@
+.fd-button {
+  padding: 0 16px;
+  
+  button {
+    font-size: $fontNormal;
+    width: 100%;
+    height: 48px;
+    border: 0 none;
+    padding: 0;
+    border-radius: 3px;
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+
+  .bg-dark-slate-blue {
+    background: $darkSlateBlue;
+  }
+
+  .bg-nice-blue {
+    background: $niceBlue;
+  }
+
+  .bg-gradient {
+    background: -webkit-linear-gradient(left, #1474a4, #1b9dc5);
+  }
+
+  .bg-pumpkin {
+    background: #f07c00;
+  }
+
+  .bg-sefoam-blue {
+    background: #7cc0d9;
+  }
+}

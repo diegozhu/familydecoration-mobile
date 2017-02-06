@@ -1,0 +1,24 @@
+<ion-view view-title="{{'CAREPLAN_ADD_MEDICATION' | translate}}">
+  <ion-nav-buttons side="left">
+    <back-button></back-button>
+  </ion-nav-buttons>
+  <ion-content class="med-search">
+    <div class="fd-input fd-input-fix">
+      <div class="input">
+        <input class="border-nice-blue med-search-frame" maxlength="255" type="text" placeholder="{{'CAREPLAN_SEARCH_MEDICATION' | translate}}" ng-model="vm.querydata" ng-change="vm.queryByPinyinOrChar()"></input>
+        <button class="med-search-icon button button-icon icon ion-ios-search" ng-click="vm.queryByPinyinOrChar()"></button>
+        <button class="med-clear-icon button button-icon icon ion-ios-close-empty" ng-click="vm.clearPinyinOrChar()"></button>
+      </div>
+    </div>
+
+    <div class="list fd-med-dic-scroll">
+      <a class="item" ng-click="vm.gotoEditMedicationOrder(medication)" ng-repeat="medication in vm.medicationDicts">
+        <span class="ion-chevron-right span"></span>
+        <i>{{medication.genericName}}</i>
+        <span ng-if="medication.commercialName != null">(</span>
+        {{medication.commercialName}}</i>
+        <span ng-if="medication.commercialName != null">)</span>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,23 @@
+<ion-view view-title="{{'DIAGNOSIS_SUMMARY' | translate}}">
+  <ion-nav-buttons side="left">
+    <back-button></back-button>
+  </ion-nav-buttons>
+  <ion-content class="profile-discharge">
+    <div class="item">
+      <h2>{{'DIAGNOSIS_SUMMARY' | translate}}</h2>
+      <p>{{ vm.dischargeDate | date: "yyyy-MM-dd HH:mm:ss" }}</p>
+      <div class="discharge-content">
+      	<h3 class="discharge-title">{{'IN_HOSPITAL_CONDITION' | translate}}</h3>
+      	<p>{{vm.dischargeSummary.admissionCondition}}</p>
+      </div>
+      <div class="discharge-content">
+      	<h3 class="discharge-title">{{'OPERATION_CONDITION' | translate}}</h3>
+      	<p>{{vm.dischargeSummary.procedurePerformed}}</p>
+      </div>
+      <div class="discharge-content">
+      	<h3 class="discharge-title">{{'IN_HOSPITAL_CONDITION' | translate}}</h3>
+      	<p>{{vm.dischargeSummary.dischargeInstruction}}</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

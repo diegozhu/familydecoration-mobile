@@ -1,0 +1,43 @@
+<ion-view view-title="{{'CAREPLAN_FOLLOWUP' | translate}}">
+  <ion-nav-buttons side="right">
+    <a class="profile" ui-sref="profile"></a>
+  </ion-nav-buttons>
+
+  <ion-content class="follow-up has-footer">
+    <div class="view-ctrl font-small">
+      <div class="clearfix" ng-show="vm.agendaView">
+        <span class="font-cobalt">{{'CAREPLAN_FOLLOWUP_AGENDA' | translate}}</span>
+        <p class="font-nice-blue">
+          <i class="icon ion-clock"></i>{{'CAREPLAN_FOLLOWUP_TIMELINE_VIEW' | translate}}
+        </p>
+      </div>
+      <div class="clearfix" ng-show="!vm.agendaView">
+        <span class="font-cobalt">{{'CAREPLAN_FOLLOWUP_PROTOCOL' | translate}}</span>
+        <p class="font-nice-blue">
+          <i class="icon ion-document-text"></i>{{'CAREPLAN_FOLLOWUP_AGENDA_VIEW' | translate}}
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-view">
+      <div class="timeline-item row">
+        <div class="col left">
+          <p class="discharge"></p>
+        </div>
+        <div class="col col-60 mid font-dark-slate-blue">{{'CAREPLAN_FOLLOWUP_DISCHARGE' | translate}}</div>
+        <div class="col col-25 right font-small font-bluish">{{vm.dischargeDate | date: "yyyy-MM-dd"}}</div>
+      </div>
+
+      <div class="timeline-item row" ng-repeat="followup in vm.followups" ng-click="vm.openModal($index)">
+        <div class="col left">
+          <p></p>
+        </div>
+        <div class="col col-60 mid font-dark-slate-blue">{{followup.stepValue}}个{{followup.unitLabel}}以后</div>
+        <div class="col col-25 right font-small font-bluish">
+          <p>{{followup.currentNodeDate | date: "yyyy-MM-dd"}}</p>
+          <p>在{{followup.remark.location.label}}</p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

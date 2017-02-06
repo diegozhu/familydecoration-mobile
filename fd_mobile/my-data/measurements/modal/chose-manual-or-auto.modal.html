@@ -1,0 +1,22 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.closeObservationModal()"></button>
+    <div class="title">{{'MEASUREMENT_ADD_BLE' | translate}}</div>
+  </ion-header-bar>
+
+  <ion-content class="measurement-modal">
+      <div class="label font-dark-slate-blue">{{'MEASUREMENT_CHOSE' | translate}}</div>
+      <div class="fd-button">
+        <button ng-click="vm.choseAndOpenModal('MEASUREMENT_BLUETOOTH_CODE', vm.setFutureOption ? 'AUTO' : 'CHOSE')" class="font-white bg-gradient">{{'MEASUREMENT_CHOICE_AUTO' | translate}}</button>
+      </div>
+      <br />
+      <div class="fd-button">
+        <button ng-click="vm.choseAndOpenModal(vm.measurementType, vm.setFutureOption ? 'MANU' : 'CHOSE' )" class="font-white bg-gradient">{{'MEASUREMENT_CHOICE_MANUAL' | translate}}</button>
+      </div>
+      <div class="fd-button checkbox">
+        <label>
+          <input type="checkbox" ng-model="vm.setFutureOption"/>&nbsp;{{'MEASUREMENT_CHOICE_REMEMBER' | translate}}
+        </label>
+      </div>
+  </ion-content>
+</ion-modal-view>

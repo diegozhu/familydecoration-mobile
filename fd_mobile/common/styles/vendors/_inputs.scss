@@ -1,0 +1,56 @@
+.fd-input {
+  padding: 0 16px;
+
+  .label {
+    font-size: $fontNormal;
+  }
+
+  .input {
+    position: relative;
+  }
+
+  .input-hint {
+    color: #c3c3c3;
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    line-height: 1;
+  }
+
+  input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    color: $black;
+    border-radius: 2px;
+
+    &.no-border {
+      border: 0 none;
+    }
+
+    &.border-nice-blue {
+      border: 1px solid $niceBlue;
+    }
+
+    &.bg-duck-egg-blue {
+      background: #daf1f7;
+
+      &:focus {
+        background: #fff;
+      }
+    }
+  }
+
+  textarea {
+    width: 100%;
+    height: 116px;
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid #d8d8d8;
+    padding: 16px;
+
+    &.border-nice-blue {
+      border: 1px solid $niceBlue;
+    }
+  }
+}

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>fd mobile</title>
+<!-- build:css styles/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css" />
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:css styles/app.css -->
+<!-- inject:css -->
+<link rel="stylesheet" href="common/styles/style.css">
+<link rel="stylesheet" href="my-data/styles/floating-action-button.css">
+<link rel="stylesheet" href="security/styles/security.css">
+<!-- endinject -->
+<!-- endbuild -->
+</head>
+<body ng-app="fdmobile">
+
+<!-- the nav bar will be updated as we navigate between views -->
+<!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
+<ion-nav-bar class="header-fd">
+  <!-- <ion-nav-back-button></ion-nav-back-button> -->
+</ion-nav-bar>
+
+<!-- the current view will be rendered in the <ion-nav-view> directive -->
+<ion-nav-view></ion-nav-view>
+
+<!-- will be a 404 during development -->
+<script src="cordova.js"></script>
+
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/highcharts/highcharts.js"></script>
+<script src="bower_components/highcharts/highcharts-more.js"></script>
+<script src="bower_components/highcharts/modules/exporting.js"></script>
+<script src="bower_components/ionic/release/js/ionic.js"></script>
+<script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+<script src="bower_components/localforage/dist/localforage.js"></script>
+<script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+<script src="bower_components/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script>
+<script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script src="bower_components/angular-svg-round-progressbar/build/roundProgress.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular-counter/js/angular-counter.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+<script src="bower_components/html2canvas/build/html2canvas.js"></script>
+<script src="bower_components/imgcache.js/js/imgcache.js"></script>
+<script src="bower_components/leancloud-realtime/dist/realtime.browser.min.js"></script>
+<script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/app.js -->
+<!-- inject:js -->
+
+<script src="settings/update/update.module.js"></script>
+
+<script src="settings/update/update.router.js"></script>
+
+<script src="settings/update/update.controller.js"></script>
+
+<script src="settings/settings.module.js"></script>
+
+<script src="settings/settings.router.js"></script>
+
+<script src="settings/settings.controller.js"></script>
+
+<script src="settings/services/settings.service.js"></script>
+
+<script src="settings/feedback/feedback.module.js"></script>
+
+<script src="settings/feedback/feedback.router.js"></script>
+
+<script src="settings/feedback/feedback.controller.js"></script>
+
+<script src="settings/device/device.module.js"></script>
+
+<script src="settings/device/device.router.js"></script>
+
+<script src="settings/device/device.controller.js"></script>
+
+<script src="settings/datatransfer/datatransfer.module.js"></script>
+
+<script src="settings/datatransfer/datatransfer.router.js"></script>
+
+<script src="settings/datatransfer/datatransfer.controller.js"></script>
+
+<script src="settings/contact/contact.module.js"></script>
+
+<script src="settings/contact/contact.router.js"></script>
+
+<script src="settings/contact/contact.controller.js"></script>
+
+<script src="settings/about/about.module.js"></script>
+
+<script src="settings/about/about.router.js"></script>
+
+<script src="settings/about/about.controller.js"></script>
+
+<script src="security/forgot-password/forgot-password.js"></script>
+
+<script src="security/services/passwordmodel.service.js"></script>
+
+<script src="security/security.module.js"></script>
+
+<script src="security/services/login.service.js"></script>
+
+<script src="security/services/forgotpassword.service.js"></script>
+
+<script src="security/login/login.router.js"></script>
+
+<script src="security/login/login.module.js"></script>
+
+<script src="security/login/login.controller.js"></script>
+
+<script src="security/forgot-password/success.controller.js"></script>
+
+<script src="security/forgot-password/new-password.controller.js"></script>
+
+<script src="security/forgot-password/forgot-password.routes.js"></script>
+
+<script src="security/forgot-password/check-verification-code.controller.js"></script>
+
+<script src="security/directives/timerbutton.js"></script>
+
+<script src="reference/util-ref/util-ref.module.js"></script>
+
+<script src="reference/util-ref/util-ref.router.js"></script>
+
+<script src="reference/util-ref/util-ref.controller.js"></script>
+
+<script src="reference/ui-ref/ui-ref.module.js"></script>
+
+<script src="reference/ui-ref/ui-ref.router.js"></script>
+
+<script src="reference/reference.module.js"></script>
+
+<script src="reference/tabs/tabs.router.js"></script>
+
+<script src="reference/demos/demos.module.js"></script>
+
+<script src="reference/demos/demos.router.js"></script>
+
+<script src="reference/demos/demos.controller.js"></script>
+
+<script src="reference/ble2/ble2.module.js"></script>
+
+<script src="reference/ble2/ble2.router.js"></script>
+
+<script src="reference/ble2/ble2.controller.js"></script>
+
+<script src="reference/ble/ble.module.js"></script>
+
+<script src="reference/ble/ble.router.js"></script>
+
+<script src="reference/ble/ble.controller.js"></script>
+
+<script src="reference/fd-icons/fd-icons.module.js"></script>
+
+<script src="reference/fd-icons/fd-icons.router.js"></script>
+
+<script src="profile/profile.module.js"></script>
+
+<script src="profile/services/profile.service.js"></script>
+
+<script src="profile/services/profile.data.service.js"></script>
+
+<script src="profile/qr/qr.module.js"></script>
+
+<script src="profile/qr/qr.router.js"></script>
+
+<script src="profile/qr/qr.controller.js"></script>
+
+<script src="profile/profile.router.js"></script>
+
+<script src="profile/profile.controller.js"></script>
+
+<script src="profile/password/password.module.js"></script>
+
+<script src="profile/password/password.router.js"></script>
+
+<script src="profile/password/password.controller.js"></script>
+
+<script src="profile/gender/gender.module.js"></script>
+
+<script src="profile/gender/gender.router.js"></script>
+
+<script src="profile/gender/gender.controller.js"></script>
+
+<script src="profile/discharge/dischargeinfo.js"></script>
+
+<script src="profile/discharge/dischargeinfo.router.js"></script>
+
+<script src="profile/discharge/discharge.controller.js"></script>
+
+<script src="profile/diaginfo/diaginfo.module.js"></script>
+
+<script src="profile/diaginfo/diaginfo.router.js"></script>
+
+<script src="profile/diaginfo/diaginfo.controller.js"></script>
+
+<script src="profile/contact/contact.module.js"></script>
+
+<script src="profile/contact/contact.router.js"></script>
+
+<script src="profile/contact/contact.controller.js"></script>
+
+<script src="profile/configname/configname.module.js"></script>
+
+<script src="profile/configname/configname.router.js"></script>
+
+<script src="profile/configname/configname.controller.js"></script>
+
+<script src="profile/avatar/avatar.module.js"></script>
+
+<script src="profile/avatar/avatar.router.js"></script>
+
+<script src="profile/avatar/avatar.controller.js"></script>
+
+<script src="nutrition/foodCoach/nutrition.module.js"></script>
+
+<script src="nutrition/foodCoach/service/nutrition.service.js"></script>
+
+<script src="nutrition/foodCoach/service/nutrition.data.service.js"></script>
+
+<script src="nutrition/foodCoach/service/nutrition.animation.service.js"></script>
+
+<script src="nutrition/foodCoach/nutrition.router.js"></script>
+
+<script src="nutrition/foodCoach/directives/ionic-image-lazy-load.js"></script>
+
+<script src="nutrition/foodCoach/directives/highcharts-ng.js"></script>
+
+<script src="nutrition/foodCoach/controllers/nutrition.foodCoach.controller.js"></script>
+
+<script src="nutrition/foodCoach/controllers/nutrition.dailyDish.controller.js"></script>
+
+<script src="nutrition/foodCoach/controllers/nutrition.baseInfo.controller.js"></script>
+
+<script src="my-data/my-data.module.js"></script>
+
+<script src="my-data/tabs/tabs.router.js"></script>
+
+<script src="my-data/symptom-statement/symptom-statement.module.js"></script>
+
+<script src="my-data/symptom-statement/symptom-statement.router.js"></script>
+
+<script src="my-data/symptom-statement/services/symptom.service.js"></script>
+
+<script src="my-data/symptom-statement/list/symptom-statement-list.controller.js"></script>
+
+<script src="my-data/symptom-statement/directives/symptom-tags.directive.js"></script>
+
+<script src="my-data/symptom-statement/directives/floating-action-button.directive.js"></script>
+
+<script src="my-data/symptom-report/symptom-report.module.js"></script>
+
+<script src="my-data/symptom-report/symptom-report.router.js"></script>
+
+<script src="my-data/symptom-report/symptom-report.controller.js"></script>
+
+<script src="my-data/services/symptom-statement.service.js"></script>
+
+<script src="my-data/services/symptom-report.service.js"></script>
+
+<script src="my-data/services/symptom-care-plan.service.js"></script>
+
+<script src="my-data/intake/intake.module.js"></script>
+
+<script src="my-data/services/intake.service.js"></script>
+
+<script src="my-data/measurements/measurements.module.js"></script>
+
+<script src="my-data/measurements/services/measurements.service.js"></script>
+
+<script src="my-data/measurements/measurements.router.js"></script>
+
+<script src="my-data/measurements/measurements.controller.js"></script>
+
+<script src="my-data/measurements/charts/chart.directive.js"></script>
+
+<script src="my-data/measurements/charts/chart.controller.js"></script>
+
+<script src="my-data/intake/intake.router.js"></script>
+
+<script src="my-data/intake/intake.controller.js"></script>
+
+<script src="home/home.module.js"></script>
+
+<script src="home/home/home.router.js"></script>
+
+<script src="app.module.js"></script>
+
+<script src="common/services/urlbuilder.service.js"></script>
+
+<script src="common/services/logging.service.js"></script>
+
+<script src="common/services/fd-toast.service.js"></script>
+
+<script src="common/services/fd-popup.service.js"></script>
+
+<script src="common/services/authentication.service.js"></script>
+
+<script src="common/enhance/enhance.js"></script>
+
+<script src="common/directives/string-to-number.directive.js"></script>
+
+<script src="common/directives/form-validation.directive.js"></script>
+
+<script src="common/directives/fd-select.directive.js"></script>
+
+<script src="common/directives/fd-score-panel.directive.js"></script>
+
+<script src="common/directives/fd-picker.directive.js"></script>
+
+<script src="common/directives/back-button.directive.js"></script>
+
+<script src="common/constants/constants.js"></script>
+
+<script src="common/config/platform-config.js"></script>
+
+<script src="common/config/i18n.config.js"></script>
+
+<script src="common/config/http-interceptor.js"></script>
+
+<script src="common/config/http-credentials.js"></script>
+
+<script src="common/config/googleAnalytics.config.js"></script>
+
+<script src="common/config/calendar.config.js"></script>
+
+<script src="common/config/back-button-action.js"></script>
+
+<script src="common/config/app-router.config.js"></script>
+
+<script src="coach/coach.module.js"></script>
+
+<script src="coach/services/task.service.js"></script>
+
+<script src="coach/services/task.new.service.js"></script>
+
+<script src="coach/services/mobile-compliance.service.js"></script>
+
+<script src="coach/services/education-coaching.service.js"></script>
+
+<script src="coach/coach/coach.router.js"></script>
+
+<script src="coach/coach/coach.controller.js"></script>
+
+<script src="chat/chat.module.js"></script>
+
+<script src="chat/services/chat-util.service.js"></script>
+
+<script src="chat/services/chat-client.service.js"></script>
+
+<script src="chat/conversation/conversation-list.module.js"></script>
+
+<script src="chat/conversation/conversation-list.controller.js"></script>
+
+<script src="chat/chat-board/chat-board.module.js"></script>
+
+<script src="chat/chat-board/chat-board.controller.js"></script>
+
+<script src="chat/chat.router.js"></script>
+
+<script src="chat/chat.config.js"></script>
+
+<script src="care-plan/care-plan.module.js"></script>
+
+<script src="care-plan/tabs/tabs.router.js"></script>
+
+<script src="care-plan/services/followup.service.js"></script>
+
+<script src="care-plan/medication/medication.js"></script>
+
+<script src="care-plan/medication/services/medication-service.js"></script>
+
+<script src="care-plan/medication/services/medication-careplan-variable-service.js"></script>
+
+<script src="care-plan/medication/services/medication-careplan-service.js"></script>
+
+<script src="care-plan/medication/medication-order.controller.js"></script>
+
+<script src="care-plan/medication/medication-dict.controller.js"></script>
+
+<script src="care-plan/medication/medication-careplan.controller.js"></script>
+
+<script src="care-plan/medication/medication.router.js"></script>
+
+<script src="care-plan/lifestyle/lifestyle.js"></script>
+
+<script src="care-plan/lifestyle/lifestyle.router.js"></script>
+
+<script src="care-plan/lifestyle/lifestyle.controller.js"></script>
+
+<script src="care-plan/followup/followup.module.js"></script>
+
+<script src="care-plan/followup/followup.router.js"></script>
+
+<script src="care-plan/followup/followup.controller.js"></script>
+
+<script src="care-plan/directives/formatdate.js"></script>
+
+<script src="care-plan/directives/fd-picker-new.directive.js"></script>
+
+<!-- endinject -->
+<!-- endbuild -->
+</body>
+</html>

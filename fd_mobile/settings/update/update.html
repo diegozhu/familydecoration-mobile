@@ -1,0 +1,15 @@
+<ion-view view-title="{{'UPDATE' | translate}}">
+  <ion-nav-buttons side="left">
+    <back-button></back-button>
+  </ion-nav-buttons>
+  <ion-content class="settings-update">
+    <div class="card">
+      <div class="item" ng-show="vm.checking">
+        <i class="ion-load-d spin"></i>&nbsp;{{'CHECKING' | translate}}
+      </div>
+      <div class="item" ng-show="!vm.checking">
+        <i class="ion-checkmark-circled spin"></i>&nbsp;{{'LATEST' | translate}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

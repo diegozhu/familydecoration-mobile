@@ -1,0 +1,13 @@
+<ion-view>
+  <ion-nav-buttons side="left">
+    <a class="button button-icon icon ion-ios-gear-outline" ng-click="SuccessCtrl.goBack()">{{'SECURITY_FORGOTPASSWORD_BACK' | translate}}</a>
+  </ion-nav-buttons> 
+  <ion-content class="padding">
+      <div>
+  	  	<h1>{{'SECURITY_FORGOTPASSWORD_SUCCESS' | translate}}</h1>
+      </div>
+      <button class="button button-positive" ng-click="SuccessCtrl.goLogin()">
+  	   {{'SECURITY_FORGOTPASSWORD_LOGIN' | translate}}
+ 	  </button>
+  </ion-content>
+</ion-view>

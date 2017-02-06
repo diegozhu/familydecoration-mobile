@@ -1,0 +1,30 @@
+.lifestyle-card .card {
+  background-color: rgb(240, 248, 250);
+  color: rgb(61,148,184);
+  margin: 0;
+}
+
+.lifestyle-card .card-item {
+  padding-bottom: 0px; 
+  box-shadow: none; 
+  border-style: none;
+}
+
+.lifestyle-card .card-radius {
+  padding: 0; 
+  margin-top: 20px; 
+  border-radius: 4px;
+}
+
+.lifestyle-card .card-title-div {
+  line-height: 60px; 
+  background-color: rgb(255, 255, 255);
+}
+
+.lifestyle-card .card-title {
+  display: block; 
+  margin-left: 5%;
+  color: rgb(61,148,184);
+  font-size: 20px;
+  white-space: pre-wrap;
+}

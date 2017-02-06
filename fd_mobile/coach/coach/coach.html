@@ -1,0 +1,21 @@
+<ion-view view-title="{{'COACH_HEADER' | translate}}">
+  <ion-nav-buttons side="right">
+    <a class="profile" ui-sref="profile"></a>
+  </ion-nav-buttons>
+
+  <ion-content class="coach">
+
+    <fd-score-panel current-score="vm.complianceScore.score" dog-status="vm.complianceScore.dogStatus" click-score="vm.openComplianceScoreModal"></fd-score-panel>
+
+    <div class="clearfix">
+      <ion-list>
+        <ion-item class="item-divider">{{'COACH_TASK_TODAY' | translate}} ({{vm.tasks.length}})</ion-item>
+
+        <ion-item ng-repeat="task in vm.tasks" ng-click="vm.doTask($index)">
+          <i class="coach-icon" ng-class="vm.setIcon($index)"></i>{{task.title}}
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </ion-content>
+</ion-view>

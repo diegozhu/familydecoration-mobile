@@ -1,0 +1,92 @@
+<ion-view view-title="{{'HOME_MYDATA' | translate}}">
+  <ion-nav-buttons side="right">
+    <a class="profile" ui-sref="profile"></a>
+  </ion-nav-buttons>
+  <ion-content class="has-footer">
+    <ion-list class="measurement-list">
+
+      <ion-item class="row">
+        <i class="col-20 icon-fd-bloodpressure"></i>
+        <div class="col-50">
+          <div class="title">{{'MEASUREMENT_BLOOD_PRESSURE' | translate}}</div>
+          <div class="value">
+          {{vm.systolicBloodPressure.value}}/{{vm.diastolicBloodPressure.value}}
+          <span>{{'BLOOD_PRESSURE_UNIT' | translate}}</span>
+          </div>
+          <div class="date">
+            <div>{{'MEASUREMENT_LAST_MASUREMENT_DATE' | translate}}</div>
+            <div>{{vm.systolicBloodPressure.obserDate | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+          </div>
+        </div>
+        <div class="btns col-30">
+          <span class="icon-fd-data" ng-click="vm.openChart('BLOOD_PRESSURE_CODE')"></span>
+          <span class="icon-fd-add" ng-click="vm.openModal('BLOOD_PRESSURE_CODE')"></span>
+        </div>
+      </ion-item>
+
+      <ion-item class="row">
+        <i class="col-20 icon-fd-heartrate"></i>
+        <div class="col-50">
+          <div class="title">{{'MEASUREMENT_HEART_RATE' | translate}}</div>
+          <div class="value">{{vm.heartRate.value}}<span>{{'HEART_RATE_UNIT' | translate}}</span></div>
+          <div class="date">
+            <div>{{'MEASUREMENT_LAST_MASUREMENT_DATE' | translate}}</div>
+            <div>{{vm.heartRate.obserDate | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+          </div>
+        </div>
+        <div class="btns col-30">
+          <span class="icon-fd-data" ng-click="vm.openChart('HEART_RATE_CODE')"></span>
+          <span class="icon-fd-add" ng-click="vm.openModal('HEART_RATE_CODE')"></span>
+        </div>
+      </ion-item>
+
+      <ion-item class="row">
+        <i class="col-20 icon-fd-weight"></i>
+        <div class="col-50">
+          <div class="title">{{'MEASUREMENT_WIGHT' | translate}}</div>
+          <div class="value">{{vm.weight.value}}<span>{{'WEIGHT_UNIT' | translate}}</span></div>
+          <div class="date">
+            <div>{{'MEASUREMENT_LAST_MASUREMENT_DATE' | translate}}</div>
+            <div>{{vm.weight.obserDate | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+          </div>
+        </div>
+        <div class="btns col-30">
+          <span class="icon-fd-data" ng-click="vm.openChart('WEIGHT_CODE')"></span>
+          <span class="icon-fd-add" ng-click="vm.openModal('WEIGHT_CODE')"></span>
+        </div>
+      </ion-item>
+
+      <ion-item class="row">
+        <i class="col-20 icon-fd-glucose"></i>
+        <div class="col-50">
+          <div class="title">{{'MEASUREMENT_FBG' | translate}}</div>
+          <div class="value">{{vm.fastingBloodGlucose.value}}<span>{{'BLOOD_GLUCOSE_UNIT' | translate}}</span></div>
+          <div class="date">
+            <div>{{'MEASUREMENT_LAST_MASUREMENT_DATE' | translate}}</div>
+            <div>{{vm.fastingBloodGlucose.obserDate | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+          </div>
+        </div>
+        <div class="btns col-30">
+          <span class="icon-fd-data" ng-click="vm.openChart('FASTING_BLOOD_GLUCOSE_CODE')"></span>
+          <span class="icon-fd-add" ng-click="vm.openModal('FASTING_BLOOD_GLUCOSE_CODE')"></span>
+        </div>
+      </ion-item>
+
+      <ion-item class="row">
+        <i class="col-20 icon-fd-glucose"></i>
+        <div class="col-50">
+          <div class="title">{{'MEASUREMENT_PBG' | translate}}</div>
+          <div class="value">{{vm.prandialBloodGlucose.value}}<span>{{'BLOOD_GLUCOSE_UNIT' | translate}}</span></div>
+          <div class="date">
+            <div>{{'MEASUREMENT_LAST_MASUREMENT_DATE' | translate}}</div>
+            <div>{{vm.prandialBloodGlucose.obserDate | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+          </div>
+        </div>
+        <div class="btns col-30">
+          <span class="icon-fd-data" ng-click="vm.openChart('POSTPRANDIAL_BLOOD_GLUCOSE_CODE')"></span>
+          <span class="icon-fd-add" ng-click="vm.openModal('POSTPRANDIAL_BLOOD_GLUCOSE_CODE')"></span>
+        </div>
+      </ion-item>
+
+  </ion-content>
+</ion-view>

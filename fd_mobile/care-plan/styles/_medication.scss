@@ -1,0 +1,229 @@
+
+/* medication care plan page style */
+.medication-careplan .careplan-menu {
+  margin: 0 16px;
+}
+.medication-careplan .careplan-menu div {
+  padding-left: 0;
+  padding-right: 0;
+}
+.medication-careplan .careplan-menu .first-row {
+  padding: 9px 0;
+}
+.medication-careplan .careplan-menu .calendar {
+  text-align: right;
+}
+.medication-careplan .careplan-menu .calendar .label {
+  padding: 0 0 0 8px;
+}
+.medication-careplan .careplan-menu .action {
+  border-top: 1px solid #ddd;
+}
+.medication-careplan .careplan-menu .action .label {
+  text-align: right;
+}
+
+.medication-careplan .activities .item {
+  background: transparent;
+  padding: 3px 16px;
+}
+.medication-careplan .activities .row {
+  padding: 0;
+  line-height: 40px;
+}
+.medication-careplan .activities .col {
+  padding: 0;
+}
+.medication-careplan .activity .dose {
+  text-align: right;
+}
+.medication-careplan .activities .right-arrow {
+  text-align: right;
+  color: #b0bbcd;
+  padding-left: 32px;
+}
+.medication-careplan .stopped-medication-list {
+  padding: 32px 16px 16px;
+}
+.medication-careplan .activities .ion-trash-a:before,
+.medication-careplan .activities .ion-ios-undo:before {
+  padding-right: 8px;
+  font-size: 150%;
+}
+
+.medication-careplan .scheduler .time-title {
+  font-size: 20px;
+  margin: 15px;
+}
+
+.medication-careplan .scheduler .title {
+  color: #222;
+}
+
+.medication-careplan .scheduler .fd-picker {
+  display: inline;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: none;
+}
+
+/* medication order page style */
+.medication-order .medication-image {
+  height: 180px;
+  background: #fff;
+}
+.medication-order .medication-image img {
+  margin: 0 auto;
+}
+.medication-order .medication-name .row {
+  background: transparent;
+  padding: 4px 16px;
+}
+.medication-order .medication-name .col {
+  background: transparent;
+  padding: 6px 0;
+}
+.medication-order .medication-name .font-normal.label {
+  font-weight: bold;
+  line-height: 16px;
+}
+.medication-order .medication-name .font-small.label {
+  height: 12px;
+  line-height: 12px;
+}
+.medication-order .medication-name .toggle-edit {
+  text-align: right;
+}
+.medication-order .fields .item {
+  background: transparent;
+  padding: 4px 0;
+  margin: 0 16px;
+  border: 0 none;
+  border-bottom: 1px solid #ddd;
+}
+.medication-order .fields .item:first-child {
+  border-top: 1px solid #ddd;
+}
+.medication-order .fields .row,
+.medication-order .fields .col {
+  padding-left: 0;
+  padding-right: 0;
+}
+.medication-order .fields .value {
+  text-align: right;
+}
+.medication-order .fields .right-arrow {
+  text-align: right;
+  padding-left: 16px;
+  color: #b0bbcd;
+}
+
+/* medication modal dialog styles */
+.medication-edit-modal {
+  padding: 24px 16px;
+
+  .fd-picker {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .med-items {
+    margin: 35px 0;
+  }
+
+  .med-name {
+    span:before {
+      color: $pumpkin;
+      display: inline-block;
+      vertical-align: top;
+      content: '×';
+      width: 20px;
+      height: 20px;
+      border: 1px solid #c1cbd9;
+      border-radius: 2px;
+      margin-right: 10px;
+      text-align: center;
+      line-height: 20px;
+    }
+
+    input {
+      display: none;
+
+      &:checked + span:before {
+        color: $niceBlue;
+        content: '✓';
+      }
+    }
+  }
+
+  .med-dose {
+    text-align: right;
+  }
+}
+
+/* medication search page styles */
+.med-search a.item {
+  background-color: #F4F9FB;
+
+  > input[type="text"] {
+    height: 20px;
+    font-size: 16px;
+  }
+  > span {
+    width: 50%;
+    height: 20px;
+  }
+}
+
+.med-search a.item .span {
+  width: auto;
+  float: right;
+}
+
+/*Override*/
+.med-search .fd-input input {
+  padding: 0 50px;
+}
+
+.med-search .fd-input-fix {
+  height: 50px;
+  width: 100%;  
+}
+
+.med-search .fd-med-dic-scroll {
+  position: initial;
+  height: calc(100% - 50px);
+  width: 100%;
+  overflow: scroll;
+}
+
+
+.med-search .med-search-frame {
+  margin: 8px auto;
+}
+
+.med-search .med-search-icon {
+    height: 48px;
+    width: 48px;
+    top: 0%;
+    position: absolute;
+}
+
+.med-search .med-clear-icon {
+    height: 48px;
+    width: 48px;
+    top: 0%;
+    right: 0%;
+    position: absolute;
+}
+
+.med-search .med-search-result {
+  height: 300px;
+  overflow: auto;
+  width: 500px；
+}
+
+.bar .button.back-button, .bar button.back-button {
+    color: white;
+    display: block;
+}

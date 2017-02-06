@@ -1,0 +1,18 @@
+.configure-avatar {
+  .avatar-card {
+    display:flex;
+    align-items:center;
+    height:142px;
+    width:100%;
+    background-color:white;
+    justify-content:space-around;
+    
+    .avatar-img{
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+      margin-left: 15px;
+      background: url(#{$img-path}/avatar-small.png) no-repeat center center;
+    }
+  }
+}

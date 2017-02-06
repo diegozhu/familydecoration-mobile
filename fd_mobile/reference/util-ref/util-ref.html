@@ -1,0 +1,72 @@
+<ion-view view-title="Util Reference">
+  <ion-content class="has-footer">
+    <div class="card">
+      <div class="item item-divider" style="background:#1474a4!important;color:#fff">Popup</div>
+
+      <div class="item">
+        <div ng-click="vm.showAlert()">show alert</div>
+      </div>
+
+      <div class="item">
+        <div ng-click="vm.showPopup()">show popup</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider" style="background:#1474a4!important;color:#fff">Toast</div>
+
+      <div class="item">
+        <div ng-click="vm.showToast()">show toast</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider" style="background:#1474a4!important;color:#fff">back button</div>
+
+      <div class="item">
+        <div style="background:#1474a4;">
+          <back-button back-action="vm.sayhi()"></back-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <div class="title">Datepicker</div>
+      <div class="code">
+
+        <fd-picker mode="date" is-required="true" ng-model="vm.date"
+          range-min="vm.minDate" range-max="vm.maxDate" filter="yyyy/MM/dd">
+
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <div class="title">Timepicker</div>
+      <div class="code">
+
+        <fd-picker mode="time" ng-model="vm.time"
+          range-min="vm.minTime" range-max="vm.maxTime" filter="HH:mm">
+
+      </div>
+    </div>
+
+    <style>
+    .ref-card {
+      background: #fff;
+      margin: 20px 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .ref-card .title {
+      color: #fff;
+      line-height: 32px;
+      background: #1474a4;
+      padding: 0 16px;
+    }
+
+    .ref-card .code {
+      padding: 16px 0;
+    }
+    </style>
+  </ion-content>
+</ion-view>

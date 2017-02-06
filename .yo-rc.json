@@ -1,0 +1,21 @@
+{
+  "generator-m-ionic": {
+    "answers": {
+      "appName": "fd",
+      "appId": "h2h.philips.fd",
+      "ionicCss": false,
+      "bowerPackages": [
+        "angular-translate#~2.11.0",
+        "localforage#~1.4.0"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "plugins": [
+        "cordova-plugin-device"
+      ],
+      "appModule": "fd",
+      "ecosystems": []
+    }
+  }
+}

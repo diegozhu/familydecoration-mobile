@@ -1,0 +1,66 @@
+.login {
+  position: fixed;
+  top: 0;
+  padding-top: 60px;
+  background: -webkit-radial-gradient(center top, #1a94bd, $niceBlue);
+
+  .logo {
+    width: 60px;
+    height: 78px;
+    margin: 0 auto;
+    background: url(#{$img-path}/philips.png) no-repeat center 0;
+    background-size: auto 100%;
+  }
+
+  .title {
+    text-align: center;
+    margin: 30px 0;
+  }
+}
+
+.login-input {
+  margin: 16px 0;
+
+  .label {
+    margin-bottom: 4px;
+  }
+}
+
+.login-button {
+  margin-top: 36px;
+}
+
+.login-checkbox {
+  margin: 20px 0;
+  padding: 0 16px;
+
+  span:before {
+    display: inline-block;
+    vertical-align: top;
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 20px;
+  }
+
+  input {
+    display: none;
+
+    &:checked + span:before {
+      content: '✓';
+    }
+  }
+}
+
+.login-link {
+  margin-top: 30px;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+}

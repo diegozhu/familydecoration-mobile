@@ -1,0 +1,13 @@
+<ion-view view-title="{{'CONTACT' | translate}}">
+  <ion-nav-buttons side="left">
+    <back-button></back-button>
+  </ion-nav-buttons>
+  <ion-content class="configure-password">
+    <div class="item" ng-click="vm.call('{{item.number}}')" ng-repeat="item in vm.contacts">
+      <h2>{{item.name}}</h2>
+      <h3>{{item.desc}}</h3>
+      <p>{{item.time}}</p>
+      <div>{{item.number}}</div>
+    </div>
+  </ion-content>
+</ion-view>

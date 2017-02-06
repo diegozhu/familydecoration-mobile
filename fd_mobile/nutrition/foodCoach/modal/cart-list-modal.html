@@ -1,0 +1,39 @@
+
+<ion-modal-view class="nutrition-modal">
+<div class="transparent">
+	<div class="transparent fix-div nutrition-footer" ng-click="vm.closeCartModal()">
+		<button class="radius-button"><span class="badge badge-assertive">{{vm.selectNumber}}</span></button>
+	</div>
+	<div class="food-list-modal scroll">
+	<div ng-repeat="(key, value) in vm.sortSelectFoods  | groupBy: 'mainCategory' ">
+    <div class='category' id="cartFood{{ value[0].sortId }}"><p>{{ key }}</p></div>
+    <ul class="list" ng-if="value">
+      <li class="item" ng-repeat="obj in value">
+      	<div class="row">
+      		<div class="col-50">
+						<label>{{obj.displayName}}</label>
+						<span ng-if="obj.judge==1">
+			          <img src="assets/images/nutrition/smile.png">
+			          <img src="assets/images/nutrition/star.png">
+			      </span>
+			      <span ng-if="obj.judge==0">
+			         <img src="assets/images/nutrition/smile.png">
+			      </span>
+			      <span ng-if="obj.judge==-1">
+			         <img src="assets/images/nutrition/XMLID_97_.png">
+			      </span>
+			      <span ng-if="obj.judge==-2">
+			        <img src="assets/images/nutrition/cry.png">
+			       </span>
+		       </div>
+		       <div class="col right">
+						<a ng-click="vm.deleteFromCart({{obj.oid}})">{{ 'DELETE_FROM_CART' | translate }}<i class="icon ion-close"></i></a>
+					</div>
+					</div>
+			</li>
+		</ul>
+	</div>
+	</div>
+</div>
+</ion-modal-view>
+

@@ -1,0 +1,119 @@
+<ion-view view-title="{{'CAREPLAN' | translate}}">
+  <ion-nav-buttons side="right">
+    <a class="profile" ui-sref="profile"></a>
+  </ion-nav-buttons>
+  <ion-content class="has-footer medication-careplan font-nice-blue">
+    <div class="careplan-menu font-small">
+      <div class="row first-row">
+
+        <!-- hide when the list show as scheduler -->
+        <div ng-show="!vm.showAsSchedulerFlag" class="col">{{'CAREPLAN_MEDICATION_VIEW_AS_LIST' | translate}}</div>
+        
+        <!-- show when the list show as scheduler -->
+        <div ng-show="vm.showAsSchedulerFlag" class="col">{{'CAREPLAN_EVERYDAY_PLAN' | translate}}</div>
+        
+        <!-- hide when the list show as scheduler -->
+        <div ng-show="!vm.showAsSchedulerFlag" class="col col-30 icon ion-ios-clock-outline calendar" ng-click="vm.showAsScheduler()"><span class="label">{{'CAREPLAN_SEE_EVERYDAY_PLAN' | translate}}</span></div>
+
+        <!-- show when the list show as scheduler and then return to the common medication list.-->
+        <div ng-show="vm.showAsSchedulerFlag" class="col col-30 icon ion-navicon calendar" ng-click="vm.showAsList()"><span class="label">{{'CAREPLAN_MEDICATION_VIEW_AS_LIST' | translate}}</span></div>
+
+      </div>
+
+      <!-- the two buttons used for  active or inactive medications -->
+      <div class="action" ng-show="!vm.showAsSchedulerFlag">
+        <div class="row">
+          <div class="col col-20 col-offset-80 label toggle-edit" ng-click="vm.toggleEdit()">
+            <div ng-show="!vm.toggleEditFlag">{{'CAREPLAN_EDIT' | translate}}</div>
+            <div ng-show="vm.toggleEditFlag">{{'CAREPLAN_SAVE' | translate}}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- the two buttons used for timeslot time operation. -->
+      <div class="action" ng-show="vm.showAsSchedulerFlag">
+        <div class="row">
+          <div class="col col-20 col-offset-80 label toggle-edit" ng-click="vm.toggleTimeslotEdit()">
+            <div ng-show="!vm.timeslotEditFlag">{{'CAREPLAN_EDIT' | translate}}</div>
+            <div ng-show="vm.timeslotEditFlag">{{'CAREPLAN_SAVE' | translate}}</div>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <!-- show as list -->
+    <ion-list ng-show="!vm.showAsSchedulerFlag" class="activities">
+      <ion-item ng-repeat="activity in vm.medicationCarePlan.activities" ng-click="!vm.toggleEditFlag && activity.medicationOrderModel.status.code!==vm.stoppedStatus.code && vm.gotoMedicationOrderPage(activity)" ng-show="activity.medicationOrderModel.status.code!==vm.stoppedStatus.code">
+        <div class="row font-dark-slate-blue activity">
+          <div class="col col-70 ellipsis">
+            <span class="remove icon ion-trash-a" ng-show="vm.toggleEditFlag && activity.medicationOrderModel.status.code!==vm.stoppedStatus.code" ng-click="vm.stopMedication(activity)"></span>
+            <span ng-show="activity.medicationOrderModel.status.code!==vm.stoppedStatus.code">{{activity.medicationOrderModel.medication.genericName}}</span>
+            <span ng-show="activity.medicationOrderModel.status.code===vm.stoppedStatus.code"><s>{{activity.medicationOrderModel.medication.genericName}}</s></span>
+          </div>
+          <div class="col col-25 dose">
+            <span>{{activity.medicationOrderModel.dose}}</span>
+            <span> {{activity.medicationOrderModel.medication.unit.label}}</span>
+          </div>
+          <div class="right-arrow"><div class="icon ion-chevron-right"></div></div>
+        </div>
+      </ion-item>
+
+      <ion-item ng-show="!vm.medicationCarePlan.activities.length">{{'CAREPLAN_MEDICINE_NO_DATA' | translate}}</ion-item>
+
+      <ion-item>
+        <div class="row font-dark-slate-blue">
+          <div class="col" ng-click="vm.gotoAddMedicationOrderPage()">
+            <span class="icon ion-plus-round"></span>
+            <span>{{'CAREPLAN_ADD_MEDICATION' | translate}}</span>
+          </div>  
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <!-- show as scheduler  -->
+    <div ng-show="vm.showAsSchedulerFlag">
+      <ion-list class="activities scheduler">  
+        <div ng-repeat="timeslot in vm.medicationCarePlan.activityGroupByTimeslotList">
+          <div>
+            <div class="time-title">
+              <fd-picker-new disabled="{{vm.timeslotEditFlag}}" name="timePicker" class="fd-picker" ng-model="timeslot.time" mode="time" showcurrent="true"></fd-picker-new>
+              <span class="title">
+                - {{timeslot.title}}
+              </span>
+              <!-- <span>{{timeslot.title}} - </span>
+              <span ng-show="!vm.timeslotEditFlag">{{timeslot.time}}</span>
+              <fd-picker ng-show="vm.timeslotEditFlag" ng-model="timeslot.time" mode="time"></fd-picker> -->
+            </div>
+
+            <ion-item ng-repeat="activity in timeslot.list">
+              <div class="row font-dark-slate-blue activity">
+                <div class="col col-70 ellipsis">
+                  <span>{{activity.medicationOrderModel.medication.genericName}}</span>
+                </div>
+                <div class="col col-25 dose">
+                  <span>{{activity.medicationOrderModel.dose}}</span>
+                  <span>{{activity.medicationOrderModel.medication.unit.label}}</span>
+                </div>
+              </div>
+            </ion-item>
+          </div>
+        </div>
+      </ion-list>
+    </div>
+
+  </ion-content>
+</ion-view>
+<!-- <div class="stopped-medication-list" ng-show="true">{{'CAREPLAN_STOPPED_MEDICATION' | translate}}</div>
+<ion-item ng-repeat="activity in vm.medicationCarePlan.activities" ng-click="!vm.toggleEditFlag && vm.gotoMedicationOrderPage(activity)">
+  <div class="row font-dark-slate-blue activity">
+    <div class="col col-70 ellipsis">
+      <span class="icon ion-ios-undo" ng-show="vm.toggleEditFlag" ng-click="vm.activeMedication(activity)"></span>
+      <span>{{activity.medicationOrderModel.medication.genericName}}</span>
+    </div>
+    <div class="col col-25 dose">
+      <span>{{activity.medicationOrderModel.dose}}</span>
+      <span> {{activity.medicationOrderModel.unit.label}}</span>
+    </div>
+    <div class="right-arrow"><div class="icon ion-chevron-right"></div></div>
+  </div>
+</ion-item> -->

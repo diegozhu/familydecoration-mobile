@@ -1,0 +1,19 @@
+<ion-view view-title="准备开始一个会话">
+  <ion-content class="chat-content" lazy-scroll>
+    <div class="conversation-title">选择一个最近的会话开始：</div>
+    <ul class="conversation-list">
+      <li ng-repeat="c in vm.conversationList" ng-click="vm.openConversation('{{c.id}}')">
+        <div class="item">
+          会话： {{c.membersPlainText}}
+          <br>未读消息数: {{c.unreadMessagesCount}}
+          <br>最后消息时间: {{c.lastMessageAt | date:"MM/dd/yyyy 'at' h:mma"}}
+        </div>
+      </li>
+    </ul>
+    <div class="bottom-status">
+      <br>
+      <div class="update-time">Updated at: {{vm.lastRefreshAt | date:"h:mm:ssa"}}</div>
+      <div class="error-msg">{{vm.errorMsg}}</div>
+    </div>
+  </ion-content>
+</ion-view>

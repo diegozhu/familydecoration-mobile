@@ -1,0 +1,55 @@
+<ion-view view-title="{{'ACTIVITY_HEAD' | translate}}">
+    <ion-nav-buttons side="left">
+        <button ui-sref="nutrition.config.bmi" class="button button-icon icon ion-ios-arrow-left icon-back"></button>
+    </ion-nav-buttons>
+    <ion-content class="nutrition-content">
+        <div class="nutrition-wrap">
+            <p class="activity-quest">{{'ACTIVITY_QUEST' | translate}}</p>
+        </div>
+        <div class="nutrition-wrap">
+            <p class="activity-chose">
+                <label for="mild" class="text-muted">
+                    <span class="circle-btn" ng-class="{active: vm.activity=='PAL1'}">
+                        <input type="radio" id="mild" ng-model="vm.activity" value="PAL1">
+                    </span>
+                </label>{{'ACTIVITY_DEGREE_MILD' | translate}}
+            </p>
+            <p class="activity-chose">
+                <label for="medium" class="text-muted">
+                    <span class="circle-btn" ng-class="{active: vm.activity=='PAL2'}">
+                        <input type="radio" id="medium" ng-model="vm.activity" value="PAL2">
+                    </span>
+                </label>{{'ACTIVITY_DEGREE_MEDIUM' | translate}}
+            </p>
+            <p class="activity-chose">
+                <label for="serious" class="text-muted">
+                    <span class="circle-btn" ng-class="{active: vm.activity=='PAL3'}">
+                        <input type="radio" id="serious" ng-model="vm.activity" value="PAL3">
+                    </span>
+                </label>{{'ACTIVITY_DEGREE_SERIOUS' | translate}}
+            </p>
+        </div>
+        <div class="fix-height nutrition-wrap">      
+            <div class="" ng-show="vm.activity=='PAL1'">
+            <hr>
+                <p class="activity-descrip">{{'WHAT_MILD' | translate}}</p>
+                <p class="activity-descrip">{{'MILD_DESCRIPT' | translate}}</p>
+            </div>
+            <div class="" ng-show="vm.activity=='PAL2'">
+            <hr>
+                <p class="activity-descrip">{{'WHAT_MEDIUM' | translate}}</p>
+                <p class="activity-descrip">{{'MEDIUM_DESCRIPT' | translate}}</p>
+            </div>
+            <div class="" ng-show="vm.activity=='PAL3'">
+            <hr>
+                <p class="activity-descrip">{{'WHAT_SERIOUS' | translate}}</p>
+                <p class="activity-descrip">{{'SERIOUS_DESCRIPT' | translate}}</p>
+            </div>
+        </div>
+        <div class="nutrition-wrap">
+            <div class="fd-button">
+                <button class="font-white bg-gradient" ng-disabled="!vm.activity" ng-click="vm.gotoNutritionPage('nutrition.list.grain')">{{'BUTTON_NEXT' | translate}}</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

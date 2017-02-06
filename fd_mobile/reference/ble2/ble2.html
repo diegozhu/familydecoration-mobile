@@ -1,0 +1,81 @@
+<ion-view view-title="ble-{{vm.time | date : 'yyyy-MM-dd hh:mm:ss'}}">
+  <ion-content class="has-footer">
+    <div class="card" style="margin-top:5px;">
+      <div class="item item-divider" style="background:#1474a4!important;color:#fff">
+        <span ng-click="vm.scan()">{{vm.scanning ? 'scanning' : 'Click to scan ble device'}}</span>
+        <span ng-class="{'spin': vm.scanning}"></span>
+        <span ng-click="vm.clearLog()" style="margin-left:30px;">clearLog</span>
+        <span ng-click="vm.getBloodPressureData()" style="margin-left:30px;">show</span>
+        <span style="margin-right:0"></span>
+      </div>
+
+      <div class="item" ng-repeat="device in vm.devices">
+        <h2 ng-click="vm.connect(device)">
+          {{device.name || 'Unknow Name'}}
+          <span style="font-size:13px;color:grey;">({{device.id}})</span>
+<!--           <span style="font-size:13px;color:grey;">{{device.isConnected ? 'connected' : 'click to connect'}}</span>
+ -->        </h2>
+        <div ng-click="vm.readData(device)" style="margin-top:10px;" class="font-normal">{{ device.readingBpData ? 'reading bp data' : 'click to read bp data'}}</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-divider" style="background:#1474a4!important;color:#fff">
+        <span>Recieved data:</span>
+      </div>
+      <div class="item" ng-repeat="data in vm.data">
+        <i class="font-large col-10 icon icon-fd-bloodpressure" style="float: left;margin-right: 20px;"></i>
+        <h2>
+          Blood Pressure: {{data.high}}/{{data.low}}<br />
+          Heart Pulse: {{data.m}}<br />
+          <span style="font-size:13px;color:grey;float:right;">{{data.date}}</span>
+        </h2>
+      </div>
+    </div>
+    <div>
+      <div ng-repeat="log in vm.logs">
+        <div style="float:left;width:80%">{{log.text}}</div>
+        <div style="float:right;width:20%;font-size: 12px;color: grey;min-width: 70px">{{log.date| date : 'hh:mm:ss,sss'}}</div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+<style>
+.spin {
+  background-color:  white;
+  display:inline-block;
+  width:10px;
+  height:10px;
+  line-height: 5px;
+  font-size:5px;
+  padding:0;
+  margin:0;
+  overflow:hidden;
+  border:0;
+  text-align: center;
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+</style>

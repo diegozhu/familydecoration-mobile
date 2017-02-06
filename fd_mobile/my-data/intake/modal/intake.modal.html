@@ -1,0 +1,20 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.closeModal('intake')"></button>
+    <div class="title">{{vm.modalData.date}}</div>
+  </ion-header-bar>
+
+  <ion-content class="intake-modal font-dark-slate-blue">
+    <div ng-repeat="session in vm.modalData.sessions">
+      <div class="intake-item title font-bold">{{session.timeslot.label}} {{session.time}}</div>
+      <div ng-repeat="item in session.medicationTaskModelList" class="intake-item row">
+        <div class="col-60">{{item.medicationCarePlanActivityModel.medicationOrderModel.medication.genericName}}</div>
+        <div class="right col-40 font-large" ng-switch="item.wasNotGiven">
+          <div ng-switch-when="true">×</div>
+          <div ng-switch-when="false">✓</div>
+          <div ng-switch-default>?</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

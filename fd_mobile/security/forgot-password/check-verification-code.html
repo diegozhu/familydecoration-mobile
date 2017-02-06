@@ -1,0 +1,52 @@
+<ion-view>
+
+  <ion-nav-buttons side="left">
+      <a class="button button-icon icon ion-ios-gear-outline" ng-click="CheckVerificationCodeCtrl.goBack()">{{'SECURITY_FORGOTPASSWORD_BACK' | translate}}</a>
+  </ion-nav-buttons>
+
+  <ion-content class="padding">
+
+      <div class="height50">
+  			<div class="bar bar-header bar-positive">
+  				<h1 class="title">{{'SECURITY_FORGOTPASSWORD_FINDPASSWORD' | translate}}</h1>
+			  </div>
+
+  		</div>
+      <div class="height200 list">
+        <label class="item item-input">
+          <input type="text" placeholder="{{'SECURITY_FORGOTPASSWORD_ENTERUSERNAME' | translate}}" ng-model="CheckVerificationCodeCtrl.verificationMode.cellphone"></input>
+        </label>
+
+        <label class="item item-input width60">
+          <input type="text" placeholder="{{'SECURITY_FORGOTPASSWORD_ENTERVERIFICATIONCODE' | translate}}" ng-model="CheckVerificationCodeCtrl.verificationMode.code"></input>
+        </label>
+
+        <timerbutton show-timer="false" ng-click="CheckVerificationCodeCtrl.getVerificationCode()">{{'SECURITY_FORGOTPASSWORD_GETVERIFICATIOCODE' | translate}}</timerbutton>
+      </div>
+  		<div class="height50">
+			  <button class="button button-full button-positive" ng-click="CheckVerificationCodeCtrl.goNext()">
+  			  {{'SECURITY_FORGOTPASSWORD_CONFIRM' | translate}}
+			  </button>
+
+  		</div>
+
+  </ion-content>
+</ion-view>
+
+
+
+<!-- 
+As a mobile, I want to get back my password so that if I forget my password, I can get it back in a minute.
+
+Acceptance Criteria:
+1. 患者提供用户名（手机号）                                                     OK
+2. 系统发送短信验证码给患者，   --------点击获取验证码以后直接填写在空格里         OK
+3. 验证码长度4位数字，验证有效期5分钟                                            OK
+4. 验证码有效期内不重复发送   -----前端的"获取验证码"按钮灰掉，5分钟内禁止输入      OK
+5. 验证码输入错误提示“验证码不匹配”                                              OK
+6. 验证码确认后，患者输入新密码和确认密码                                        OK
+7. 如果新密码和确认密码不匹配，提示"您两次输入的密码不一致"                        OK
+
+<a href='#/forgotpassword/secondstep'>secondstep</a>
+
+-->

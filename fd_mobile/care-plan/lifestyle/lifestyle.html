@@ -1,0 +1,20 @@
+<ion-view view-title="{{'CAREPLAN_LIFESTYLE' | translate}}">
+  <ion-nav-buttons side="right">
+    <a class="profile" ui-sref="profile"></a>
+  </ion-nav-buttons>
+  <ion-content class="has-footer">
+    <div class="lifestyle-card">
+      <ion-list class="activities scheduler">  
+        <ion-item ng-repeat="card in vm.coachData" class="card card-item" ng-click="vm.openModal(card)">
+          <div class="col col-70 ellipsis card-radius">
+            <img ng-show="card.img" src="{{trustSrc(card.img)}}"/>
+            <img ng-show="!card.img" src="assets/images/coach/coach-image-default.jpg" width="100%" height="100%"/>
+            <div class="card-title-div">
+              <span class="card-title">{{card.title}}</span>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

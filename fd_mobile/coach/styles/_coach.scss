@@ -1,0 +1,115 @@
+.coach {
+  .item {
+    color: $darkSlateBlue;
+    background-color: #F4F9FB !important;
+  }
+
+  .item-divider {
+    background-color: #fff !important;
+  }
+
+  .item-content {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .coach-icon {
+    font-size: 24px;
+    margin-right: 16px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.coach-modal {
+  padding: 24px 32px;
+
+  .maintitle {
+    @include display-flex();
+    @include justify-content();
+    @include align-items(center);
+  }
+
+  .intake-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background: #daf1f7;
+    text-align: center;
+    line-height: 40px;
+  }
+
+  .subtitle {
+    margin-left: 55px;
+  }
+
+  .med-items {
+    margin: 35px 0;
+  }
+
+  .med-name {
+    span:before {
+      color: $pumpkin;
+      display: inline-block;
+      vertical-align: top;
+      content: '×';
+      width: 20px;
+      height: 20px;
+      border: 1px solid #c1cbd9;
+      border-radius: 2px;
+      margin-right: 10px;
+      text-align: center;
+      line-height: 20px;
+    }
+
+    input {
+      display: none;
+
+      &:checked + span:before {
+        color: $niceBlue;
+        content: '✓';
+      }
+    }
+  }
+
+  .med-dose {
+    text-align: right;
+  }
+
+  .med-btns div {
+    margin: 15px 0;
+  }
+  .med-btns {
+    .fd-button {
+      padding: 0 5px;
+    }
+  }
+
+
+  .compliance-score {
+    padding: 40px;
+    text-align: center;
+    font-size: 80px;
+    color: #1D2E68;
+  }
+
+  .compliance-score-title {
+    padding: 25px 1px;
+    text-align: center;
+    font-size: 25px;
+    color: #1E4D87;
+  }
+
+  .compliance-score-subtitle {
+    padding: 0 1px;
+    text-align: center;
+    font-size: 16px;
+    color: #1D2E68;
+  }
+
+  .compliance-score-dog-img {
+    padding: 40px;
+    margin: auto;
+  }
+}

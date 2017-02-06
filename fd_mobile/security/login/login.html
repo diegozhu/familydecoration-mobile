@@ -1,0 +1,37 @@
+<ion-view hide-nav-bar="true">
+  <ion-content class="login">
+    <div class="logo"></div>
+    <div class="title font-large font-white">fd</div>
+    <form name="loginForm" novalidate ng-submit="vm.login()">
+
+      <div class="fd-input login-input">
+        <div class="label font-white">{{'SECURITY_LOGIN_USERNAME' | translate}}</div>
+        <div class="input">
+          <input required class="no-border bg-duck-egg-blue" type="tel" name="username" ng-model="vm.username"></input>
+        </div>
+      </div>
+
+      <div class="fd-input login-input">
+        <div class="label font-white">{{'SECURITY_LOGIN_PASSWORD' | translate}}</div>
+        <div class="input">
+          <input required class="no-border bg-duck-egg-blue" type="password" name="password" ng-model="vm.password"></input>
+        </div>
+      </div>
+
+      <div class="fd-button login-button">
+        <button type="submit" class="font-white bg-dark-slate-blue" ng-disabled="!loginForm.$valid">{{'COMMON_SUBMIT' | translate}}</button>
+      </div>
+
+      <div class="login-checkbox">
+        <label class="font-white">
+          <input type="checkbox" checked="checked">
+          <span>{{'SECURITY_LOGIN_REMEMBER' | translate}}</span>
+        </label>
+      </div>
+    </form>
+
+    <div class="login-link">
+      <a class="font-small font-white" ui-sref="firststep">{{'SECURITY_LOGIN_FORGET' | translate}}</a>
+    </div>
+  </ion-content>
+</ion-view>

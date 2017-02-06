@@ -1,0 +1,27 @@
+<ion-view view-title="{{'DATA_TRANSFER' | translate}}">
+  <ion-nav-buttons side="left">
+    <back-button></back-button>
+  </ion-nav-buttons>
+  <ion-content class="settings-datatransfer">
+    <div class="card">
+      <div class="item" ng-click="vm.gotoSettings('AUTO')">
+        <div class="col-10">{{'AUTO' | translate}}</div>
+        <div class="col-10">
+          <i class="icon positive ion-checkmark-circled" ng-show="vm.datatransfer == 'AUTO'"></i>
+        </div>
+      </div>
+      <div class="item" ng-click="vm.gotoSettings('MANU')">
+        <div class="col-10">{{'MANU' | translate}}</div>
+        <div class="col-10">
+          <i class="icon positive ion-checkmark-circled" ng-show="vm.datatransfer == 'MANU'"></i>
+        </div>
+      </div>
+      <div class="item" ng-click="vm.gotoSettings('CHOSE')">
+        <div class="col-10">{{'CHOSE' | translate}}</div>
+        <div class="col-10">
+          <i class="icon positive ion-checkmark-circled" ng-show="vm.datatransfer == 'CHOSE'"></i>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

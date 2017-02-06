@@ -1,0 +1,25 @@
+<ion-view view-title="Demos">
+  <ion-content class="has-footer">
+    <div class="card">
+      <div class="item item-divider" style="background:#1474a4!important;color:#fff">Notification</div>
+
+      <div class="item">
+        <p>id: <input ng-model="vm.notificationId"></p>
+        <p>first at: <fd-picker ng-model="vm.at" mode="time"></fd-picker></p>
+        <p>every: <input ng-model="vm.every"></p>
+      </div>
+      <div class="item">
+        <p>cancel: <input ng-model="vm.cancelId"></p>
+      </div>
+      <div class="item">
+        <button ng-click="vm.generateTask()">generate task</button>
+        <button ng-click="vm.schedule()">schedule</button>
+        <button ng-click="vm.cancel()">cancel</button>
+      </div>
+      <div class="item item-text-wrap">
+        <p>task:</p>
+        <p>{{vm.task}}</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

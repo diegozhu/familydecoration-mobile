@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.closeModal()"></button>
+    <div class="title">{{'CAREPLAN_MEDICATION_EDIT' | translate}}</div>
+  </ion-header-bar>
+
+  <ion-content class="medication-edit-modal">
+    <form name="editForm" ng-submit="vm.saveRemark()">
+      <div class="fd-input">
+        <div class="label font-dark-slate-blue">{{'CAREPLAN_MEDICATION_REMARK_INPUT' | translate}}</div>
+        <div class="input">
+          <textarea id="remark" name="remark" maxlength="140" class="text-area" ng-model="vm.remark"></textarea>
+        </div>
+      </div>
+      <div class="fd-button">
+        <button type="submit" class="font-white bg-gradient">{{'CAREPLAN_CONFIRM' | translate}}</button>
+      </div>
+    </form>
+  </ion-content>
+
+</ion-modal-view>

@@ -1,0 +1,90 @@
+<ion-view view-title="{{'DAILY-HEAD' | translate}}">
+  <ion-nav-buttons side="right">
+    <button ui-sref="home.carePlan.nutrition" class="button button-icon icon ion-home back-button" ></button>
+  </ion-nav-buttons>
+  <div class="cooker" ng-if="!vm.creatDishLoading">
+	<div class="cook-loading" ng-show="vm.loadingSuccess">
+	    <img src="assets/images/nutrition/dog.png">
+	    <p>{{'DISH_LOADING' | translate}}</p>
+    </div>
+  </div>  
+  <ion-content class="nutrition-content cook-content" ng-show="vm.creatDishLoading" >
+    <div class="tab-div">
+    	<label>{{'NUTRITION_AIM' | translate}}</label>
+    </div>
+    <div class="nutrition-chart result-detail">
+    	<p class="title-descrip">根据您的身体状况和您选择的食材，您今天的营养摄入如下：</p>
+    	<div class="row">
+    		<div class="col-50">
+    		  <div class="table-descrip">
+    			<div class="row">
+    				<div class="col-60">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总能量</div>
+    				<div class="col-40">{{vm.acturalEnergy.totalEnergy}}kCAL</div>
+    			</div>
+    			<div class="row">
+    				<div class="col-60"><span class="one"></span>&nbsp;&nbsp;碳水化合物</div>
+    				<div class="col-40">{{vm.acturalEnergy.cho}}kCAL</div>
+    			</div>
+    			<div class="row">
+    				<div class="col-60"><span class="two"></span>&nbsp;&nbsp;蛋白质</div>
+    				<div class="col-40">{{vm.acturalEnergy.pro}}kCAL</div>
+    			</div>
+    			<div class="row">
+    				<div class="col-60"><span class="three"></span>&nbsp;&nbsp;脂肪</div>
+    				<div class="col-40">{{vm.acturalEnergy.fat}}kCAL</div>
+    			</div>
+    		  </div>
+    		</div>
+    		<div class="col-50" ng-if="vm.creatDishLoading">
+	    		<hc-pie-chart data="vm.pieData" style="width:200px;height:150px">Placeholder for pie chart</hc-pie-chart>
+    		</div>
+    	</div>
+    	<p class="result-descrip">营养小助手为您创建了健康餐盘，已最合理地考量了膳食纤维{{vm.micro.fiber}}g、镁{{vm.micro.mg}}mg、钾{{vm.micro.kalium}}mg等防治心血管疾病所需的营养素。</p>
+    </div>
+    <div class="tab-div" ng-show="vm.noticeList.length">
+    	<label>{{'MEDICINE_ADVICE' | translate}}</label>
+    </div>
+    <div class="result-detail">
+    	<div class="medicine-advice">
+    		<p class="title-descrip" ng-repeat="obj in vm.noticeList">{{ $index + 1}}.
+    		 {{obj}}</p>
+    	</div>
+    </div>
+  <div class="dailyDish">
+    <div class="tab-div">
+    	<label>{{'FOOD_QUANTUM' | translate}}</label>
+    	<span>{{'SINGULE_QUANTUM' | translate}}</span>
+    </div>
+    <div ng-repeat="(key, value) in vm.volumeFoods.nonPorridge
+ | groupBy: 'mainCategory'">
+    	<div class="sub-category">{{key}}</div>
+	    	<ul class="list food-list">
+		      <li class="item row" ng-repeat="obj in value">
+		        <div class="col">
+		          <img src="{{ obj.src }}">
+		        </div>
+		        <div class="col-50">
+		          <label class="food-name">{{obj.ingredient}}</label>
+		        </div>
+		        <div class="col add-cart-div" ng-if="!obj.porridgeName">
+		        	<span>{{obj.gram }}g({{ obj.liang }}两)</span>
+		        </div>
+	      	  </li>
+              <li class="item row" ng-if="($index==0)&&vm.volumeFoods.porridge">
+                <div class="col">
+                  <img src="{{vm.volumeFoods.porridge.src}}">
+                </div>
+                <div class="col col-75">
+                    <label class="food-name">{{vm.volumeFoods.porridge.porridgeName}}</label>
+                    <p class="food-descrip">原料：<span ng-repeat="dt in vm.volumeFoods.porridge.detailList">{{ dt.ingredient}}{{dt.gram}}g<span ng-if="!$last">、</span></span></p>
+                </div>
+              </li>
+	    	</ul>	
+      </div>
+    </div>
+    </ion-content>
+    <ion-footer-bar class="header-fd nutrition-footer" ng-show="vm.creatDishLoading">
+    	<button ng-click="vm.screenShot()" class="button-bottom food-detail-btn" id="save-pic">保存图片到本地</button>
+    </ion-footer-bar>
+   
+</ion-view>

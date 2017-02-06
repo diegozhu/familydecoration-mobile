@@ -1,0 +1,94 @@
+// Path
+//------------------
+/*inject:variables*/
+$path: '..';
+/*endinject*/
+$ionicons-font-path: "#{$path}/assets/fonts";
+$img-path: "#{$path}/assets/images";
+$font-path: "#{$path}/assets/fonts";
+
+
+// Ionic
+//------------------
+@import "../../bower_components/ionic/scss/ionic";
+
+
+// Vendors
+//------------------
+@import
+  "vendors/variables",
+  "vendors/base",
+  "vendors/reset",
+  "vendors/fonts",
+  "vendors/inputs",
+  "vendors/buttons";
+
+
+// Plugins
+//------------------
+@import
+  "plugins/error-msg",
+  "plugins/fd-icons",
+  "plugins/fd-popup",
+  "plugins/fd-toast",
+  "plugins/fd-picker",
+  "plugins/fd-score-panel",
+  "plugins/fd-calendar";
+
+
+// Security module
+//------------------
+@import "../../security/styles/_login";
+
+
+// Coach module
+//------------------
+@import "../../coach/styles/_coach";
+
+
+// My data module
+//------------------
+@import
+  "../../my-data/styles/_measurements",
+  "../../my-data/styles/_symptom-report",
+  "../../my-data/styles/_symptom-statement",
+  "../../my-data/styles/_intake";
+
+
+// Care plan module
+//------------------
+@import
+  "../../care-plan/styles/_medication",
+  "../../care-plan/styles/_follow_up",
+  "../../care-plan/styles/_lifestyle";
+
+
+// Profile module
+//------------------
+@import
+  "../../profile/styles/_qr",
+  "../../profile/styles/_avatar",
+  "../../profile/styles/_gender",
+  "../../profile/styles/_profile";
+
+// Settings module
+//------------------
+@import
+  "../../settings/styles/_datatransfer",
+  "../../settings/styles/_update",
+  "../../settings/styles/_notify",
+  "../../settings/styles/_feedback",
+  "../../settings/styles/_settings";
+
+
+// Nutrition module
+//------------------
+@import 
+  "../../nutrition/styles/_variable",
+  "../../nutrition/styles/_nutrition";
+
+
+// Chat module
+//------------------
+@import 
+  "../../chat/styles/_chat";

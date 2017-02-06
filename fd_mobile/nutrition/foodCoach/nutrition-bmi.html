@@ -1,0 +1,46 @@
+<ion-view view-title="{{'BMI_HEAR' | translate}}">
+    <ion-nav-buttons side="left">
+      <back-button></back-button>
+    </ion-nav-buttons>
+    <ion-content class="nutrition-content">
+        <div class="nutrition-wrap">
+            <label class="nutrition-label font-22">
+                {{'HEIGHT' | translate}}
+                <span ng-show="vm.height">:{{vm.height}}cm</span>
+            </label>
+            <div class="nutrition-tab">
+                <div class="range">
+                    <i class="icon ion-ios-minus-outline" ng-click="vm.deleteNumber(200.0)"></i>
+                    <input type="range" min="145.0" max="200.0" step="0.1" ng-model="vm.height">
+                    <i class="icon ion-ios-plus-outline" ng-click="vm.addNumber(145.0)"></i>
+                </div>
+                <div class="row">
+                    <div class="col-50 nutrition-label font-18">145&nbsp;cm</div>
+                    <div class="col-50 nutrition-label font-18 right">200&nbsp;cm</div>
+                </div>
+            </div>
+        </div>
+        <div class="nutrition-wrap">
+            <label class="nutrition-label font-22">
+                {{'WEIGHT' | translate}}
+                <span ng-show="vm.weight">:{{vm.weight}}kg</span>
+            </label>
+            <div class="nutrition-tab">
+                <div class="range">
+                     <i class="icon ion-ios-minus-outline" ng-click="vm.deleteNumber(30.0)"></i>
+                    <input type="range" min="30.0" max="100.0" step="0.1" ng-model="vm.weight">
+                    <i class="icon ion-ios-plus-outline" ng-click="vm.addNumber(30.0)"></i>
+                </div>
+                <div class="row">
+                    <div class="col-50 nutrition-label font-18">30&nbsp;kg</div>
+                    <div class="col-50 nutrition-label font-18 right">100&nbsp;kg</div>
+                </div>
+            </div>
+        </div>
+        <div class="nutrition-wrap">
+            <div class="fd-button">
+                <button class="font-white bg-gradient" ng-disabled="!(vm.height && vm.weight)" ng-click="vm.gotoNutritionPage('nutrition.config.activity')">{{'BUTTON_NEXT' | translate}}</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

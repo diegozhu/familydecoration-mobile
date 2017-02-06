@@ -1,0 +1,20 @@
+<ion-view view-title="{{'HOME_MYDATA' | translate}}">
+  <ion-nav-buttons side="right">
+    <a class="profile" ui-sref="profile"></a>
+  </ion-nav-buttons>
+  <ion-content class="has-footer">
+    <div class="symptom-list">
+      <div ng-repeat="report in vm.reports">
+        <div class="font-large font-dark-slate-blue">{{report.name}}</div>
+        <p>{{report.uploadTimestamp | date:"yyyy-MM-dd HH:mm"}}</p>
+        <span class="font-cobalt">{{report.reportComment}}</span>
+        <div class="pics clearfix">
+          <div ng-repeat="imgurl in report.imglist track by $index">
+            <img ng-src="{{imgurl + '_320x240q50.jpeg'}}" ng-click="vm.openModal('showPic', '{{imgurl}}')">
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <button class="add-report" ng-click="vm.openModal('addReport')">+</button>
+</ion-view>

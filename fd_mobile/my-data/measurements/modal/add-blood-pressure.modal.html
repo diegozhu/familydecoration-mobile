@@ -1,0 +1,47 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.closeObservationModal()"></button>
+    <div class="title">{{'MEASUREMENT_ADD_BLOOD_PRESSURE' | translate}}</div>
+  </ion-header-bar>
+
+  <ion-content class="measurement-modal">
+    <form novalidate name="bloodPressureForm" ng-submit="vm.addObservation('BLOOD_PRESSURE_CODE')">
+
+      <div class="fd-input">
+        <div class="label font-dark-slate-blue">{{'MEASUREMENT_SYSTOLIC' | translate}}</div>
+        <div class="input">
+          <input required class="border-nice-blue" type="number" name="systolic" ng-model="vm.observationModel.systolicBloodPressure"></input>
+          <span class="input-hint">{{'BLOOD_PRESSURE_UNIT' | translate}}</span>
+        </div>
+      </div>
+
+      <div class="fd-input">
+        <div class="label font-dark-slate-blue">{{'MEASUREMENT_DIASTOLIC' | translate}}</div>
+        <div class="input">
+          <input required class="border-nice-blue" type="number" name="dyastolic" ng-model="vm.observationModel.dyastolicBloodPressure"></input>
+          <span class="input-hint">{{'BLOOD_PRESSURE_UNIT' | translate}}</span>
+        </div>
+      </div>
+
+      <div class="fd-input">
+        <div class="label font-dark-slate-blue">{{'MEASUREMENT_INPUT_DATE' | translate}}</div>
+
+        <!-- <fd-picker name="datePicker" ng-model='vm.dateTimePicker.date' mode="date" max-date="{{vm.dateTimePicker.maxDate}}" min-date="{{vm.dateTimePicker.minDate}}"/> -->
+        <fd-picker is-required="true" name="datePicker" mode="date"
+          ng-model="vm.dateTimePicker.date" filter="yyyy-MM-dd"
+          range-min="vm.dateTimePicker.minDate" range-max="vm.dateTimePicker.maxDate">
+      </div>
+
+      <div class="fd-input">
+        <div class="label font-dark-slate-blue"">{{'MEASUREMENT_INPUT_TIME' | translate}}</div>
+        <!-- <fd-picker name="timePicker" ng-model='vm.dateTimePicker.time' mode='time' /> -->
+        <fd-picker name="timePicker" mode="time"
+          ng-model="vm.dateTimePicker.date" filter="HH:mm:ss">
+      </div>
+
+      <div class="fd-button">
+        <button type="submit" class="font-white bg-gradient" ng-disabled="!vm.validator">{{'MEASUREMENT_ADD_BLOOD_PRESSURE_CONFIRM' | translate}}</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

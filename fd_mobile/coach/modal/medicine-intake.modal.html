@@ -1,0 +1,38 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.closeModal()"></button>
+    <div class="title">{{'COACH_POPUP_MEDICINE_INTAKE' | translate}}</div>
+  </ion-header-bar>
+
+  <ion-content class="coach-modal font-cobalt">
+    <form ng-submit="vm.medTaskDone()">
+      <div class="maintitle font-large">
+        <div class="intake-icon icon-fd-intake"></div>
+        <div>{{vm.med.title}}</div>
+      </div>
+      <div class="subtitle">{{vm.med.time}}</div>
+
+      <div class="med-items row" ng-repeat="med in vm.med.medicationTaskModelList">
+        <div class="col-60 med-name">
+          <label>
+            <input type="checkbox" ng-model="med.isChecked" ng-disabled="!vm.medTaskCanChange">
+            <span>{{med.medicationCarePlanActivityModel.medicationOrderModel.medication.genericName}}</span>
+          </label>
+        </div>
+        <div class="col-40 med-dose">
+          <span>{{med.medicationCarePlanActivityModel.medicationOrderModel.dose}}</span>
+          <span>{{med.medicationCarePlanActivityModel.medicationOrderModel.medication.unit.label}}</span>
+        </div>
+      </div>
+
+      <div class="med-btns">
+        <div class="fd-button">
+          <button type="submit" ng-disabled="!vm.medTaskCanChange" class="font-white bg-nice-blue">{{'COACH_POPUP_BTN_CONFIRM' | translate}}</button>
+        </div>
+        <div class="fd-button">
+          <button type="button" ng-show="vm.snoozeButtonDisplay" ng-disabled="!vm.medTaskCanChange" class="font-cobalt bg-sefoam-blue" ng-click="vm.medTaskSnooze()">{{'COACH_POPUP_BTN_SNOOZE' | translate}}</button>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
