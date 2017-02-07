@@ -1,0 +1,34 @@
+.fd-picker {
+  color: #222;
+  height: 48px;
+  padding: 0 16px;
+  background: #fff;
+  line-height: 48px;
+  margin-left: 16px;
+  margin-right: 16px;
+  border-radius: 2px;
+  position: relative;
+  border: 1px solid $niceBlue;
+
+  &.error {
+    border-color: $pumpkin;
+  }
+
+  input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding-top: 0 !important;
+  }
+
+  i {
+    top: 50%;
+    right: 16px;
+    color: #c3c3c3;
+    position: absolute;
+    transform: translateY(-50%);
+  }
+}

@@ -1,0 +1,31 @@
+.fd-toast-container {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  top: 44px;
+  opacity: 0;
+  background: #f07c00;
+  text-align: center;
+  transition: all .3s ease-in-out;
+  height: 48px;
+  line-height: 48px;
+  color: #fff;
+
+  &.is-ios {
+    top: 65px;
+  }
+
+  &.noheader {
+    top: 0;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  i {
+    position: absolute;
+    width: 50px;
+    right: 0;
+  }
+}

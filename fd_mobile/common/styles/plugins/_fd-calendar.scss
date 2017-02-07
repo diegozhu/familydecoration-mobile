@@ -1,0 +1,93 @@
+.fd-calendar {
+  overflow: hidden;
+
+  .fd-cal-ctrl {
+    color: #c1cbd9;
+    margin: 16px 40px;
+    text-align: center;
+
+    > div {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+    }
+
+    .left {
+      float: left;
+    }
+
+    span {
+      line-height: 30px;
+    }
+
+    .right {
+      float: right;
+    }
+  }
+
+  .fd-cal-head {
+    width: 264px;
+    margin: 0 auto 16px;
+
+    div {
+      float: left;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+
+      + div {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  .fd-cal-month-box {
+    width: 264px;
+    margin: 0 auto;
+
+    .fd-cal-cell {
+      width: 24px;
+      margin-bottom: 15px;
+
+      + .fd-cal-cell {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  .fd-cal-month-day {
+    .state {
+      width: 24px;
+      height: 24px;
+    }
+
+    .all-taken {
+      background: url(#{$img-path}/alltaken.png) no-repeat;
+    }
+
+    .none-taken {
+      background: url(#{$img-path}/nonetaken.png) no-repeat;
+    }
+
+    .partially-taken {
+      background: url(#{$img-path}/partiallytaken.png) no-repeat;
+    }
+
+    .no-record {
+      background: url(#{$img-path}/norecord.png) no-repeat;
+    }
+
+    .future {
+      border: 1px dashed #b3b3b3;
+      border-radius: 50%;
+    }
+
+    p {
+      margin-top: 5px;
+      margin-bottom: 0;
+      text-align: center;
+      line-height: 1;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.score-panel {
+  overflow:hidden;
+  margin: 16px auto 10px auto;
+  width: 191px;
+}
+
+.score-panel .score-circle {
+  position: relative;
+  float: left;
+  margin: 0 13px 0 0;
+}
+
+.score-panel .dog-status {
+  float: left;
+  margin: 0 0 0 13px;
+}
+
+.score-panel .score-circle .score {
+  top: 50%;
+  bottom: auto;
+  left: 50%;
+  position: absolute;
+  color: #4575A4;
+  line-height: 1;
+  transform: translateY(-50%) translateX(-50%);
+  font-size: 35px;
+}

@@ -1,0 +1,103 @@
+.fd-popup-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0);
+
+  @include display-flex();
+  @include justify-content(center);
+  @include align-items(center);
+
+  z-index: $z-index-popup;
+
+  // Start hidden
+  visibility: hidden;
+  &.popup-showing {
+    visibility: visible;
+  }
+
+  &.popup-hidden .fd-popup {
+    @include animation-name(scaleOut);
+    @include animation-duration($popup-leave-animation-duration);
+    @include animation-timing-function(ease-in-out);
+    @include animation-fill-mode(both);
+  }
+
+  &.active .fd-popup {
+    @include animation-name(superScaleIn);
+    @include animation-duration($popup-enter-animation-duration);
+    @include animation-timing-function(ease-in-out);
+    @include animation-fill-mode(both);
+  }
+
+  .fd-popup {
+    width: $fd-popup-width;
+    max-width: 100%;
+    max-height: 90%;
+
+    border-radius: $popup-border-radius;
+    background-color: $app-background;
+
+    @include display-flex();
+    @include flex-direction(column);
+  }
+}
+
+.fd-popup-head {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+
+  @include display-flex();
+  @include justify-content();
+  @include align-items(center);
+}
+
+.fd-popup-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #daf1f7;
+  text-align: center;
+  line-height: 50px;
+  font-size: 36px;
+  margin-right: 10px;
+  color: #1E4D87;
+}
+
+.fd-popup-title {
+  .fd-popup-main-title {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+  }
+
+  .fd-popup-sub-title {
+    margin-top: 5px;
+    padding: 0;
+    font-size: 16px;
+  }
+}
+
+.fd-popup-body {
+  padding: 15px;
+  overflow: auto;
+}
+
+.fd-popup-buttons {
+  padding: 0 20px;
+  min-height: $popup-button-min-height + 20;
+}
+
+.popup-open {
+  pointer-events: none;
+
+  &.modal-open .modal {
+    pointer-events: none;
+  }
+
+  .popup-backdrop, .fd-popup {
+    pointer-events: auto;
+  }
+}
