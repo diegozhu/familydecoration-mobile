@@ -1,7 +1,4 @@
 {
   "directory": "bower_components",
-  "registry": {
-    "search": [ "http://130.147.219.57:8081/repository/bower-group/" ]
-  },
   "resolvers": [ "bower-nexus3-resolver" ] 
 }
