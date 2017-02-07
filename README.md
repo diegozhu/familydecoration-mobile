@@ -28,7 +28,7 @@
 
 4. add/rm platform:
 	
-	`cordova platform add/rm ios/android`
+	`cordova platform add/rm ios/android` (you probably need to mkdir www; mkdir platforms; first)
 
 5. build android/ios:
 
