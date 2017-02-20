@@ -4,15 +4,15 @@
   </ion-nav-buttons>
 
   <ion-content class="coach">
-
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()">
+  </ion-refresher>
     <fd-score-panel current-score="vm.complianceScore.score" dog-status="vm.complianceScore.dogStatus" click-score="vm.openComplianceScoreModal"></fd-score-panel>
-
     <div class="clearfix">
       <ion-list>
         <ion-item class="item-divider">{{'COACH_TASK_TODAY' | translate}} ({{vm.tasks.length}})</ion-item>
 
-        <ion-item ng-repeat="task in vm.tasks" ng-click="vm.doTask($index)">
-          <i class="coach-icon" ng-class="vm.setIcon($index)"></i>{{task.title}}
+        <ion-item ng-repeat="task in vm.tasks" ng-click="vm.showTip(task)">
+          <i class="coach-icon" ng-class="icon-fd-intake"></i>{{task.name}}
         </ion-item>
       </ion-list>
     </div>

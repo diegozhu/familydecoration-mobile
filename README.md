@@ -21,10 +21,18 @@
 	`bower install`
 
 3. run from web browser: (skip when setting up environment)
+	
+	`gulp watch --app "fd_mobile"`
 
-	`gulp watch-build --app "fd_mobile" --prod`
+	`gulp build --app "fd_mobile"`
+
+	`gulp watch-build --app "fd_mobile"`
 
 	`gulp watch --app "fd_mobile" --prod`
+
+	`gulp build --app "fd_mobile" --prod`
+
+	`gulp watch-build --app "fd_mobile" --prod`
 
 4. add/rm platform:
 	
