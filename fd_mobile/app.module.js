@@ -4,6 +4,7 @@
   angular.module('fdmobile', [
     // public modules
     'ionic',
+    'angular-md5',
     'ngCordova',
     'ngResource',
     'ngMessages',
@@ -16,6 +17,7 @@
     // app modules
     'fdmobile.security',
     'fdmobile.home',
+    'fdmobile.project',
     'fdmobile.settings',
     'fdmobile.profile',
     'fdmobile.logging'

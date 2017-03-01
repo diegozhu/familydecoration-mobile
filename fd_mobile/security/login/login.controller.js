@@ -6,21 +6,17 @@
     .controller('LoginController', LoginController);
 
   //function LoginController($state, $stateParams, loginService) {
-  function LoginController($state) {
+  function LoginController($state, authenticationService) {
     var vm = this;
 
-    vm.login = login;
+    vm.username = '';
+    vm.password = '';
 
-    function login() {
-      // loginService.save({
-      //   username: vm.username,
-      //   password: vm.password
-      // }).$promise.then(function() {
-      localStorage.setItem('username', vm.username);
-      localStorage.setItem('password', vm.password);
-
-      $state.go('home.coach');
-      // });
-    }
+    vm.login = function() {
+      authenticationService.login({
+        name: vm.username,
+        password: vm.password
+      });
+    };
   }
 })();

@@ -6,7 +6,7 @@
     .config(appRouter);
 
   function appRouter($urlRouterProvider, $ionicConfigProvider) {
-    $urlRouterProvider.otherwise('/coach');
+    $urlRouterProvider.otherwise('/login');
 
     $ionicConfigProvider.platform.android.tabs.style('standard');
     $ionicConfigProvider.platform.android.tabs.position('bottom');

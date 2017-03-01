@@ -25,7 +25,8 @@
     "leancloud-realtime": "^v3.3.3",
     "angular-scroll-glue": "^2.1.0",
     "lodash": "^4.17.3",
-    "angular-google-analytics": "^1.1.9"
+    "angular-google-analytics": "^1.1.9",
+    "angular-md5": "^0.1.10"
   },
   "resolutions": {
     "angular": "~1.5.0",

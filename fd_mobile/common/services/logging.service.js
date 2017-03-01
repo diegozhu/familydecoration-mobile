@@ -15,16 +15,17 @@
     })
     .factory('loggingService', loggingService);
 
-  function loggingService($log, CONSTANT, traceService, urlBuilder) {
+  function loggingService($log, CONSTANT) {
     function error(exception) {
+      $log.log(exception);
       if (CONSTANT.LOGGER === 'ON') {
-        var trace = traceService.trace;
-
-        trace
-          .report(exception.stack, urlBuilder.build('log/save'))
-          .catch(function(err) {
-            $log.error(err.message);
-          });
+        //var trace = traceService.trace;
+        //
+        // trace
+        //   .report(exception.stack, urlBuilder.build('log/save'))
+        //   .catch(function(err) {
+        //     $log.error(err.message);
+        //   });
       }
 
       $log.error.apply($log, arguments);

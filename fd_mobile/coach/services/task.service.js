@@ -70,7 +70,7 @@
             cache.put('tasks', tasks);
             $rootScope.$broadcast(events.updated, tasks);
             resolve(tasks);
-          }, 3000);
+          }, 0);
         });
       }
     };

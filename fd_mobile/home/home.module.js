@@ -2,6 +2,7 @@
   'use strict';
 
   angular.module('fdmobile.home', [
+    'fdmobile.project',
     'fdmobile.coach',
     'fdmobile.carePlan',
     'fdmobile.myData',

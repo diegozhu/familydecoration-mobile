@@ -26,23 +26,14 @@
     var protocol = 'http://',
       host = CONSTANT.HOST,
       port = CONSTANT.PORT,
-      nutritionHost = CONSTANT.NUTRITION_HOST,
-      mutritionPort = CONSTANT.NUTRITION_PORT,
-      nutritionBaseURI = '/nutrition-coaching/service/',
-      baseURI = '/ccs/service/',
+      baseURI = '/',
       builder = {};
 
     builder.build = build;
-    builder.nutritionBuild = nutritionBuild;
 
     function build(uri) {
       if (uri) {
         return protocol + host + ':' + port + baseURI + uri;
-      }
-    }
-    function nutritionBuild(uri) {
-      if (uri) {
-        return protocol + nutritionHost + ':' + mutritionPort + nutritionBaseURI + uri;
       }
     }
 
