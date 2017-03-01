@@ -30,8 +30,8 @@
 
     $rootScope.$on(projectService.events.updated, function(event, response) {
       $log.log(projectService.events.updated);
-      vm.projects = response.data;
       $scope.$broadcast('scroll.refreshComplete');
+      vm.projects = response.data;
     });
 
     vm.showTip = function(project) {
