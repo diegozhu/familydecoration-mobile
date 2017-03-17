@@ -26,7 +26,7 @@
     var protocol = 'http://',
       host = CONSTANT.HOST,
       port = CONSTANT.PORT,
-      baseURI = '/',
+      baseURI = !CONSTANT.BASEURI ? '/' : CONSTANT.BASEURI,
       builder = {};
 
     builder.build = build;

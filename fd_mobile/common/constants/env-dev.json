@@ -1,5 +1,6 @@
 {
   "HOST": "localhost",
   "PORT": "80",
-  "LOGGER": "ON"
+  "LOGGER": "ON",
+  "BASEURI": "/FamilyDecoration/"
 }
