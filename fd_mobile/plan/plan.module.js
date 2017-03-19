@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('fdmobile.myData', [
+  angular.module('fdmobile.plan', [
     'fdmobile.measurements',
     'fdmobile.symptomStatement',
     'fdmobile.symptomReport',

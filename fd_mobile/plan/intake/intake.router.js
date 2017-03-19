@@ -8,12 +8,12 @@
   function intakeRouter($stateProvider) {
     $stateProvider
       .state({
-        name: 'home.myData.intake',
+        name: 'home.plan.intake',
         url: '/intake',
         cache: false,
         views: {
-          'mydata-intake': {
-            templateUrl: 'my-data/intake/intake.html',
+          'plan-intake': {
+            templateUrl: 'plan/intake/intake.html',
             controller: 'IntakeController as vm'
           }
         }

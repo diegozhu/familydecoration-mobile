@@ -1,0 +1,19 @@
+<ion-tabs class="tabs-top sub-tabs-fd">
+
+  <ion-tab href="#/plan/measurements" title="{{'MEASUREMENT_TAB' | translate}}">
+    <ion-nav-view name="plan-measurements"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab href="#/plan/symptomStatementList" title="{{'SYMPTOM_STATEMENT_TAB' | translate}}">
+    <ion-nav-view name="plan-notes"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab ui-sref="home.plan.symptomReport" title="{{'SYMPTOM_REPORT_TAB' | translate}}">
+    <ion-nav-view name="plan-symptom-report"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab ui-sref="home.plan.intake" title="{{'INTAKE_TAB' | translate}}">
+    <ion-nav-view name="plan-intake"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

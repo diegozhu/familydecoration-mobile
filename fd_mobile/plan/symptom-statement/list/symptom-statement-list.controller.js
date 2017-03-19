@@ -100,7 +100,7 @@
 
     $scope.showImages = function(imgUrl, width, height, resolution) {
       showBigImage(imgUrl, width, height, resolution);
-      $scope.showModal('my-data/symptom-statement/modal/image-popover.modal.html');
+      $scope.showModal('plan/symptom-statement/modal/image-popover.modal.html');
     };
     $scope.showModal = function(templateUrl) {
       $ionicModal.fromTemplateUrl(templateUrl, {

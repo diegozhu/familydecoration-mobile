@@ -8,11 +8,11 @@
   function symptomReportRouter($stateProvider) {
     $stateProvider
       .state({
-        name: 'home.myData.symptomReport',
+        name: 'home.plan.symptomReport',
         url: '/symptomreport',
         views: {
-          'mydata-symptom-report': {
-            templateUrl: 'my-data/symptom-report/symptom-report.html',
+          'plan-symptom-report': {
+            templateUrl: 'plan/symptom-report/symptom-report.html',
             controller: 'SymptomReportController as vm'
           }
         }

@@ -5,7 +5,7 @@
     'fdmobile.project',
     'fdmobile.coach',
     'fdmobile.carePlan',
-    'fdmobile.myData',
+    'fdmobile.plan',
     'fdmobile.chat',
     'fdmobile.reference',
     'fdmobile.nutrition'

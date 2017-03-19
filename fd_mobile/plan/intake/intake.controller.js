@@ -9,10 +9,10 @@
     var vm = this,
       modals = [{
         name: 'intake',
-        url: 'my-data/intake/modal/intake.modal.html'
+        url: 'plan/intake/modal/intake.modal.html'
       }, {
         name: 'legend',
-        url: 'my-data/intake/modal/legend.modal.html'
+        url: 'plan/intake/modal/legend.modal.html'
       }];
 
     angular.extend(vm, {

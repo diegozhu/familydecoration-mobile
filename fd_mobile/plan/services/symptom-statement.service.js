@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('fdmobile.myData')
+    .module('fdmobile.plan')
     .factory('symptomStatementService', symptomStatementService);
 
   function symptomStatementService($resource, urlBuilder, CONSTANT) {

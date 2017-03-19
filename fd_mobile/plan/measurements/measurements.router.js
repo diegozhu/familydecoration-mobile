@@ -8,13 +8,13 @@
   function measurementsRouter($stateProvider) {
     $stateProvider
       .state({
-        name: 'home.myData.measurements',
+        name: 'home.plan.measurements',
         url: '/measurements',
         cache: false,
         params: { measurementType: null, measureRightNow: null},
         views: {
-          'mydata-measurements': {
-            templateUrl: 'my-data/measurements/measurements.html',
+          'plan-measurements': {
+            templateUrl: 'plan/measurements/measurements.html',
             controller: 'MeasurementsController as vm'
           }
         }
@@ -23,7 +23,7 @@
         name: 'chart',
         url: '/chart/:measurementType',
         cache: false,
-        templateUrl: 'my-data/measurements/charts/chart.html',
+        templateUrl: 'plan/measurements/charts/chart.html',
         controller: 'ChartController as vm'
       });
   }

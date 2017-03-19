@@ -8,13 +8,13 @@
   function measurementsService($resource, urlBuilder, CONSTANT, $ionicModal, $filter, $cordovaBLE, $log, $timeout, $translate) {
     var vm = {}, $scope,
       modalTemplateUrls = {};
-    modalTemplateUrls[CONSTANT.HEART_RATE_CODE] = 'my-data/measurements/modal/add-heart-rate.modal.html';
-    modalTemplateUrls[CONSTANT.BLOOD_PRESSURE_CODE] = 'my-data/measurements/modal/add-blood-pressure.modal.html';
-    modalTemplateUrls[CONSTANT.FASTING_BLOOD_GLUCOSE_CODE] = 'my-data/measurements/modal/add-fasting-blood-glucose.modal.html';
-    modalTemplateUrls[CONSTANT.MEASUREMENT_CHOSE_CODE] = 'my-data/measurements/modal/chose-manual-or-auto.modal.html';
-    modalTemplateUrls[CONSTANT.MEASUREMENT_BLUETOOTH_CODE] = 'my-data/measurements/modal/add-blood-pressure-and-heart-rate-auto.modal.html';
-    modalTemplateUrls[CONSTANT.POSTPRANDIAL_BLOOD_GLUCOSE_CODE] = 'my-data/measurements/modal/add-prandial-blood-glucose.modal.html';
-    modalTemplateUrls[CONSTANT.WEIGHT_CODE] = 'my-data/measurements/modal/add-weight.modal.html';
+    modalTemplateUrls[CONSTANT.HEART_RATE_CODE] = 'plan/measurements/modal/add-heart-rate.modal.html';
+    modalTemplateUrls[CONSTANT.BLOOD_PRESSURE_CODE] = 'plan/measurements/modal/add-blood-pressure.modal.html';
+    modalTemplateUrls[CONSTANT.FASTING_BLOOD_GLUCOSE_CODE] = 'plan/measurements/modal/add-fasting-blood-glucose.modal.html';
+    modalTemplateUrls[CONSTANT.MEASUREMENT_CHOSE_CODE] = 'plan/measurements/modal/chose-manual-or-auto.modal.html';
+    modalTemplateUrls[CONSTANT.MEASUREMENT_BLUETOOTH_CODE] = 'plan/measurements/modal/add-blood-pressure-and-heart-rate-auto.modal.html';
+    modalTemplateUrls[CONSTANT.POSTPRANDIAL_BLOOD_GLUCOSE_CODE] = 'plan/measurements/modal/add-prandial-blood-glucose.modal.html';
+    modalTemplateUrls[CONSTANT.WEIGHT_CODE] = 'plan/measurements/modal/add-weight.modal.html';
 
     function initMeasurementDateTime() {
       var date = new Date(),

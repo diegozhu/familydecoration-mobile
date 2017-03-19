@@ -10,10 +10,10 @@
       lo = window._,
       modals = [{
         name: 'addReport',
-        url: 'my-data/symptom-report/modal/add-report.modal.html'
+        url: 'plan/symptom-report/modal/add-report.modal.html'
       }, {
         name: 'showPic',
-        url: 'my-data/symptom-report/modal/show-pic.modal.html'
+        url: 'plan/symptom-report/modal/show-pic.modal.html'
       }];
 
     angular.extend(vm, {

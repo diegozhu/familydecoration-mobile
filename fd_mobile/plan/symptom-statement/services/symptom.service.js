@@ -107,7 +107,7 @@
 
     var hideLoding = function() {
       $ionicLoading.hide().then(function() {
-        $state.go('home.myData.symptomStatementList', {}, { reload: true });
+        $state.go('home.plan.symptomStatementList', {}, { reload: true });
       });
     };
 
@@ -264,7 +264,7 @@
     }
 
     function getAddSymptomModalUrl() {
-      return 'my-data/symptom-statement/modal/symptom-statement-add.modal.html';
+      return 'plan/symptom-statement/modal/symptom-statement-add.modal.html';
     }
 
     return {

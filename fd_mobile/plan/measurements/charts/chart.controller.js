@@ -43,7 +43,7 @@
     }
 
     function addMeasurement() {
-      $state.go('home.myData.measurements', {'measurementType': vm.measurementType, 'measureRightNow': true});
+      $state.go('home.plan.measurements', {'measurementType': vm.measurementType, 'measureRightNow': true});
     }
 
     function initChart(interval, code, conditionCode) {

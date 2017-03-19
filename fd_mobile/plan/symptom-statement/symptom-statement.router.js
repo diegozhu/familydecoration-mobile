@@ -7,12 +7,12 @@
 
   function symptomStatementRouter($stateProvider) {
     $stateProvider.state({
-      name: 'home.myData.symptomStatementList',
+      name: 'home.plan.symptomStatementList',
       url: '/symptomStatementList',
       cache: false,
       views: {
-        'mydata-notes': {
-          templateUrl: 'my-data/symptom-statement/list/symptom-statement-list.html',
+        'plan-notes': {
+          templateUrl: 'plan/symptom-statement/list/symptom-statement-list.html',
           controller: 'SymptomStatementListController as vm',
         }
       }
