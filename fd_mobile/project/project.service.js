@@ -22,7 +22,9 @@
         cache: true,
         url: urlBuilder.build('libs/api.php?action=Project.get'),
         params: {
-          random: ''
+          random: '',
+          captainName: JSON.parse(sessionStorage.getItem('userInfo')).name,
+          isDeleted: 'false'
         }
       }
     });

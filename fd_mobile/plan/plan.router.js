@@ -8,7 +8,13 @@
       url: 'plan',
       views: {
         'tab-plan': {
-          templateUrl: 'plan/plan.html'
+          templateUrl: 'plan/plan.html',
+          controller: 'PlanController as vm',
+          resolve: {
+            projects: function(projectService) {
+              return projectService.getAll();
+            }
+          }
         }
       }
     });
