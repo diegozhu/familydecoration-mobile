@@ -6,6 +6,7 @@
   app.config(function($stateProvider) {
     $stateProvider.state('home.plan', {
       url: 'plan',
+      cache: false,
       views: {
         'tab-plan': {
           templateUrl: 'plan/plan.html',
