@@ -52,7 +52,7 @@ gulp.task('build-app', ['clean', 'inject-all'], function () {
 });
 
 // copy templates
-gulp.task('build-templates', ['clean'], function () {
+gulp.task('build-templates', ['clean'], function() {
   return gulp.src(paths.templates)
   .pipe($.if(options.minify, $.htmlmin({
     removeComments: true,
@@ -65,7 +65,7 @@ gulp.task('build-templates', ['clean'], function () {
 });
 
 // copy assets, wait for fonts
-gulp.task('build-assets', ['clean', 'bower-fonts'], function () {
+gulp.task('build-assets', ['clean', 'bower-fonts'], function() {
   return gulp.src(app + '/assets/**/*')
     .pipe($.if (options.minify, $.imagemin()) )
     .pipe(gulp.dest(paths.dist + '/assets'));
