@@ -11,18 +11,27 @@
     $log,
     $fdPopup
   ) {
-    var vm = this;
+    var
+      vm = this,
+      loadProject = function(promise) {
+        promise.then(function(res) {
+          $log.log('plan module:' + projectService.events.updated);
+          vm.projects = res.data;
+        }, function(res) {
+          $log.log(res.errMsg);
+        });
+      };
 
     angular.extend(vm, {
-      doRefresh: projectService.getAllRemote,
-      projects: projects
+      doRefresh: function() {
+        var promise = projectService.getAllRemote();
+        loadProject(promise);
+        return promise;
+      },
+      projects: []
     });
 
-    $rootScope.$on(projectService.events.updated, function(event, res) {
-      $log.log(projectService.events.updated);
-      $scope.$broadcast('scroll.refreshComplete');
-      vm.projects = res.data;
-    });
+    loadProject(projects.$promise);
 
     vm.showTip = function(project) {
       var

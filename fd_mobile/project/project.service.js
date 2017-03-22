@@ -42,12 +42,16 @@
     var service = {
       events: events,
       getAll: function(params) {
+        // here is gonna return a promise
         return $q(function(resolve, reject) {
-          $rootScope.$broadcast(events.updating, []);
           projectResource.getProjectsByCaptainName(params, function(res) {
-            $rootScope.$broadcast(events.updated, res);
-            resolve(res);
-          }, reject);
+            if (res.data) {
+              resolve(res);
+            }
+            else {
+              reject(res);
+            }
+          });
         });
       },
       getAllRemote: function(params) {
