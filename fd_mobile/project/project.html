@@ -1,4 +1,5 @@
-<ion-view view-title="工程(总计:{{vm.projects.length}})">
+<ion-view>
+  <ion-nav-title>工程总计:{{vm.projects.length}}</ion-nav-title>
   <ion-content class="coach">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
