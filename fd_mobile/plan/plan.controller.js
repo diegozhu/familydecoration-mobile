@@ -25,10 +25,19 @@
     });
 
     vm.showTip = function(project) {
+      var
+        info = [],
+        period = project.period.split(':');
+      info.push(
+        '工程名称: ' + project.projectName + '<br />',
+        '项目经理: ' + project.captain + '<br />',
+        '开始时间: ' + period[0] + '<br />',
+        '结束时间: ' + period[1] + '<br />'
+      );
       $fdPopup.show({
         iconClass: 'ion-star',
         title: project.name,
-        template: JSON.stringify(project),
+        template: info.join(''),
         buttons: [{
           text: 'yes',
           type: 'button-positive'

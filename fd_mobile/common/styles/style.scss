@@ -49,10 +49,10 @@ $font-path: "#{$path}/assets/fonts";
 // My data module
 //------------------
 @import
-  "../../my-data/styles/_measurements",
-  "../../my-data/styles/_symptom-report",
-  "../../my-data/styles/_symptom-statement",
-  "../../my-data/styles/_intake";
+  "../../plan/styles/_measurements",
+  "../../plan/styles/_symptom-report",
+  "../../plan/styles/_symptom-statement",
+  "../../plan/styles/_intake";
 
 
 // Care plan module
