@@ -80,14 +80,8 @@
         return $q(function(resolve, reject) {
           $templateCache.removeAll();
           sessionStorage.clear();
-          var allCaches = $cacheFactory.info();
-          for (var i in allCaches) {
-            try {
-              allCaches[i].removeAll();
-            } catch (e) {
-              // do nothing;
-            }
-          }
+          // invoke encapsulated destroy function in cachefactory.config.js
+          $cacheFactory.destroy();
           if (params && params.clearLocalStorage) {
             localStorage.clear();
           }
