@@ -24,7 +24,8 @@
         params: {
           random: '',
           captainName: JSON.parse(sessionStorage.getItem('userInfo')).name,
-          isDeleted: 'false'
+          isDeleted: 'false',
+          'isFrozen': 'false'
         }
       }
     });

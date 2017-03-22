@@ -46,13 +46,14 @@ $font-path: "#{$path}/assets/fonts";
 @import "../../coach/styles/_coach";
 
 
-// My data module
+// Plan module
 //------------------
 @import
   "../../plan/styles/_measurements",
   "../../plan/styles/_symptom-report",
   "../../plan/styles/_symptom-statement",
-  "../../plan/styles/_intake";
+  "../../plan/styles/_intake",
+  "../../plan/styles/_plan";
 
 
 // Care plan module

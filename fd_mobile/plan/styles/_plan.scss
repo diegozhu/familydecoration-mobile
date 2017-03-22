@@ -1,0 +1,25 @@
+.plan {
+  ion-list{
+    ion-item{
+      display: flex;
+      align-items:center;
+      
+      div:first-child{
+        text-align:left;
+      };
+      div{
+        flex-grow:1;
+        text-align:right;
+        text-overflow:ellipsis;
+        overflow:hidden;
+      }
+
+      i{
+        text-align:center;
+      }
+    }
+  }
+  ion-list:hover{
+    cursor:pointer;
+  }
+}

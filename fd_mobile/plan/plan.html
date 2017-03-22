@@ -1,11 +1,12 @@
 <ion-view>
   <ion-nav-title>计划总计:{{vm.projects.length}}</ion-nav-title>
-  <ion-content class="coach">
+  <ion-content class="coach plan">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
       <ion-list>
-        <ion-item ng-repeat="project in vm.projects" ng-click="vm.showTip(project)">
-          <i class="coach-icon" ng-class="icon-fd-intake"></i>{{project.projectName}}
+        <ion-item ng-repeat="project in vm.projects" ng-click="vm.goto('planedit');">
+          <div class="col-90">{{project.projectName}}</div>
+          <i class="col-10 positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>
         </ion-item>
       </ion-list>
     </div>
