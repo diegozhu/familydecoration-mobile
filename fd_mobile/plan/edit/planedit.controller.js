@@ -1,9 +1,7 @@
 (function() {
   'use strict';
 
-  var app = angular.module('fdmobile.planedit');
-
-  app.controller('PlanEditController', function() {
+  angular.module('fdmobile.plan.edit').controller('PlanEditController', function() {
     var vm = this;
   });
 })();

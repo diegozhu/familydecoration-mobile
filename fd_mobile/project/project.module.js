@@ -12,9 +12,10 @@
           templateUrl: 'project/project.html',
           controller: 'ProjectController as vm',
           resolve: {
-            projects: ['projectService', function(service) {
-              return service.getAll();
-            }]
+            projects: function(projectService) {
+              'ngInject';
+              return projectService.getAll();
+            }
           }
         }
       }
