@@ -9,7 +9,8 @@
     projectService,
     projects,
     $log,
-    $fdPopup
+    $fdPopup,
+    $state
   ) {
     var
       vm = this,
@@ -30,6 +31,12 @@
       },
       projects: []
     });
+
+    vm.goto = function(state, project) {
+      $state.go(state, {
+        projectId: project.projectId
+      });
+    };
 
     loadProject(projects.$promise);
 
