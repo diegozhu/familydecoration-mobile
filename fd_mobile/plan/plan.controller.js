@@ -9,8 +9,7 @@
     projectService,
     projects,
     $log,
-    $fdPopup,
-    $state
+    $fdPopup
   ) {
     var
       vm = this,
