@@ -6,7 +6,7 @@
   angular.module('fdmobile.plan.edit').config(function($stateProvider) {
     $stateProvider.state({
       name: 'home.plan.edit',
-      url: 'plan/:planId/edit',
+      url: '/:planId/edit',
       onEnter: function() {
         console.log('onEnter plan edit outter');
       },
