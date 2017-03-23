@@ -4,9 +4,11 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
       <ion-list>
-        <ion-item ng-repeat="project in vm.projects" ng-click="vm.goto('home.plan.edit', project);">
-          <div class="col-90">{{project.projectName}}</div>
-          <i class="col-10 positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>
+        <ion-item ng-repeat="project in vm.projects">
+          <div ui-sref="home.plan.edit({planId: project.projectId})">
+            <div style="float:left; width:90%;">{{project.projectName}}</div>
+            <i style="float:right; width:10%;" class="positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>
+          </div>
         </ion-item>
       </ion-list>
     </div>
