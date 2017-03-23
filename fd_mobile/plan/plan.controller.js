@@ -34,12 +34,6 @@
 
     loadProject(projects.$promise);
 
-    vm.goto = function(state, project) {
-      $state.go(state, {
-        projectId: project.projectId
-      });
-    };
-
     vm.showTip = function(project) {
       var
         info = [],
