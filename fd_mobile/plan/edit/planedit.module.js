@@ -18,15 +18,10 @@
           templateUrl: 'plan/edit/planedit.html',
           controller: 'PlanEditController as vm',
           resolve: {
-<<<<<<< Updated upstream
-            project: function() {}
-=======
             projects: function() {
               'ngInject';
-              console.log('plan edit resolve 1');
               return 1;
             }
->>>>>>> Stashed changes
           }
         }
       }
