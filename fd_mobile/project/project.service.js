@@ -23,7 +23,7 @@
         url: urlBuilder.build('libs/api.php?action=Project.get'),
         params: {
           random: '',
-          //captainName: JSON.parse(sessionStorage.getItem('userInfo')).name,
+          captainName: JSON.parse(sessionStorage.getItem('userInfo')).name,
           isDeleted: 'false',
           'isFrozen': 'false'
         }

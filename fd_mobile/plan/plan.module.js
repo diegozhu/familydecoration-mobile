@@ -7,7 +7,7 @@
 
   angular.module('fdmobile.plan').config(function($stateProvider) {
     $stateProvider.state('home.plan', {
-      url: '/plan',
+      url: 'plan',
       views: {
         'tab-plan': {
           templateUrl: 'plan/plan.html',

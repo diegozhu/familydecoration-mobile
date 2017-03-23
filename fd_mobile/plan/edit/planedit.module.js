@@ -15,7 +15,7 @@
             project: null
           },
           resolve: {
-            project: function(){}
+            project: function() {}
           }
         }
       }
