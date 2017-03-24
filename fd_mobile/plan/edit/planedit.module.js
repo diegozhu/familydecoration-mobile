@@ -18,10 +18,9 @@
           templateUrl: 'plan/edit/planedit.html',
           controller: 'PlanEditController as vm',
           resolve: {
-            planItems: function(planService, $stateParams) {
-              return planService.getPlanItemsByProjectId({
-                projectId: $stateParams.projectId
-              });
+            projects: function() {
+              'ngInject';
+              return 1;
             }
           }
         }
