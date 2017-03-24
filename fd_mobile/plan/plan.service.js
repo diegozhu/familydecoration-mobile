@@ -15,7 +15,19 @@
           random: '',
           projectId: '@projectId'
         },
-        isArray: true
+        transformResponse: function(jsonData) {
+          var
+            obj = {},
+            data = angular.fromJson(jsonData);
+          if (data.status === 'failing') {
+            obj = data;
+          }
+          else {
+            obj.data = data;
+            obj.total = data.length;
+          }
+          return obj;
+        }
       }
     });
 
