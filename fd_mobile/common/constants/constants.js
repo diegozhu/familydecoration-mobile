@@ -57,11 +57,10 @@
       'REPORT_IMAGE_THUMBNAIL_RESOLUTION': 'q50',
 
       /*inject:constants*/
-      'HOST': '130.147.219.52',
-      'PORT': '8888',
+      'HOST': 'localhost',
+      'PORT': '80',
       'LOGGER': 'ON',
-      'NUTRITION_HOST': '130.147.219.52',
-      'NUTRITION_PORT': '9999'
+      'BASEURI': '/FamilyDecoration/'
       /*endinject*/
     });
 })();
