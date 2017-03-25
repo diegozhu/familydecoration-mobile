@@ -11,7 +11,8 @@
         console.log('onEnter plan edit outter');
       },
       params: {
-        projectId: null
+        projectId: null,
+        projectPeriod: null
       },
       views: {
         'tab-plan@home': {
@@ -22,6 +23,9 @@
               return planService.getPlanItemsByProjectId({
                 projectId: $stateParams.projectId
               });
+            },
+            projectPeriod: function($stateParams) {
+              return $stateParams.projectPeriod;
             }
           }
         }

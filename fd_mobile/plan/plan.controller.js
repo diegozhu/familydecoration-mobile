@@ -34,31 +34,11 @@
 
     vm.goto = function(state, project) {
       $state.go(state, {
-        projectId: project.projectId
+        projectId: project.projectId,
+        projectPeriod: project.period
       });
     };
 
     loadProject(projects.$promise);
-
-    vm.showTip = function(project) {
-      var
-        info = [],
-        period = project.period.split(':');
-      info.push(
-        '工程名称: ' + project.projectName + '<br />',
-        '项目经理: ' + project.captain + '<br />',
-        '开始时间: ' + period[0] + '<br />',
-        '结束时间: ' + period[1] + '<br />'
-      );
-      $fdPopup.show({
-        iconClass: 'ion-star',
-        title: project.name,
-        template: info.join(''),
-        buttons: [{
-          text: 'yes',
-          type: 'button-positive'
-        }]
-      });
-    };
   });
 })();
