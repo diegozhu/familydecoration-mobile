@@ -8,7 +8,7 @@
     <div class="clearfix">
       <ion-list>
         <ion-item ng-click="vm.showPlanSchedule(planItem);" ng-repeat="planItem in vm.planItems">
-          <i id="{{planItem.id}}">{{planItem.itemName}}</i>
+          <i index="{{$index}}" id="{{planItem.id}}">{{planItem.itemName}}</i>
         </ion-item>
       </ion-list>
     </div>

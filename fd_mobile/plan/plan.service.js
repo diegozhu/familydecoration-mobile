@@ -9,7 +9,7 @@
     var planResource = $resource(urlBuilder.build('libs/sdf'), null, {
       getPlanItemsByProjectId: {
         method: 'GET',
-        cache: true,
+        // cache: true,
         url: urlBuilder.build('libs/api.php?action=PlanMaking.getItems'),
         params: {
           random: '',
