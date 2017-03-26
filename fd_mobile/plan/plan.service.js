@@ -42,7 +42,7 @@
             }
             else {
               $fdToast.show({
-                text: res.errMsg
+                text: res.errMsg + ' 请长按项目新建计划'
               });
               reject(res);
             }

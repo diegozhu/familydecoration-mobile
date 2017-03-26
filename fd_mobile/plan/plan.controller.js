@@ -39,6 +39,27 @@
       });
     };
 
+    vm.createNewPlan = function(project) {
+      $fdPopup.show({
+        iconClass: 'ion-star',
+        title: '询问',
+        template: '确定要为"' + project.projectName + '"创建计划吗?',
+        buttons: [
+          {
+            text: '确定',
+            type: 'button-positive',
+            onTap: function() {
+
+            }
+          },
+          {
+            text: '取消',
+            type: 'button-stable'
+          }
+        ]
+      });
+    };
+
     loadProject(projects.$promise);
   });
 })();
