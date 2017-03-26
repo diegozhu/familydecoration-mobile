@@ -19,7 +19,7 @@
       // },
       response: function(_response) {
         // $log.log(_response.config.url);
-        if (_response && _response.data && _response.data.status === 'failing') {
+        if (_response && _response.data && _response.data.status === 'failing' && !(_response.config && _response.config.params && _response.config.params._preventDefaultExceptionHandler)) {
           $fdToast.show({
             text: _response.data.errMsg
           });

@@ -34,6 +34,7 @@
     var service = {
       getPlanItemsByProjectId: function(params) {
         return $q(function(resolve, reject) {
+          params._preventDefaultExceptionHandler = true;
           planResource.getPlanItemsByProjectId(params, function(res) {
             if (res.status != 'failing') {
               resolve(res);

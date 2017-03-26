@@ -5,16 +5,15 @@
     .module('fdmobile')
     .run(uiRouterConfig);
 
-  function uiRouterConfig($rootScope, $ionicLoading) {
+  function uiRouterConfig($rootScope, $ionicLoading, $timeout) {
     $rootScope.$on('$stateChangeStart', function() {
       $ionicLoading.show({
-        template: 'Loading...',
-        duration: 3000
+        template: 'Loading...'
       });
     });
 
     $rootScope.$on('$stateChangeSuccess', function() {
-      $ionicLoading.hide();
+      $timeout($ionicLoading.hide, 10);
     });
   }
 })();
