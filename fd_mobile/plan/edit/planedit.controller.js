@@ -7,9 +7,11 @@
     $log,
     $fdPopup,
     $scope,
+    planService,
     planEditService,
     $filter,
-    $fdToast
+    $fdToast,
+    $stateParams
   ) {
     var vm = this;
 
@@ -42,6 +44,16 @@
         d = '';
       }
       return d;
+    };
+
+    vm.doRefresh = function() {
+      var promise = planService.getPlanItemsByProjectId({
+        projectId: $stateParams.projectId
+      });
+      promise.then(function(res) {
+        vm.planItems = res.data;
+      });
+      return promise;
     };
 
     vm.showPlanSchedule = function(planItem) {
