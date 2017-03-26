@@ -159,15 +159,9 @@
               if (res.status == 'successful') {
                 scope.planItem.startTime = startTime;
                 scope.planItem.endTime = endTime;
-                $fdPopup.show({
-                  title: '更新成功',
-                  subTitle: '计划时间更新成功！',
-                  buttons: [
-                    {
-                      text: '确定',
-                      type: 'button-positive'
-                    }
-                  ]
+                $fdToast.show({
+                  text: '更新成功!',
+                  cssClass: 'positive'
                 });
               }
             }, function(res) {

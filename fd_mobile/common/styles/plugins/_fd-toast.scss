@@ -23,6 +23,11 @@
     opacity: 1;
   }
 
+  &.positive {
+    background: #00aa00;
+    opacity: 0.5;
+  }
+
   i {
     position: absolute;
     width: 50px;
