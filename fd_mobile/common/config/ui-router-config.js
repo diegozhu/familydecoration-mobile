@@ -15,5 +15,9 @@
     $rootScope.$on('$stateChangeSuccess', function() {
       $timeout($ionicLoading.hide, 10);
     });
+
+    $rootScope.$on('$stateChangeError', function() {
+      $timeout($ionicLoading.hide, 10);
+    });
   }
 })();

@@ -4,7 +4,8 @@
   angular.module('fdmobile').factory('planService', function(
     $resource,
     urlBuilder,
-    $q
+    $q,
+    $fdToast
   ) {
     var planResource = $resource(urlBuilder.build('libs/sdf'), null, {
       getPlanItemsByProjectId: {
@@ -40,6 +41,9 @@
               resolve(res);
             }
             else {
+              $fdToast.show({
+                text: res.errMsg
+              });
               reject(res);
             }
           });
