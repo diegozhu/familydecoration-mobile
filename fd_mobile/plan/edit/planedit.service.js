@@ -11,8 +11,8 @@
       updatePlanItem: {
         method: 'POST',
         cache: false,
-        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
         url: urlBuilder.build('libs/api.php?action=PlanMaking.updateItem'),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
         transformRequest: function(data) {
           var s = [];
           for (var d in data) {

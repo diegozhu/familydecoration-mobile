@@ -7,10 +7,12 @@
     $rootScope,
     $scope,
     projectService,
+    planService,
     projects,
     $log,
     $fdPopup,
-    $state
+    $state,
+    $fdToast
   ) {
     var
       vm = this,
@@ -40,6 +42,10 @@
     };
 
     vm.createNewPlan = function(project) {
+      var
+        period = project.period.split(':'),
+        startTime = period[0],
+        endTime = period[1];
       $fdPopup.show({
         iconClass: 'ion-star',
         title: '询问',
@@ -49,7 +55,19 @@
             text: '确定',
             type: 'button-positive',
             onTap: function() {
-
+              var promise = planService.createNewPlan({
+                businessId: project.businessId,
+                '@projectId': project.projectId,
+                '@projectAddress': project.projectName,
+                '@startTime': startTime,
+                '@endTime': endTime
+              });
+              promise.then(function() {
+                $fdToast.show({
+                  text: '创建计划成功!',
+                  cssClass: 'positive'
+                });
+              });
             }
           },
           {
