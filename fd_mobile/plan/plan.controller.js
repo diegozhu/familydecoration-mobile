@@ -37,7 +37,8 @@
     vm.goto = function(state, project) {
       $state.go(state, {
         projectId: project.projectId,
-        projectPeriod: project.period
+        projectPeriod: project.period,
+        projectName: project.projectName
       });
     };
 
@@ -66,6 +67,11 @@
                 $fdToast.show({
                   text: '创建计划成功!',
                   cssClass: 'positive'
+                });
+                $state.go('home.plan.edit', {
+                  projectId: project.projectId,
+                  projectPeriod: project.period,
+                  projectName: project.projectName
                 });
               });
             }

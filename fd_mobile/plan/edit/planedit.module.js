@@ -12,7 +12,8 @@
       },
       params: {
         projectId: null,
-        projectPeriod: null
+        projectPeriod: null,
+        projectName: null
       },
       views: {
         'tab-plan@home': {

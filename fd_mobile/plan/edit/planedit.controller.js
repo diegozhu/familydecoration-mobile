@@ -16,6 +16,7 @@
     var vm = this;
 
     angular.extend($scope, {
+      projectName: $stateParams.projectName,
       minDate: new Date('2016/10/1'),
       maxDate: new Date('2016/10/7'),
       time: new Date(new Date().setHours(10, 10)),
