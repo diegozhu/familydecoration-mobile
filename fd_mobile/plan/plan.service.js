@@ -94,6 +94,7 @@
             .then(function() {
               return $q(function(resolve, reject) {
                 planResource.getPlanItemsByProjectId({
+                  _preventDefaultExceptionHandler: true,
                   projectId: params['@projectId']
                 }, function(res) {
                   if (res.status === 'failing') {
