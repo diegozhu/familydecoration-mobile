@@ -93,6 +93,23 @@
             .when()
             .then(function() {
               return $q(function(resolve, reject) {
+                planResource.getPlanItemsByProjectId({
+                  projectId: params['@projectId']
+                }, function(res) {
+                  if (res.status === 'failing') {
+                    resolve(res);
+                  }
+                  else {
+                    $fdToast.show({
+                      text: params['@projectAddress'] + '已经存在计划，不能重复创建'
+                    });
+                    reject(res);
+                  }
+                });
+              });
+            })
+            .then(function() {
+              return $q(function(resolve, reject) {
                 planResource.getBusinessById({
                   businessId: params.businessId
                 }, function(res) {
