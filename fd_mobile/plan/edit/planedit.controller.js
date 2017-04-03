@@ -11,7 +11,8 @@
     planEditService,
     $filter,
     $fdToast,
-    $stateParams
+    $stateParams,
+    ionicDatePicker
   ) {
     var vm = this;
 
@@ -70,110 +71,140 @@
       minDate = $scope.getDateFromStr(minDate);
       maxDate = $scope.getDateFromStr(maxDate);
       $log.log(planItem);
+      var dateConfig = {
+        callback: function(val) {  //Mandatory
+          console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        },
+        disabledDates: [ //Optional
+          // new Date(2016, 2, 16),
+          // new Date('Wednesday, August 12, 2015'),
+          // new Date('08-16-2016'),
+          // new Date(1439676000000)
+        ],
+        from: minDate, //Optional
+        to: maxDate, //Optional
+        inputDate: new Date(),      //Optional
+        mondayFirst: true,          //Optional
+        // disableWeekdays: [0],       //Optional
+        closeOnSelect: false,       //Optional
+        templateType: 'popup'       //Optional
+      };
       $fdPopup.show({
-        /**
-         * title: '', // The title of the popup.
-         * iconClass: '', // The custom CSS class name
-         * subTitle: '', // The sub-title of the popup.
-         * template: '', // The html template to place in the popup body.
-         * templateUrl: '', // The URL of an html template to place in the popup body.
-         * scope: null, // A scope to link to the popup content.
-         * buttons: [{ // Buttons to place in the popup footer.
-         *   text: 'Cancel',
-         *   type: 'button-default',
-         *   onTap: function(e) {
-         *     e.preventDefault(); // this will stop the popup from closing when tapped.
-         *   }
-         * }, {
-         *   text: 'OK',
-         *   type: 'button-positive',
-         *   onTap: function(e) {
-         *     return scope.data.response; // Returning a value will cause the promise to resolve with the given value.
-         *   }
-         * }]
-        */
         iconClass: 'ion-star',
         title: '编辑',
         subTitle: '编辑计划条目时间',
-        scope: angular.extend($scope, {
-          id: id,
-          planItem: planItem,
-          startTime: startTime,
-          endTime: endTime,
-          minDate: minDate,
-          maxDate: maxDate
-        }),
-        template: [
-          '<div>开始时间:',
-          '<fd-picker mode="date" is-required="" ng-model="startTime" range-min="minDate" range-max="maxDate" filter="yyyy/MM/dd">',
-          '</div>',
-          '<div>结束时间:',
-          '<fd-picker mode="date" is-required="" ng-model="endTime" range-min="minDate" range-max="maxDate" filter="yyyy/MM/dd">',
-          '</div>'
-        ].join(''),
-        buttons: [{
-          text: '更新',
-          type: 'button-positive',
-          onTap: function(e) {
-            var
-              err,
-              scope = this.scope,
-              startTime = scope.startTime,
-              endTime = scope.endTime,
-              minDate = scope.minDate,
-              maxDate = scope.maxDate;
-            function isWithinPeriod(t, minDate, maxDate, type) {
-              var err;
-              if (t.getTime() < minDate.getTime() || t.getTime() > maxDate.getTime()) {
-                err = type + '要在' + $filter('date')(minDate, 'yyyy-MM-dd') + '~' + $filter('date')(maxDate, 'yyyy-MM-dd') + '之间';
-              }
-              return err;
-            }
-            if (startTime) {
-              err = isWithinPeriod(startTime, minDate, maxDate, '计划开始时间');
-            }
-            if (!err && endTime) {
-              err = isWithinPeriod(endTime, minDate, maxDate, '计划结束时间');
-            }
-            if (!err && startTime && endTime) {
-              err = startTime.getTime() > maxDate.getTime() ? '开始时间不能大于结束时间' : undefined;
-            }
-            if (!err && !startTime && !endTime) {
-              err = undefined;
-            }
-
-            if (err) {
-              $fdToast.show({
-                text: err
+        buttons: [
+          {
+            text: '开始时间',
+            type: 'button-calm',
+            onTap: function() {
+              angular.extend(dateConfig, {
+                callback: function(val) {
+                  $log.log('startTime ' + val);
+                },
+                inputDate: startTime
               });
-              e.preventDefault();
-              return false;
+              ionicDatePicker.openDatePicker(dateConfig);
             }
-            startTime = $filter('date')(scope.startTime, 'yyyy-MM-dd');
-            endTime = $filter('date')(scope.endTime, 'yyyy-MM-dd');
-            var promise = planEditService.updatePlanItem({
-              id: scope.id,
-              '@time': [startTime, endTime].join('~')
-            });
-
-            promise.then(function(res) {
-              if (res.status == 'successful') {
-                scope.planItem.startTime = startTime;
-                scope.planItem.endTime = endTime;
-                $fdToast.show({
-                  text: '更新成功!',
-                  cssClass: 'positive'
-                });
-              }
-            }, function(res) {
-              $log.log(res.errMsg);
-            });
+          },
+          {
+            text: '结束时间',
+            type: 'button-positive',
+            onTap: function() {
+              angular.extend(dateConfig, {
+                callback: function(val) {
+                  $log.log('endTime ' + val);
+                },
+                inputDate: endTime
+              });
+              ionicDatePicker.openDatePicker(dateConfig);
+            }
           }
-        }, {
-          text: '取消',
-          type: 'button-stable'
-        }]
+        ]
       });
+      // $fdPopup.show({
+      //   iconClass: 'ion-star',
+      //   title: '编辑',
+      //   subTitle: '编辑计划条目时间',
+      //   scope: angular.extend($scope, {
+      //     id: id,
+      //     planItem: planItem,
+      //     startTime: startTime,
+      //     endTime: endTime,
+      //     minDate: minDate,
+      //     maxDate: maxDate
+      //   }),
+      //   template: [
+      //     '<div>开始时间:',
+      //     '<fd-picker mode="date" is-required="" ng-model="startTime" range-min="minDate" range-max="maxDate" filter="yyyy/MM/dd">',
+      //     '</div>',
+      //     '<div>结束时间:',
+      //     '<fd-picker mode="date" is-required="" ng-model="endTime" range-min="minDate" range-max="maxDate" filter="yyyy/MM/dd">',
+      //     '</div>'
+      //   ].join(''),
+      //   buttons: [{
+      //     text: '更新',
+      //     type: 'button-positive',
+      //     onTap: function(e) {
+      //       var
+      //         err,
+      //         scope = this.scope,
+      //         startTime = scope.startTime,
+      //         endTime = scope.endTime,
+      //         minDate = scope.minDate,
+      //         maxDate = scope.maxDate;
+      //       function isWithinPeriod(t, minDate, maxDate, type) {
+      //         var err;
+      //         if (t.getTime() < minDate.getTime() || t.getTime() > maxDate.getTime()) {
+      //           err = type + '要在' + $filter('date')(minDate, 'yyyy-MM-dd') + '~' + $filter('date')(maxDate, 'yyyy-MM-dd') + '之间';
+      //         }
+      //         return err;
+      //       }
+      //       if (startTime) {
+      //         err = isWithinPeriod(startTime, minDate, maxDate, '计划开始时间');
+      //       }
+      //       if (!err && endTime) {
+      //         err = isWithinPeriod(endTime, minDate, maxDate, '计划结束时间');
+      //       }
+      //       if (!err && startTime && endTime) {
+      //         err = startTime.getTime() > maxDate.getTime() ? '开始时间不能大于结束时间' : undefined;
+      //       }
+      //       if (!err && !startTime && !endTime) {
+      //         err = undefined;
+      //       }
+
+      //       if (err) {
+      //         $fdToast.show({
+      //           text: err
+      //         });
+      //         e.preventDefault();
+      //         return false;
+      //       }
+      //       startTime = $filter('date')(scope.startTime, 'yyyy-MM-dd');
+      //       endTime = $filter('date')(scope.endTime, 'yyyy-MM-dd');
+      //       var promise = planEditService.updatePlanItem({
+      //         id: scope.id,
+      //         '@time': [startTime, endTime].join('~')
+      //       });
+
+      //       promise.then(function(res) {
+      //         if (res.status == 'successful') {
+      //           scope.planItem.startTime = startTime;
+      //           scope.planItem.endTime = endTime;
+      //           $fdToast.show({
+      //             text: '更新成功!',
+      //             cssClass: 'positive'
+      //           });
+      //         }
+      //       }, function(res) {
+      //         $log.log(res.errMsg);
+      //       });
+      //     }
+      //   }, {
+      //     text: '取消',
+      //     type: 'button-stable'
+      //   }]
+      // });
     };
   });
 })();

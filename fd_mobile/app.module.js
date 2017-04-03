@@ -4,6 +4,7 @@
   angular.module('fdmobile', [
     // public modules
     'ionic',
+    'ionic-datepicker',
     'angular-md5',
     'ngCordova',
     'ngResource',

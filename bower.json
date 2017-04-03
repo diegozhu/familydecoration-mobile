@@ -26,7 +26,8 @@
     "angular-scroll-glue": "^2.1.0",
     "lodash": "^4.17.3",
     "angular-google-analytics": "^1.1.9",
-    "angular-md5": "^0.1.10"
+    "angular-md5": "^0.1.10",
+    "ionic-datepicker": "^1.2.1"
   },
   "resolutions": {
     "angular": "~1.5.0",
