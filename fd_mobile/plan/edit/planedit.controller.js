@@ -156,9 +156,8 @@
                 callback: function(val) {
                   updatePlanItemCallback(val, endTime, id, planItem, minDate, maxDate);
                 },
-                inputDate: startTime
+                inputDate: startTime || minDate
               });
-              !startTime && delete dateConfig.inputDate;
               ionicDatePicker.openDatePicker(dateConfig);
             }
           },
@@ -170,9 +169,8 @@
                 callback: function(val) {
                   updatePlanItemCallback(startTime, val, id, planItem, minDate, maxDate);
                 },
-                inputDate: endTime
+                inputDate: endTime || maxDate
               });
-              !endTime && delete dateConfig.inputDate;
               ionicDatePicker.openDatePicker(dateConfig);
             }
           },

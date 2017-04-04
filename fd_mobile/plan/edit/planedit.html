@@ -8,7 +8,7 @@
     <div class="clearfix">
       <ion-list>
         <ion-item ng-click="vm.showPlanSchedule(planItem);" ng-repeat="planItem in vm.planItems">
-          <i index="{{$index}}" id="{{planItem.id}}">{{planItem.itemName}} : {{planItem.startTime}}~{{planItem.endTime}}</i>
+          <i index="{{$index}}" id="{{planItem.id}}">{{planItem.itemName}} : {{isNaN(planItem.startTime.getTime()) ? '' : planItem.startTime}}~{{isNaN(planItem.endTime.getTime()) ? '' : planItem.endTime}}</i>
         </ion-item>
       </ion-list>
     </div>
