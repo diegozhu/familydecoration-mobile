@@ -3,11 +3,11 @@
   <ion-content class="coach plan">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
-      <input style="width: 100%;" ng-model="searchName" placeholder="输入工程名称..." />
+      <input class="search" ng-model="searchName" placeholder="输入工程名称..." />
       <ion-list>
         <ion-item ng-show="project.projectName.indexOf(searchName)!=-1" on-hold="vm.createNewPlan(project);" ng-click="vm.goto('home.plan.edit',project)" ng-repeat="project in vm.projects">
           <div>
-            <div style="float:left; width:90%;">{{project.projectName}}-{{project.captain}}</div>
+            <div style="float:left; width:90%;">{{project.projectName}}</div>
             <i style="float:right; width:10%;" class="positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>
           </div>
         </ion-item>
