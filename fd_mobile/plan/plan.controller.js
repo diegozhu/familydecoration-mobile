@@ -25,6 +25,8 @@
         });
       };
 
+    $scope.searchName = '';
+
     angular.extend(vm, {
       doRefresh: function() {
         var promise = projectService.getAllRemote();
