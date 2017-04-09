@@ -1,4 +1,27 @@
 .fd-search {
     width: 100%;
-    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    height: 28px;
+    border: 0;
+    input {
+        border-radius: 0;
+        display: inline-block;
+        width: 96%;
+        border: 0;
+        padding: 0;
+        height: 100%;
+    }
+    .remove {
+        width: 4%;
+        background: #FFF;
+        vertical-align: bottom;
+        text-align: center;
+        display: inline-block;
+        height: 100%;
+        color: #c0c0c0;
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }

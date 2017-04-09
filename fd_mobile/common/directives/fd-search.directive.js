@@ -11,7 +11,17 @@
           searchModel: '=',
           emptyText: '@'
         },
-        template: '<input class="fd-search" ng-model="searchModel" placeHolder="{{emptyText}}" />'
+        template: [
+          '<div class="fd-search">',
+          '<input ng-model="searchModel" placeHolder="{{emptyText}}" />',
+          '<div class="remove" ng-click="remove()">x</div>',
+          '</div>'
+        ].join(''),
+        link: function(scope) {
+          scope.remove = function() {
+            scope.searchModel = '';
+          };
+        }
       };
     });
 })();
