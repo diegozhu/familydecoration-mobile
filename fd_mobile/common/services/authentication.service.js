@@ -66,8 +66,11 @@
       login: function(params) {
         return $q(function(resolve, reject) {
           params.password = md5.createHash('familydecoration-' + params.password);
-          resource.login(params, function() {
+          resource.login(params, function(res) {
             isLogin = true;
+            angular.extend(params, {
+              level: res.level
+            });
             sessionStorage.setItem('userInfo', JSON.stringify(params));
             localStorage.setItem('userInfo', JSON.stringify(params));
             $rootScope.$broadcast(events.login, params);

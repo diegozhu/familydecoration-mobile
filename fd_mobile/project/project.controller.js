@@ -7,10 +7,10 @@
     CONSTANT,
     $scope,
     $state,
+    projectService,
     $ionicModal,
     $fdPopup,
     $translate,
-    projectService,
     projects,
     $log
   ) {

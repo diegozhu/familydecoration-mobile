@@ -14,7 +14,8 @@
     $state,
     $templateCache,
     $rootScope,
-    authenticationService
+    authenticationService,
+    $fdUser
   ) {
     var projectResource = $resource(urlBuilder.build('libs/sdf'), null, {
       getProjectsByCaptainName: {
@@ -26,6 +27,16 @@
           captainName: JSON.parse(sessionStorage.getItem('userInfo')).name,
           isDeleted: 'false',
           'isFrozen': 'false'
+        }
+      },
+      getAllProjects: {
+        method: 'GET',
+        cache: true,
+        url: urlBuilder.build('libs/api.php?action=Project.get'),
+        params: {
+          random: '',
+          isDeleted: 'false',
+          isFrozen: 'false'
         }
       }
     });
@@ -43,17 +54,46 @@
     var service = {
       events: events,
       getAll: function(params) {
-        // here is gonna return a promise
-        return $q(function(resolve, reject) {
-          projectResource.getProjectsByCaptainName(params, function(res) {
-            if (res.data) {
-              resolve(res);
-            }
-            else {
-              reject(res);
-            }
+        var
+          userInfo = sessionStorage.getItem('userInfo'),
+          level;
+        if (userInfo) {
+          userInfo = JSON.parse(userInfo);
+          level = userInfo.level;
+        }
+        if (
+          $fdUser.isAdmin(level) ||
+          $fdUser.isProjectManager(level) ||
+          $fdUser.isSupervisor(level) ||
+          $fdUser.isAdministrationManager(level) ||
+          $fdUser.isFinanceManager(level) ||
+          $fdUser.isBudgetManager(level) ||
+          $fdUser.isBudgetStaff(level)
+        ) {
+          return $q(function(resolve, reject) {
+            projectResource.getAllProjects(params, function(res) {
+              if (res.data) {
+                resolve(res);
+              }
+              else {
+                reject(res);
+              }
+            });
           });
-        });
+        }
+        else {
+          // here is gonna return a promise
+          return $q(function(resolve, reject) {
+            projectResource.getProjectsByCaptainName(params, function(res) {
+              if (res.data) {
+                resolve(res);
+              }
+              else {
+                reject(res);
+              }
+            });
+          });
+        }
       },
       getAllRemote: function(params) {
         params = params || {};
