@@ -5,7 +5,35 @@
     <div class="clearfix">
       <fd-search search-model="searchName" empty-text="工程名称..."></fd-search>
       <ion-list>
-        <ion-item ng-show="project.projectName.indexOf(searchName)!=-1" on-hold="vm.createNewPlan(project);" ng-click="vm.goto('home.plan.edit',project)" ng-repeat="project in vm.projects">
+        <div ng-if="vm.captains" ng-repeat="captain in vm.captains">
+          <ion-item 
+            class="item-stable"
+            ng-click="toggleGroup(captain)"
+            ng-class="{active: isGroupShown(captain)}"
+          >
+            <i class="icon" ng-class="isGroupShown(captain) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{captain.captain}}
+          </ion-item>
+          <ion-item 
+            class="item-accordion"
+            ng-show="isGroupShown(captain) && project.projectName.indexOf(searchName)!=-1" 
+            on-hold="vm.createNewPlan(project);" 
+            ng-click="vm.goto('home.plan.edit',project)" 
+            ng-repeat="project in vm.projects[captain['captainName']].projects"
+          >
+            <div>
+              <div style="float:left; width:90%;">{{project.projectName}}</div>
+              <i style="float:right; width:10%;" class="positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>
+            </div>
+          </ion-item>
+        </div>
+        <ion-item
+          ng-if="!vm.captains"
+          ng-show="project.projectName.indexOf(searchName)!=-1"
+          on-hold="vm.createNewPlan(project);"
+          ng-click="vm.goto('home.plan.edit',project)"
+          ng-repeat="project in vm.projects">
           <div>
             <div style="float:left; width:90%;">{{project.projectName}}</div>
             <i style="float:right; width:10%;" class="positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>

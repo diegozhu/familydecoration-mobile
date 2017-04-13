@@ -12,20 +12,50 @@
     $log,
     $fdPopup,
     $state,
-    $fdToast
+    $fdToast,
+    $filter,
+    $ionicScrollDelegate
   ) {
     var
       vm = this,
       loadProject = function(promise) {
         promise.then(function(res) {
           $log.log('plan module:' + projectService.events.updated);
-          vm.projects = res.data;
+          if (projectService.needLoadAll()) {
+            var
+              resData = $filter('unique')(res.data, 'captainName'),
+              obj = {};
+            angular.forEach(resData, function(d) {
+              obj[d.captainName] = {
+                captain: d.captain,
+                projects: []
+              };
+            });
+            angular.forEach(res.data, function(d) {
+              obj[d.captainName]['projects'].push(d);
+            });
+            vm.captains = resData;
+            vm.projects = obj;
+          }
+          else {
+            vm.projects = res.data;
+          }
         }, function(res) {
           $log.log(res.errMsg);
         });
       };
 
     $scope.searchName = '';
+
+    $scope.toggleGroup = function(captain) {
+      captain.show = !captain.show;
+    };
+
+    $scope.isGroupShown = function(captain) {
+      // we have to do this before switching item visibility statuses.
+      $ionicScrollDelegate.resize();
+      return captain.show;
+    };
 
     angular.extend(vm, {
       doRefresh: function() {

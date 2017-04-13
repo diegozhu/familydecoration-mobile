@@ -54,22 +54,7 @@
     var service = {
       events: events,
       getAll: function(params) {
-        var
-          userInfo = sessionStorage.getItem('userInfo'),
-          level;
-        if (userInfo) {
-          userInfo = JSON.parse(userInfo);
-          level = userInfo.level;
-        }
-        if (
-          $fdUser.isAdmin(level) ||
-          $fdUser.isProjectManager(level) ||
-          $fdUser.isSupervisor(level) ||
-          $fdUser.isAdministrationManager(level) ||
-          $fdUser.isFinanceManager(level) ||
-          $fdUser.isBudgetManager(level) ||
-          $fdUser.isBudgetStaff(level)
-        ) {
+        if (this.needLoadAll()) {
           return $q(function(resolve, reject) {
             projectResource.getAllProjects(params, function(res) {
               if (res.data) {
@@ -99,6 +84,19 @@
         params = params || {};
         params.random = Math.random();
         return service.getAll.call(this, params);
+      },
+      /**
+       * @desc whether we load all projects or just projects under one dividual projectCaptain
+       */
+      needLoadAll: function() {
+        var
+          userInfo = sessionStorage.getItem('userInfo'),
+          level;
+        if (userInfo) {
+          userInfo = JSON.parse(userInfo);
+          level = userInfo.level;
+        }
+        return $fdUser.isAdmin(level) || $fdUser.isProjectManager(level) || $fdUser.isSupervisor(level) || $fdUser.isAdministrationManager(level) || $fdUser.isFinanceManager(level) || $fdUser.isBudgetManager(level) || $fdUser.isBudgetStaff(level);
       }
     };
 
