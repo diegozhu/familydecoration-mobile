@@ -14,7 +14,8 @@
     $state,
     $fdToast,
     $filter,
-    $ionicScrollDelegate
+    $ionicScrollDelegate,
+    $timeout
   ) {
     var
       vm = this,
@@ -49,6 +50,9 @@
 
     $scope.toggleGroup = function(captain) {
       captain.show = !captain.show;
+      $timeout(function() {
+        $ionicScrollDelegate.resize();
+      }, 100);
     };
 
     $scope.isGroupShown = function(captain) {
