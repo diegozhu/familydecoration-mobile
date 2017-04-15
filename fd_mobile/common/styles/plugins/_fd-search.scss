@@ -2,14 +2,17 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    height: 28px;
+    height: 34px;
     border: 0;
     input {
         border-radius: 0;
         display: inline-block;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
         width: 96%;
         border: 0;
-        padding: 0;
+        padding: 10px;
         height: 100%;
     }
     .remove {
@@ -20,7 +23,11 @@
         font-size: 20px;
         text-align: center;
         display: inline-block;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
         height: 100%;
+        padding: 4px 0;
         color: #c0c0c0;
         &:hover {
             cursor: pointer;

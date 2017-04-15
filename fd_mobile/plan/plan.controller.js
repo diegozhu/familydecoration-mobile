@@ -50,13 +50,17 @@
       });
     };
 
-    $scope.searchName = '';
-
     $scope.toggleGroup = function(captain) {
       captain.show = !captain.show;
       $timeout(function() {
         $ionicScrollDelegate.resize();
       }, 100);
+    };
+
+    $scope.isGroupShown = function(captain) {
+      // we have to do this before switching item visibility statuses.
+      $ionicScrollDelegate.resize();
+      return captain.show;
     };
 
     $scope.preview = function(project) {
@@ -95,10 +99,12 @@
       });
     };
 
-    $scope.isGroupShown = function(captain) {
-      // we have to do this before switching item visibility statuses.
-      $ionicScrollDelegate.resize();
-      return captain.show;
+    $scope.isSearchBarEmpty = function() {
+      return vm.searchName === '';
+    };
+
+    $scope.projectMatched = function(project) {
+      return project.projectName.indexOf(vm.searchName) !== -1;
     };
 
     angular.extend(vm, {
@@ -109,6 +115,8 @@
       },
       projects: []
     });
+
+    vm.searchName = '';
 
     vm.goto = function(state, project) {
       $state.go(state, {

@@ -3,10 +3,11 @@
   <ion-content class="coach plan">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
-      <fd-search search-model="searchName" empty-text="工程名称..."></fd-search>
+      <fd-search search-model="vm.searchName" empty-text="工程名称..."></fd-search>
       <ion-list>
         <div ng-if="vm.captains" ng-repeat="captain in vm.captains">
-          <ion-item 
+          <ion-item
+            ng-show="isSearchBarEmpty()"
             class="item-stable"
             ng-click="toggleGroup(captain)"
             ng-class="{active: isGroupShown(captain)}"
@@ -17,7 +18,7 @@
           </ion-item>
           <fd-project-item
             class="item-accordion"
-            ng-show="isGroupShown(captain) && project.projectName.indexOf(searchName)!=-1"
+            ng-show="(isSearchBarEmpty() && isGroupShown(captain)) || (!isSearchBarEmpty() && projectMatched(project))"
             ng-click="vm.goto('home.plan.edit',project)"
             ng-repeat="project in vm.projects[captain['captainName']].projects"
           >
@@ -25,7 +26,7 @@
         </div>
         <fd-project-item
           ng-if="!vm.captains"
-          ng-show="project.projectName.indexOf(searchName)!=-1"
+          ng-show="projectMatched(project)"
           ng-click="vm.goto('home.plan.edit',project)"
           ng-repeat="project in vm.projects"
         >

@@ -46,8 +46,6 @@
         });
       };
 
-    $scope.searchName = '';
-
     $scope.toggleGroup = function(captain) {
       captain.show = !captain.show;
       $timeout(function() {
@@ -61,6 +59,14 @@
       return captain.show;
     };
 
+    $scope.isSearchBarEmpty = function() {
+      return vm.searchName === '';
+    };
+
+    $scope.projectMatched = function(project) {
+      return project.projectName.indexOf(vm.searchName) !== -1;
+    };
+
     angular.extend(vm, {
       doRefresh: function() {
         var promise = projectService.getAllRemote();
@@ -69,6 +75,8 @@
       },
       projects: []
     });
+
+    vm.searchName = '';
 
     vm.goto = function(state, project) {
       $state.go(state, {
