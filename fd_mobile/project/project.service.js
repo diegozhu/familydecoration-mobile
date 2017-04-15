@@ -17,13 +17,32 @@
     authenticationService,
     $fdUser
   ) {
+    var transformResponse = function(jsonData) {
+      var
+        obj = {},
+        data = angular.fromJson(jsonData);
+      if (data.status === 'failing') {
+        obj = data;
+      }
+      else {
+        obj.data = data;
+        obj.total = data.length;
+      }
+      return obj;
+    };
     var projectResource = $resource(urlBuilder.build('libs/sdf'), null, {
+      getProjectProgress: {
+        method: 'GET',
+        url: urlBuilder.build('libs/api.php?action=ProjectProgress.getItems'),
+        params: {
+          projectId: '@projectId'
+        },
+        transformResponse: transformResponse
+      },
       getProjectsByCaptainName: {
         method: 'GET',
-        cache: true,
         url: urlBuilder.build('libs/api.php?action=Project.get'),
         params: {
-          random: '',
           captainName: JSON.parse(sessionStorage.getItem('userInfo')).name,
           isDeleted: 'false',
           'isFrozen': 'false'
@@ -31,10 +50,8 @@
       },
       getAllProjects: {
         method: 'GET',
-        cache: true,
         url: urlBuilder.build('libs/api.php?action=Project.get'),
         params: {
-          random: '',
           isDeleted: 'false',
           isFrozen: 'false'
         }
@@ -53,6 +70,17 @@
 
     var service = {
       events: events,
+      getProjectProgress: function(params) {
+        return $q(function(resolve, reject) {
+          projectResource.getProjectProgress(params, function(res) {
+            if (res.data) {
+              resolve(res.data);
+            } else {
+              reject(res);
+            }
+          });
+        });
+      },
       getAll: function(params) {
         if (this.needLoadAll()) {
           return $q(function(resolve, reject) {

@@ -2,13 +2,24 @@
   <ion-nav-buttons side="left">
     <back-button></back-button>
   </ion-nav-buttons>
-  <ion-nav-title>计划详情-{{projectName}}</ion-nav-title>
+  <ion-nav-title>工程进度-{{projectName}}</ion-nav-title>
   <ion-content class="coach plan">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
       <ion-list>
-        <ion-item ng-click="vm.showPlanSchedule(planItem);" ng-repeat="planItem in vm.planItems">
-          <i index="{{$index}}" id="{{planItem.id}}">{{planItem.itemName}} : {{isNaN(planItem.startTime.getTime()) ? '' : planItem.startTime}}~{{isNaN(planItem.endTime.getTime()) ? '' : planItem.endTime}}</i>
+        <ion-item ng-click="vm.showProgressDetail(planItem);" ng-repeat="planItem in vm.planItems">
+          <i index="{{$index}}" id="{{planItem.id}}">
+            <h2 style="text-align: left;">{{planItem.itemName}}
+              <span ng-hide="!planItem.planStartTime && !planItem.planEndTime" style="font-size:12px;">({{planItem.planStartTime||'无'}}~{{planItem.planEndTime||'无'}})</span>
+              <span ng-show="!planItem.planStartTime && !planItem.planEndTime" style="font-size:12px;">(暂无计划时间)</span>
+            </h2>
+            <p style="text-align: left;" >
+              <span style="color: green;" ng-show="planItem.practicalProgress.length > 0">{{planItem.practicalProgress.length}}条进度</span>
+              <span ng-show="planItem.practicalProgress.length == 0">暂无进度</span>,
+              <span style="color: green;" ng-show="planItem.supervisorComment.length > 0">{{planItem.supervisorComment.length}}条监理意见</span>
+              <span ng-show="planItem.supervisorComment.length == 0">暂无条监理意见</span>
+            </p>
+          </i>
         </ion-item>
       </ion-list>
     </div>

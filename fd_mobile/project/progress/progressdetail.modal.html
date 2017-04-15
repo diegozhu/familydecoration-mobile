@@ -1,0 +1,43 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.modal.hide();"></button>
+    <div class="title">{{vm.planItem.parentItemName}}</div>
+  </ion-header-bar>
+  <ion-content class="symptom-add-modal">
+    <div class="item item-divider" style="background:#1474a4!important;color:#fff">
+      {{vm.planItem.itemName}}
+      <span ng-hide="!vm.planItem.planStartTime && !vm.planItem.planEndTime" style="font-size:12px;">({{vm.planItem.planStartTime||'无'}}~{{vm.planItem.planEndTime||'无'}})</span>
+        <span ng-show="!vm.planItem.planStartTime && !vm.planItem.planEndTime" style="font-size:12px;">(暂无计划时间)</span>
+    </div>
+    <div class="card clearfix">
+      <ion-list>
+        <div class="item item-divider" style="background:#1474a4!important;color:#fff">
+          工程进度
+          <i class="col-10 icon icon-fd-add" ng-click="vm.addPracticalProgress()" style="float: right;"></i>
+        </div>
+        <ion-item ng-repeat="progress in vm.planItem.practicalProgress">
+          <h2 style="text-align: left;" ng-bind-html="progress.content"></h2>
+          <p style="font-size:12px;">{{progress.committerRealName}} {{progress.createTime}}</p>
+        </ion-item>
+        <ion-item ng-show="vm.planItem.practicalProgress.length == 0">
+          <h2 style="text-align: left;">无</h2>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="card clearfix">
+      <ion-list>
+        <div class="item item-divider" style="background:#1474a4!important;color:#fff">  监理意见
+          <i class="col-10 icon icon-fd-add" ng-click="vm.addSupervisorComment()" style="float: right;"></i>
+        </div>
+        <ion-item ng-repeat="comment in vm.planItem.supervisorComment">
+          <h2 style="text-align: left;" ng-bind-html="comment.content"></h2>
+          <p style="font-size:12px;">{{comment.auditorRealName}} {{comment.createTime}}</p>
+        </ion-item>
+        <ion-item ng-show="vm.planItem.supervisorComment.length == 0">
+          <h2 style="text-align: left;">无</h2>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-modal-view>
