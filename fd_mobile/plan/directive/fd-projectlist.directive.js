@@ -5,6 +5,6 @@
     .module('fdmobile')
     .directive('fdProjectList', fdProjectList);
 
-  function fdProjectList() { 
+  function fdProjectList() {
   }
 })();

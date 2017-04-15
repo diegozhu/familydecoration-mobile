@@ -61,7 +61,7 @@
       //return promise;
     };
 
-    vm.addSupervisorComment = function(){
+    vm.addSupervisorComment = function() {
       $fdPopup.show({
         iconClass: 'ion-star',
         title: '询问',
@@ -75,7 +75,7 @@
           },
           {
             text: '取消',
-            type: 'button-stable'
+            type: 'button-dark'
           }
         ]
       });
