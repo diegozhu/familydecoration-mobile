@@ -20,6 +20,7 @@
     'fdmobile.security',
     'fdmobile.home',
     'fdmobile.project',
+    'fdmobile.plan',
     'fdmobile.settings',
     'fdmobile.profile',
     'fdmobile.logging'

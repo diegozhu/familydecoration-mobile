@@ -55,6 +55,10 @@
       }, 100);
     };
 
+    $scope.preview = function(project) {
+      $log.log(project);
+    };
+
     $scope.isGroupShown = function(captain) {
       // we have to do this before switching item visibility statuses.
       $ionicScrollDelegate.resize();
