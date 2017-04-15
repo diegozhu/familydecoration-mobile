@@ -56,15 +56,6 @@ $font-path: "#{$path}/assets/fonts";
   "../../plan/styles/_intake",
   "../../plan/styles/_plan";
 
-
-// Care plan module
-//------------------
-@import
-  "../../care-plan/styles/_medication",
-  "../../care-plan/styles/_follow_up",
-  "../../care-plan/styles/_lifestyle";
-
-
 // Profile module
 //------------------
 @import
@@ -81,16 +72,3 @@ $font-path: "#{$path}/assets/fonts";
   "../../settings/styles/_notify",
   "../../settings/styles/_feedback",
   "../../settings/styles/_settings";
-
-
-// Nutrition module
-//------------------
-@import 
-  "../../nutrition/styles/_variable",
-  "../../nutrition/styles/_nutrition";
-
-
-// Chat module
-//------------------
-@import 
-  "../../chat/styles/_chat";
