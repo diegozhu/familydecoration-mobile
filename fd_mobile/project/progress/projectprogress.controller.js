@@ -58,12 +58,20 @@
         projectId: $stateParams.projectId
       }).then(function(res) {
         vm.planItems = res.data;
-        vm.planItem && vm.planItems.every(function(ele) {
-          if (ele.id === vm.planItem.id) {
-            vm.planItem = ele;
-            return false;
+        vm.planItem && vm.planItems.every(function(planItem) {
+          if (planItem.id !== vm.planItem.id) {
+            return true;
           }
-          return true;
+          planItem.practicalProgress.every(function(ele) {
+            ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+            return true;
+          });
+          planItem.supervisorComment.every(function(ele) {
+            ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+            return true;
+          });
+          vm.planItem = planItem;
+          return false;
         });
       });
     };
@@ -106,6 +114,14 @@
 
     vm.showProgressDetail = function(planItem) {
       vm.planItem = planItem;
+      planItem.practicalProgress.every(function(ele) {
+        ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+        return true;
+      });
+      planItem.supervisorComment.every(function(ele) {
+        ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+        return true;
+      });
       vm.modal.show();
     };
   });
