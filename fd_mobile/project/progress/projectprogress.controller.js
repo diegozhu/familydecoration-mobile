@@ -79,8 +79,9 @@
           }
         ]
       });
-    }
-    vm.addPracticalProgress = function(){
+    };
+
+    vm.addPracticalProgress = function() {
       $fdPopup.show({
         iconClass: 'ion-star',
         title: '询问',
