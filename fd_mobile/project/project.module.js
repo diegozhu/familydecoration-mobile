@@ -4,7 +4,6 @@
   angular.module('fdmobile.project', [
     'fdmobile.project.progress'
   ]);
-
   angular.module('fdmobile.project').config(function($stateProvider) {
     $stateProvider.state({
       name: 'home.project',

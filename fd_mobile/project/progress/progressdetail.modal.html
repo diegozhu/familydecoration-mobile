@@ -13,7 +13,7 @@
       <ion-list style="padding-bottom: 0">
         <div class="item item-divider" style="background:#1474a4!important;color:#fff">
           工程进度
-          <i class="col-10 icon icon-fd-add" ng-click="vm.addPracticalProgress()" style="float: right;"></i>
+          <i ng-show="vm.planItem.isEditable" class="col-10 icon icon-fd-add" ng-click="vm.openAddPracticalProgressModal()" style="float: right;"></i>
         </div>
         <ion-item ng-repeat="progress in vm.planItem.practicalProgress">
           <h2 style="text-align: left;" ng-bind-html="progress.content"></h2>
@@ -28,7 +28,7 @@
     <div class="card clearfix">
       <ion-list style="padding-bottom: 0">
         <div class="item item-divider" style="background:#1474a4!important;color:#fff">  监理意见
-          <i class="col-10 icon icon-fd-add" ng-click="vm.addSupervisorComment()" style="float: right;"></i>
+          <i ng-show="vm.planItem.isEditable" class="col-10 icon icon-fd-add" ng-click="vm.openAddSupervisorCommentModal()" style="float: right;"></i>
         </div>
         <ion-item ng-repeat="comment in vm.planItem.supervisorComment">
           <h2 style="text-align: left;" ng-bind-html="comment.content"></h2>

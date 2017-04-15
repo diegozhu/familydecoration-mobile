@@ -7,7 +7,11 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
       <ion-list>
-        <ion-item ng-click="vm.showProgressDetail(planItem);" ng-repeat="planItem in vm.planItems">
+        <ion-item 
+          ng-style="{ 'border-left': planItem.isEditable ? 'green 7px solid' : 'orange 7px solid' }"
+          ng-click="vm.showProgressDetail(planItem);"
+          ng-repeat="planItem in vm.planItems"
+        >
           <i index="{{$index}}" id="{{planItem.id}}">
             <h2 style="text-align: left;">{{planItem.itemName}}
               <span ng-hide="!planItem.planStartTime && !planItem.planEndTime" style="font-size:12px;">({{planItem.planStartTime||'无'}}~{{planItem.planEndTime||'无'}})</span>

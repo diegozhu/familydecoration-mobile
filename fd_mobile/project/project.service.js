@@ -17,9 +17,16 @@
     authenticationService,
     $fdUser
   ) {
-    var transformResponse = function(jsonData) {
-      var
-        obj = {},
+    function transformRequest(data) {
+      var s = [];
+      for (var d in data) {
+        s.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+      }
+      return s.join('&');
+    }
+
+    function transformResponse(jsonData) {
+      var obj = {},
         data = angular.fromJson(jsonData);
       if (data.status === 'failing') {
         obj = data;
@@ -29,8 +36,21 @@
         obj.total = data.length;
       }
       return obj;
-    };
+    }
+
     var projectResource = $resource(urlBuilder.build('libs/sdf'), null, {
+      createNewProgress: {
+        method: 'POST',
+        url: urlBuilder.build('./libs/api.php?action=ProjectProgress.add'),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+        transformRequest: transformRequest
+      },
+      createNewSupervisorComment: {
+        method: 'POST',
+        url: urlBuilder.build('./libs/api.php?action=ProjectProgressAudit.add'),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+        transformRequest: transformRequest
+      },
       getProjectProgress: {
         method: 'GET',
         url: urlBuilder.build('libs/api.php?action=ProjectProgress.getItems'),
@@ -70,6 +90,28 @@
 
     var service = {
       events: events,
+      createNewProgress: function(params) {
+        return $q(function(resolve, reject) {
+          projectResource.createNewProgress(params, function(res) {
+            if (res.data) {
+              resolve(res.data);
+            } else {
+              reject(res);
+            }
+          });
+        });
+      },
+      createNewSupervisorComment: function(params) {
+        return $q(function(resolve, reject) {
+          projectResource.createNewSupervisorComment(params, function(res) {
+            if (res.data) {
+              resolve(res.data);
+            } else {
+              reject(res);
+            }
+          });
+        });
+      },
       getProjectProgress: function(params) {
         return $q(function(resolve, reject) {
           projectResource.getProjectProgress(params, function(res) {

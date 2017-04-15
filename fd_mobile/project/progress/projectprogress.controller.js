@@ -14,15 +14,28 @@
     $fdToast,
     $stateParams,
     ionicDatePicker,
-    $ionicModal
+    $ionicModal,
+    $timeout,
+    $ionicLoading
   ) {
     var vm = this;
+
+    vm.addProgressVm = {
+      title: ''
+    };
 
     $ionicModal.fromTemplateUrl('project/progress/progressdetail.modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {
       vm.modal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('project/progress/addprogress.modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      vm.addmodal = modal;
     });
 
     angular.extend($scope, {
@@ -40,65 +53,55 @@
       });
     }
 
-    $scope.getDateFromStr = function(str) {
-      var d = '';
-      if (str && str.replace) {
-        str = str.replace(/-/gi, '/');
-        d = new Date(str);
-      }
-      if (d instanceof Date && isNaN(d.getTime())) {
-        d = '';
-      }
-      return d;
-    };
-
     vm.doRefresh = function() {
       return projectService.getProjectProgress({
         projectId: $stateParams.projectId
       }).then(function(res) {
         vm.planItems = res.data;
-      });
-      //return promise;
-    };
-
-    vm.addSupervisorComment = function() {
-      $fdPopup.show({
-        iconClass: 'ion-star',
-        title: '询问',
-        template: '//TODO',
-        buttons: [
-          {
-            text: '确定',
-            type: 'button-positive',
-            onTap: function() {
-            }
-          },
-          {
-            text: '取消',
-            type: 'button-dark'
+        vm.planItem && vm.planItems.every(function(ele) {
+          if (ele.id === vm.planItem.id) {
+            vm.planItem = ele;
+            return false;
           }
-        ]
+          return true;
+        });
       });
     };
 
-    vm.addPracticalProgress = function() {
-      $fdPopup.show({
-        iconClass: 'ion-star',
-        title: '询问',
-        template: '//TODO',
-        buttons: [
-          {
-            text: '确定',
-            type: 'button-positive',
-            onTap: function() {
-            }
-          },
-          {
-            text: '取消',
-            type: 'button-dark'
-          }
-        ]
+    vm.addprogress = function() {
+      var temp = vm.addProgressVm.content;
+      $ionicLoading.show({
+        template: '正在提交...'
       });
+      var action = vm.addProgressVm.title === '新增监理意见' ? 'createNewSupervisorComment' : 'createNewProgress';
+      projectService[action]({
+        '@itemId': vm.planItem.id,
+        '@content': temp
+      }).finally(function() {
+        $ionicLoading.show({
+          template: '提交成功'
+        });
+        vm.doRefresh();
+        $timeout(function() {
+          vm.addmodal.hide();
+          $ionicLoading.hide();
+        }, 500);
+      });
+      vm.addProgressVm.content = '';
+    };
+
+    vm.openAddSupervisorCommentModal = function() {
+      vm.addmodal.show();
+      vm.addProgressVm.title = '新增监理意见';
+      vm.addProgressVm.placeholder = '监理内容';
+      vm.addProgressVm.content = '';
+    };
+
+    vm.openAddPracticalProgressModal = function() {
+      vm.addmodal.show();
+      vm.addProgressVm.title = '新增工程进度';
+      vm.addProgressVm.content = '';
+      vm.addProgressVm.placeholder = '工程进度';
     };
 
     vm.showProgressDetail = function(planItem) {

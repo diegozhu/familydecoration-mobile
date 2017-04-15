@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.addmodal.hide();"></button>
+    <div class="title">{{vm.addProgressVm.title}}</div>
+  </ion-header-bar>
+  <ion-content class="symptom-add-modal">
+    <div class="item item-divider" style="background:#1474a4!important;color:#fff">
+      {{vm.planItem.itemName}}
+      <span ng-hide="!vm.planItem.planStartTime && !vm.planItem.planEndTime" style="font-size:12px;">({{vm.planItem.planStartTime||'无'}}~{{vm.planItem.planEndTime||'无'}})</span>
+        <span ng-show="!vm.planItem.planStartTime && !vm.planItem.planEndTime" style="font-size:12px;">(暂无计划时间)</span>
+    </div>
+    <br />
+    <div class="fd-input">
+      <textarea style="height: 300px;" placeholder="{{vm.addProgressVm.placeholder}}" ng-model="vm.addProgressVm.content"></textarea>
+    </div>
+    <br />
+    <div class="fd-button">
+      <button class="font-white bg-pumpkin" ng-click="vm.addprogress();">添加</button>
+    </div>
+    <br />
+    <div class="fd-button">
+      <button class="font-white bg-gradient" ng-click="vm.addmodal.hide();">取消</button>
+    </div>
+  </ion-content>
+</ion-modal-view>
