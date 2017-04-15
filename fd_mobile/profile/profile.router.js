@@ -1,6 +1,17 @@
 (function() {
   'use strict';
 
+  angular.module('fdmobile.profile', [
+    'fdmobile.configname',
+    'fdmobile.password',
+    'fdmobile.diaginfo',
+    'fdmobile.gender',
+    'fdmobile.contact',
+    'fdmobile.qr',
+    'fdmobile.avatar',
+    'fdmobile.dischargeinfo'
+  ]);
+
   angular
     .module('fdmobile.profile')
     .config(profileRouter);
@@ -11,10 +22,12 @@
     $stateProvider
       .state('profile', {
         url: '/profile',
-        cache: false,
-        templateUrl: 'profile/profile.html',
-        params: { action: '', value: ''},
-        controller: 'ProfileController as vm'
+        views: {
+          'tab-profile': {
+            templateUrl: 'profile/profile.html',
+            controller: 'ProfileController as vm'
+          }
+        }
       });
   }
 })();

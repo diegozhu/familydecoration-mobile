@@ -6,7 +6,7 @@
   angular.module('fdmobile.project.progress').config(function($stateProvider) {
     $stateProvider.state({
       name: 'home.project.progress',
-      url: '/project/:projectId/progress',
+      url: '/:projectId/progress',
       params: {
         projectId: null,
         projectPeriod: null,
@@ -14,11 +14,11 @@
       },
       views: {
         'tab-project@home': {
-          templateUrl: 'project/eprogress/projectprogress.html',
+          templateUrl: 'project/progress/projectprogress.html',
           controller: 'ProjectProgressController as vm',
           resolve: {
-            planItems: function(planService, $stateParams) {
-              return planService.getPlanItemsByProjectId({
+            planItems: function(projectService, $stateParams) {
+              return projectService.getProjectProgress({
                 projectId: $stateParams.projectId
               });
             },
