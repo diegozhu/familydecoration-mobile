@@ -15,30 +15,21 @@
             &nbsp;
             {{captain.captain}}
           </ion-item>
-          <ion-item 
+          <fd-project-item
             class="item-accordion"
-            ng-show="isGroupShown(captain) && project.projectName.indexOf(searchName)!=-1" 
-            on-hold="vm.createNewPlan(project);" 
-            ng-click="vm.goto('home.plan.edit',project)" 
+            ng-show="isGroupShown(captain) && project.projectName.indexOf(searchName)!=-1"
+            ng-click="vm.goto('home.plan.edit',project)"
             ng-repeat="project in vm.projects[captain['captainName']].projects"
           >
-            <div>
-              <div style="float:left; width:90%;">{{project.projectName}}</div>
-              <i style="float:right; width:10%;" class="positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>
-            </div>
-          </ion-item>
+          </fd-project-item>
         </div>
-        <ion-item
+        <fd-project-item
           ng-if="!vm.captains"
-          ng-show="project.projectName.indexOf(searchName)!=-1"
-          on-hold="vm.createNewPlan(project);"
+          ng-show="isGroupShown(captain) && project.projectName.indexOf(searchName)!=-1"
           ng-click="vm.goto('home.plan.edit',project)"
-          ng-repeat="project in vm.projects">
-          <div>
-            <div style="float:left; width:90%;">{{project.projectName}}</div>
-            <i style="float:right; width:10%;" class="positive icon icon-accessory ion-chevron-right" ng-class="icon-fd-intake"></i>
-          </div>
-        </ion-item>
+          ng-repeat="project in vm.projects"
+        >
+        </fd-project-item>
       </ion-list>
     </div>
 
