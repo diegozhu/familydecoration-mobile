@@ -21,6 +21,14 @@
       return obj;
     };
     var planResource = $resource(urlBuilder.build('libs/sdf'), null, {
+      getPlanByProjectId: {
+        method: 'GET',
+        url: urlBuilder.build('libs/api.php?action=PlanMaking.get'),
+        params: {
+          random: '',
+          projectId: '@projectId'
+        }
+      },
       getPlanItemsByProjectId: {
         method: 'GET',
         // cache: true,
@@ -54,6 +62,19 @@
     });
 
     var service = {
+      getPlanByProjectId: function(params) {
+        return $q(function(resolve, reject) {
+          params._preventDefaultExceptionHandler = true;
+          planResource.getPlanByProjectId(params, function(res) {
+            if (res.status != 'failing') {
+              resolve(res);
+            }
+            else {
+              reject(res);
+            }
+          });
+        });
+      },
       getPlanItemsByProjectId: function(params) {
         return $q(function(resolve, reject) {
           params._preventDefaultExceptionHandler = true;

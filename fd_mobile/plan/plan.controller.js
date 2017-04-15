@@ -15,36 +15,40 @@
     $fdToast,
     $filter,
     $ionicScrollDelegate,
-    $timeout
+    $timeout,
+    urlBuilder,
+    $cordovaInAppBrowser
   ) {
     var
       vm = this,
-      loadProject = function(promise) {
-        promise.then(function(res) {
-          $log.log('plan module:' + projectService.events.updated);
-          if (projectService.needLoadAll()) {
-            var
-              resData = $filter('unique')(res.data, 'captainName'),
-              obj = {};
-            angular.forEach(resData, function(d) {
-              obj[d.captainName] = {
-                captain: d.captain,
-                projects: []
-              };
-            });
-            angular.forEach(res.data, function(d) {
-              obj[d.captainName]['projects'].push(d);
-            });
-            vm.captains = resData;
-            vm.projects = obj;
-          }
-          else {
-            vm.projects = res.data;
-          }
-        }, function(res) {
-          $log.log(res.errMsg);
-        });
-      };
+      loadProject;
+
+    loadProject = function(promise) {
+      promise.then(function(res) {
+        $log.log('plan module:' + projectService.events.updated);
+        if (projectService.needLoadAll()) {
+          var
+            resData = $filter('unique')(res.data, 'captainName'),
+            obj = {};
+          angular.forEach(resData, function(d) {
+            obj[d.captainName] = {
+              captain: d.captain,
+              projects: []
+            };
+          });
+          angular.forEach(res.data, function(d) {
+            obj[d.captainName]['projects'].push(d);
+          });
+          vm.captains = resData;
+          vm.projects = obj;
+        }
+        else {
+          vm.projects = res.data;
+        }
+      }, function(res) {
+        $log.log(res.errMsg);
+      });
+    };
 
     $scope.searchName = '';
 
@@ -56,7 +60,39 @@
     };
 
     $scope.preview = function(project) {
-      $log.log(project);
+      var promise = planService.getPlanByProjectId({
+        projectId: project.projectId
+      });
+      promise.then(function(res) {
+        if (res.data.length > 0) {
+          var planId = res.data[0].id;
+          var pdfUrl = urlBuilder.build('fpdf/plan.php?id=' + planId + '&page=A3');
+          $cordovaInAppBrowser.open(pdfUrl, '_self', {
+            location: 'yes',
+            clearcache: 'yes',
+            toolbar: 'no',
+            closebuttoncaption: '关闭'
+          })
+            .then(function() {
+              // success
+            })
+            .catch(function() {
+              // error
+            });
+
+
+          // $cordovaInAppBrowser.close();
+        }
+        else {
+          $fdToast.show({
+            text: '没有可预览的计划'
+          });
+        }
+      }, function(res) {
+        $fdToast.show({
+          text: res.errMsg
+        });
+      });
     };
 
     $scope.isGroupShown = function(captain) {
@@ -125,5 +161,34 @@
     };
 
     loadProject(projects.$promise);
+
+    // for cordova browser config
+    $rootScope.$on('$cordovaInAppBrowser:loadstart', function() {
+
+    });
+
+    $rootScope.$on('$cordovaInAppBrowser:loadstop', function() {
+      // insert CSS via code / file
+      $cordovaInAppBrowser.insertCSS({
+        code: 'body {background-color:blue;}'
+      });
+
+      // insert Javascript via code / file
+      // $cordovaInAppBrowser.executeScript({
+      //   file: 'script.js'
+      // });
+    });
+
+    $rootScope.$on('$cordovaInAppBrowser:loaderror', function() {
+
+    });
+
+    $rootScope.$on('$cordovaInAppBrowser:exit', function() {
+
+    });
+
+    // Clean up the modal view.
+    $scope.$on('$destroy', function() {
+    });
   });
 })();
