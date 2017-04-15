@@ -63,11 +63,11 @@
             return true;
           }
           planItem.practicalProgress.every(function(ele) {
-            ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+            ele.content = ele.content.replace(/\n/gi, '<br>');
             return true;
           });
           planItem.supervisorComment.every(function(ele) {
-            ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+            ele.content = ele.content.replace(/\n/gi, '<br>');
             return true;
           });
           vm.planItem = planItem;
@@ -115,11 +115,11 @@
     vm.showProgressDetail = function(planItem) {
       vm.planItem = planItem;
       planItem.practicalProgress.every(function(ele) {
-        ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+        ele.content = ele.content.replace(/\n/gi, '<br>');
         return true;
       });
       planItem.supervisorComment.every(function(ele) {
-        ele.content = ele.content.replace(/\n/gi, '<br>').replace(/ /gi, '&nbsp;');
+        ele.content = ele.content.replace(/\n/gi, '<br>');
         return true;
       });
       vm.modal.show();
