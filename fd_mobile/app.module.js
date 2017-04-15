@@ -6,6 +6,7 @@
     'ionic',
     'ionic-datepicker',
     'angular-md5',
+    'angular.filter',
     'ngCordova',
     'ngResource',
     'ngMessages',
