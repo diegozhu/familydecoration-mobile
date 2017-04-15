@@ -14,7 +14,7 @@
       },
       views: {
         'tab-project@home': {
-          templateUrl: 'project/eprogress/projectprogress.html',
+          templateUrl: 'project/progress/projectprogress.html',
           controller: 'ProjectProgressController as vm',
           resolve: {
             planItems: function(planService, $stateParams) {

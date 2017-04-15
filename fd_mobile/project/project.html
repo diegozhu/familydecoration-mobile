@@ -18,8 +18,7 @@
           <ion-item 
             class="item-accordion"
             ng-show="isGroupShown(captain) && project.projectName.indexOf(searchName)!=-1" 
-            on-hold="vm.createNewPlan(project);" 
-            ng-click="vm.goto('home.plan.edit',project)" 
+            ng-click="vm.goto('home.project.progress',project)" 
             ng-repeat="project in vm.projects[captain['captainName']].projects"
           >
             <div>
@@ -31,8 +30,7 @@
         <ion-item
           ng-if="!vm.captains"
           ng-show="project.projectName.indexOf(searchName)!=-1"
-          on-hold="vm.createNewPlan(project);"
-          ng-click="vm.goto('home.plan.edit',project)"
+          ng-click="vm.goto('home.project.progress',project)"
           ng-repeat="project in vm.projects">
           <div>
             <div style="float:left; width:90%;">{{project.projectName}}</div>
