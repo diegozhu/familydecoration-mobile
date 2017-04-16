@@ -26,7 +26,7 @@
       },
       logout: {
         method: 'POST',
-        url: urlBuilder.build('security/logout')
+        url: urlBuilder.build('libs/user.php?action=logout')
       }
     });
 
@@ -84,7 +84,7 @@
           $templateCache.removeAll();
           sessionStorage.clear();
           // invoke encapsulated destroy function in cachefactory.config.js
-          $cacheFactory.destroyAll();
+          // $cacheFactory.destroyAll();
           if (params && params.clearLocalStorage) {
             localStorage.clear();
           }
