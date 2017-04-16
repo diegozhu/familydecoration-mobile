@@ -1,0 +1,22 @@
+<ion-view view-title="">
+  <ion-content class="main">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
+    <div class="logo"><img src="assets/images/logo.jpg"/></div>
+    <div class="clearfix">
+      <ion-list>
+        <ion-item ng-show="vm.messages.length>0" class="item-divider">公告(共{{vm.messages.length}}项)</ion-item>
+        <ion-item ng-hide="vm.messages.length>0" class="item-divider">公告(暂无)</ion-item>
+
+        <ion-item ng-repeat="msg in vm.messages | filter : {isStickTop:true} | orderBy: createTime:false" ng-click="vm.showTip(msg)">
+          <i class="icon icon-fd-main"></i>
+          {{msg.title}}<span class='createTime'>{{msg.createTime}}</span>
+        </ion-item>
+        <ion-item ng-repeat="msg in vm.messages | filter : {isStickTop:false} |orderBy: createTime:false " ng-click="vm.showTip(msg)">
+          <i class="icon"></i>
+          {{msg.title}}<span class='createTime'>{{msg.createTime}}</span>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </ion-content>
+</ion-view>

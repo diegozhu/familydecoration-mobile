@@ -21,7 +21,7 @@
             if ($ionicHistory.backView()) {
               $ionicHistory.goBack();
             } else {
-              $state.go('home.coach');
+              $state.go('home.main');
             }
           }
         });

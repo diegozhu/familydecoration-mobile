@@ -20,7 +20,7 @@
 
   function profileRouter($stateProvider) {
     $stateProvider
-      .state('profile', {
+      .state('home.profile', {
         url: '/profile',
         views: {
           'tab-profile': {

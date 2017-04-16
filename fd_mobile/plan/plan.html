@@ -1,6 +1,6 @@
 <ion-view>
   <ion-nav-title>计划总计:{{vm.projects.length}}</ion-nav-title>
-  <ion-content class="coach plan">
+  <ion-content class="main plan">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.doRefresh()"></ion-refresher>
     <div class="clearfix">
       <fd-search search-model="vm.searchName" empty-text="工程名称..."></fd-search>

@@ -10,7 +10,7 @@
     $ionicPlatform.registerBackButtonAction(function() {
       var currentState = $state.current.name;
 
-      if (currentState === 'home.coach' || currentState === 'login') {
+      if (currentState === 'home.main' || currentState === 'login') {
         if (backButtonPressed) {
           ionic.Platform.exitApp();
         } else {
@@ -24,7 +24,7 @@
         if ($ionicHistory.backView()) {
           $ionicHistory.goBack();
         } else {
-          $state.go('home.coach');
+          $state.go('home.main');
         }
       }
     }, 101);

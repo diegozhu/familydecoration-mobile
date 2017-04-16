@@ -6,26 +6,26 @@
     <a class="btn-settings ion-gear-b" ui-sref="settings"></a>
   </ion-nav-buttons>
   <ion-content class="my-profile">
-    <div class='avatar-card'>
+    <!-- div class='avatar-card'>
       <div class="col-30 avatar-img" ui-sref="configureavatar"></div>
-      <!--div class="col-50 user-name" ui-sref="configurename"-->
+      <div class="col-50 user-name" ui-sref="configurename">
       <div class="col-50 user-name">
         <div class="font-large">{{vm.user.firstName}}&nbsp;{{vm.user.lastName}}</div>
         <p class="font-normal">{{vm.user.nickName}}</p>
       </div>
-      <!--i class="icon positive col-10 icon-accessory ion-chevron-right" ui-sref="configurename"></i-->
-    </div>
+      <i class="icon positive col-10 icon-accessory ion-chevron-right" ui-sref="configurename"></i>
+    </div-->
     <ion-list>
-      <ion-item>
+      <!-- ion-item>
         <div class="col-40">{{'BIRTHDAY' | translate}}</div>
         <div class="col-50">{{vm.user.birthDay | date:'yyyy-MM-dd'}}</div>
-        <!--i class="col-10 icon positive icon-accessory ion-chevron-right"></i-->
+        <i class="col-10 icon positive icon-accessory ion-chevron-right"></i>
       </ion-item>
-      <!--ion-item ng-click="vm.goto('configuregender')"-->
+      <ion-item ng-click="vm.goto('configuregender')">
       <ion-item>
         <div class="col-40">{{'GENDER' | translate}}</div>
         <div class="col-50">{{vm.user.genderDisplay}}</div>
-        <!-- i class="col-10 icon positive icon-accessory ion-chevron-right"></i-->
+        <i class="col-10 icon positive icon-accessory ion-chevron-right"></i>
       </ion-item>
       <ion-item ng-click="vm.goto('diaginfo')">
         <div class="col-40">{{'DIAGNOSIS_INFO' | translate}}</div>
@@ -51,8 +51,12 @@
         <div class="col-40">{{'CHANGE_PASSWORD' | translate}}</div>
         <div class="col-50"></div>
         <i class="col-10 icon positive icon-accessory ion-chevron-right"></i>
+      </ion-item-->
+       <ion-item ng-click="vm.logout()">
+        <div class="col-40">{{'main_LOGOUT' | translate}}</div>
+        <div class="col-50"></div>
+        <i class="col-10 icon positive icon-accessory ion-chevron-right"></i>
       </ion-item>
     </ion-list>
-    <button class="button button-clear button-light" ng-click="vm.logout()"> {{'COACH_LOGOUT' | translate}}</button>
   </ion-content>
 </ion-view>

@@ -3,7 +3,7 @@
 
   angular.module('fdmobile.home', [
     'fdmobile.project',
-    'fdmobile.coach',
+    'fdmobile.main',
     'fdmobile.plan',
     'fdmobile.reference'
   ]);

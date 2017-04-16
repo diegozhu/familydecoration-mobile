@@ -2,22 +2,22 @@
   'use strict';
 
   angular
-    .module('fdmobile.coach')
-    .factory('educationCoachingService', educationCoachingService);
+    .module('fdmobile.main')
+    .factory('educationmainingService', educationmainingService);
 
   // Injecting necessary dependentencies in this way for improve optimization
-  educationCoachingService.$inject = ['$resource', 'urlBuilder'];
+  educationmainingService.$inject = ['$resource', 'urlBuilder'];
 
-  function educationCoachingService($resource, urlBuilder) {
+  function educationmainingService($resource, urlBuilder) {
 
     return $resource(urlBuilder.build('integration'), {}, {
       getEducationResource: {
         method: 'GET',
-        url: urlBuilder.build('integration/knowledgebase/coaching-plan/mobile/package/cards')
+        url: urlBuilder.build('integration/knowledgebase/maining-plan/mobile/package/cards')
       },
-      doCoachTask: {
+      domainTask: {
         method: 'POST',
-        url: urlBuilder.build('coaching-fd/doCoachTask')
+        url: urlBuilder.build('maining-fd/domainTask')
       }
     });
 

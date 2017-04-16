@@ -20,7 +20,7 @@
         prefix: 'assets/i18n/home/locale-',
         suffix: '.json'
       }, {
-        prefix: 'assets/i18n/coach/locale-',
+        prefix: 'assets/i18n/main/locale-',
         suffix: '.json'
       }, {
         prefix: 'assets/i18n/measurement/locale-',

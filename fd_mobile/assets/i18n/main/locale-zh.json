@@ -1,0 +1,16 @@
+{
+  "main_HEADER": "首页",
+  "main_LOGOUT": "退出",
+  "main_TASK_TODAY": "今天",
+  "main_POPUP_MEDICINE_INTAKE": "服药计划",
+  "main_POPUP_MORNING_SESSION": "早晨期间",
+  "main_POPUP_BTN_CONFIRM": "我已服用",
+  "main_POPUP_BTN_SNOOZE": "稍后提醒",
+  "main_COMPLIANCE_SCORE_MODAL_TITLE": "综合得分",
+  "main_COMPLIANCE_SCORE_STABLE_TITLE": "继续努力，主人！",
+  "main_COMPLIANCE_SCORE_STABLE_SUBTITLE": "吃药测量对健康很重要！",
+  "main_COMPLIANCE_SCORE_UP_TITLE": "做的好，主人！",
+  "main_COMPLIANCE_SCORE_UP_SUBTITLE": "汪汪很高兴，请继续保持！",
+  "main_COMPLIANCE_SCORE_DOWN_TITLE": "啊哦，汪汪不高兴了！",
+  "main_COMPLIANCE_SCORE_DOWN_SUBTITLE": "请主人遵循医嘱，多做记录！"
+}

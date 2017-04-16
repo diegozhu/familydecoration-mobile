@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('fdmobile.coach')
+    .module('fdmobile.main')
     .factory('mobileComplianceService', mobileComplianceService);
 
   mobileComplianceService.$inject = ['$resource', 'urlBuilder'];

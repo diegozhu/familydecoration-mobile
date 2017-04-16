@@ -75,7 +75,7 @@
             localStorage.setItem('userInfo', JSON.stringify(params));
             $rootScope.$broadcast(events.login, params);
             resolve(params);
-            $state.go('home.coach');
+            $state.go('home.main');
           }, reject);
         });
       },

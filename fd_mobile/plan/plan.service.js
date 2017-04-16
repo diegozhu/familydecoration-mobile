@@ -5,21 +5,9 @@
     $resource,
     urlBuilder,
     $q,
+    transformService,
     $fdToast
   ) {
-    var transformResponse = function(jsonData) {
-      var
-        obj = {},
-        data = angular.fromJson(jsonData);
-      if (data.status === 'failing') {
-        obj = data;
-      }
-      else {
-        obj.data = data;
-        obj.total = data.length;
-      }
-      return obj;
-    };
     var planResource = $resource(urlBuilder.build('libs/sdf'), null, {
       getPlanByProjectId: {
         method: 'GET',
@@ -37,7 +25,7 @@
           random: '',
           projectId: '@projectId'
         },
-        transformResponse: transformResponse
+        transformResponse: transformService.transformResponse
       },
       createNewPlan: {
         method: 'POST',
@@ -57,7 +45,7 @@
         params: {
           businessId: '@businessId'
         },
-        transformResponse: transformResponse
+        transformResponse: transformService.transformResponse
       }
     });
 

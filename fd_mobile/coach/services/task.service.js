@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('fdmobile.coach')
+    .module('fdmobile.main')
     .factory('taskService', taskService);
 
   function taskService($resource, urlBuilder, $q, $cacheFactory, $log, $rootScope) {

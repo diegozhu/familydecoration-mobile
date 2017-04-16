@@ -15,41 +15,21 @@
     $templateCache,
     $rootScope,
     authenticationService,
-    $fdUser
+    $fdUser,
+    transformService
   ) {
-    function transformRequest(data) {
-      var s = [];
-      for (var d in data) {
-        s.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
-      }
-      return s.join('&');
-    }
-
-    function transformResponse(jsonData) {
-      var obj = {},
-        data = angular.fromJson(jsonData);
-      if (data.status === 'failing') {
-        obj = data;
-      }
-      else {
-        obj.data = data;
-        obj.total = data.length;
-      }
-      return obj;
-    }
-
     var projectResource = $resource(urlBuilder.build('libs/sdf'), null, {
       createNewProgress: {
         method: 'POST',
         url: urlBuilder.build('./libs/api.php?action=ProjectProgress.add'),
         headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-        transformRequest: transformRequest
+        transformRequest: transformService.transformRequest
       },
       createNewSupervisorComment: {
         method: 'POST',
         url: urlBuilder.build('./libs/api.php?action=ProjectProgressAudit.add'),
         headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-        transformRequest: transformRequest
+        transformRequest: transformService.transformRequest
       },
       getProjectProgress: {
         method: 'GET',
@@ -57,7 +37,7 @@
         params: {
           projectId: '@projectId'
         },
-        transformResponse: transformResponse
+        transformResponse: transformService.transformResponse
       },
       getProjectsByCaptainName: {
         method: 'GET',

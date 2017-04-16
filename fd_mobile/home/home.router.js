@@ -29,7 +29,7 @@
         name: 'home',
         url: '/',
         abstract: true,
-        templateUrl: 'home/home/home.html'
+        templateUrl: 'home/home.html'
       });
   }
 })();
