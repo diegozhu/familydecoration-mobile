@@ -49,6 +49,9 @@
           // _preventDefaultExceptionHandler = true in reject will prevent default toast
           // user session timeout/not login will not show toast cause we have auto login at login view, if login success, will make user confused.
           // do nothing;
+          $fdToast.show({
+            text: rejection.data.errMsg
+          });
         } else {
           $fdToast.show({
             text: $translate.instant(errorMsg) || errorMsg
