@@ -84,7 +84,7 @@
           $templateCache.removeAll();
           sessionStorage.clear();
           // invoke encapsulated destroy function in cachefactory.config.js
-          $cacheFactory.destroy();
+          $cacheFactory.destroyAll();
           if (params && params.clearLocalStorage) {
             localStorage.clear();
           }
