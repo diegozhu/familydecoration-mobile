@@ -71,21 +71,7 @@
         if (res.data.length > 0) {
           var planId = res.data[0].id;
           var pdfUrl = urlBuilder.build('fpdf/plan.php?id=' + planId + '&page=A3');
-          $cordovaInAppBrowser.open(pdfUrl, '_self', {
-            location: 'yes',
-            clearcache: 'yes',
-            toolbar: 'no',
-            closebuttoncaption: '关闭'
-          })
-            .then(function() {
-              // success
-            })
-            .catch(function() {
-              // error
-            });
-
-
-          // $cordovaInAppBrowser.close();
+          window.open(pdfUrl, '_blank', 'location=yes, toolbar=yes, closebuttoncaption=关闭');
         }
         else {
           $fdToast.show({

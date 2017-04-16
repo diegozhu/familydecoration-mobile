@@ -70,6 +70,7 @@
       },
       getAllProjects: {
         method: 'GET',
+        cache: true,
         url: urlBuilder.build('libs/api.php?action=Project.get'),
         params: {
           isDeleted: 'false',
