@@ -5,7 +5,7 @@
     .module('fdmobile.profile')
     .controller('ProfileController', ProfileController);
 
-  function ProfileController($rootScope, $scope, $state, $stateParams, $translate, profileService, profileDataService, authenticationService, $fdUser) {
+  function ProfileController($rootScope, $scope, $state, $stateParams, $translate, profileService, profileDataService, authenticationService, $fdUser, $ionicModal) {
 
     var
       vm = this;
@@ -39,6 +39,26 @@
         });
       }
     }
+
+    $scope.showImages = function() {
+      $scope.showModal('profile/image-popover.html');
+    };
+
+    $scope.showModal = function(templateUrl) {
+      $ionicModal.fromTemplateUrl(templateUrl, {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+      });
+    };
+
+    // Close the modal
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+      $scope.modal.remove();
+    };
 
     vm.goto = function($s) {
       $state.go($s, {
