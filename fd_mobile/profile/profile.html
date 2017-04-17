@@ -8,7 +8,12 @@
   <ion-content class="my-profile">
     <ion-list>
       <ion-item>
-        用户名: {{vm.user.userName}}
+        <img src="{{vm.user.profileImage}}" width="30" height="30" />
+        &nbsp;
+        账号名: {{vm.user.userName}}
+      </ion-item>
+      <ion-item>
+        用户名: {{vm.user.realname}}
       </ion-item>
       <ion-item>
         职位: {{vm.user.userTitle}}

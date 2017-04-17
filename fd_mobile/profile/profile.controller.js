@@ -7,18 +7,12 @@
 
   function ProfileController($rootScope, $scope, $state, $stateParams, $translate, profileService, profileDataService, authenticationService, $fdUser) {
 
-    var vm = this;
+    var
+      vm = this;
     vm.user = {
-      oid: '',
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      nickName: '',
-      birthDay: '',
-      gender: '',
-      contact: '',
-      genderDisplay: '',
-      dianosis: ''
+    };
+    var polishUserInfo = function(obj) {
+      angular.extend(vm.user, obj);
     };
     var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
     angular.extend(vm.user, {
@@ -28,6 +22,22 @@
     init();
 
     function init() {
+      var currentUserInfo = sessionStorage.getItem('currentUserInfo');
+      if (currentUserInfo) {
+        polishUserInfo(JSON.parse(currentUserInfo));
+      }
+      else {
+        profileService.getCurrentUserInfo({
+          name: userInfo.name
+        }, function(res) {
+          if (res.data.length > 0) {
+            currentUserInfo = res.data[0];
+            sessionStorage.setItem('currentUserInfo', JSON.stringify(currentUserInfo));
+            localStorage.setItem('currentUserInfo', JSON.stringify(currentUserInfo));
+            polishUserInfo(currentUserInfo);
+          }
+        });
+      }
     }
 
     vm.goto = function($s) {

@@ -5,7 +5,7 @@
     .module('fdmobile.profile')
     .factory('profileService', profileService);
 
-  function profileService($resource, urlBuilder) {
+  function profileService($resource, urlBuilder, transformService) {
     return $resource(urlBuilder.build('mobiles'), null, {
       getmobileBaseInfo: {
         method: 'GET',
@@ -15,9 +15,13 @@
         method: 'GET',
         url: urlBuilder.build('encounters/mobile/:mobileOid/profile')
       },
-      getUserProfileImage: {
+      getCurrentUserInfo: {
         method: 'GET',
-        url: urlBuilder.build('./libs/user.php?action=')
+        url: urlBuilder.build('./libs/user.php?action=getUserByName'),
+        params: {
+          name: ''
+        },
+        transformResponse: transformService.transformResponse
       }
     });
   }
