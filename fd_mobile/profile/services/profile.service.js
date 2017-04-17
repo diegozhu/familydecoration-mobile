@@ -14,6 +14,10 @@
       getmobileDiseaseInfo: {
         method: 'GET',
         url: urlBuilder.build('encounters/mobile/:mobileOid/profile')
+      },
+      getUserProfileImage: {
+        method: 'GET',
+        url: urlBuilder.build('./libs/user.php?action=')
       }
     });
   }

@@ -5,7 +5,7 @@
     .module('fdmobile.profile')
     .controller('ProfileController', ProfileController);
 
-  function ProfileController($rootScope, $scope, $state, $stateParams, $translate, profileService, profileDataService, authenticationService) {
+  function ProfileController($rootScope, $scope, $state, $stateParams, $translate, profileService, profileDataService, authenticationService, $fdUser) {
 
     var vm = this;
     vm.user = {
@@ -20,6 +20,11 @@
       genderDisplay: '',
       dianosis: ''
     };
+    var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    angular.extend(vm.user, {
+      userName: userInfo.name,
+      userTitle: $fdUser.getTitle(userInfo.level)
+    });
     init();
 
     function init() {
