@@ -5,7 +5,7 @@ var gulp = require('gulp'),
   paths = gulp.paths,
   options = gulp.options,
   app = options.app,
-  env = options.prod ? 'prod' : 'dev';
+  env = options.env || 'localhost';
 
 var taskSequence = ['bowerComponentsRes', 'fontsRes', 'variables', 'styles', 'wiredep', 'bower-fonts', 'constants'];
 
@@ -52,22 +52,12 @@ gulp.task('variables', function() {
   return gulp.src(app + '/*/styles/style.scss')
     .pipe(
       $.inject(
-        gulp.src(app + '/*/styles/env-' + env + '.json'),
+        gulp.src(app + '/common/constants/version'),
         {
           starttag: '/*inject:variables*/',
           endtag: '/*endinject*/',
           transform: function (filePath, file) {
-            var json;
-            try {
-              json = JSON.parse(file.contents.toString('utf8'));
-            } catch (e) {
-              console.log(e);
-            }
-
-            if (json) {
-              json = injectFormat(json, 'style');
-            }
-            return json;
+            return gulp.options.cordova ? "$path: '..';" : "$path: '../..';";
           }
         }))
     .pipe(gulp.dest(app + '/'));
@@ -152,60 +142,15 @@ gulp.task('constants', function() {
             return json;
           }
         }))
+    .pipe(
+      $.inject(
+        gulp.src(app + '/common/constants/version'),
+        {
+          starttag: '/*inject:version*/',
+          endtag: '/*endinject*/',
+          transform: function (filePath, file) {
+            return "'VERSION': '" + options.appversion + "',";
+          }
+        }))
     .pipe(gulp.dest(app + '/'));
 });
-
-// gulp.task('environment', function () {
-//   return gulp.src(app + '/*/constants/*const.js')
-//     .pipe(
-//       $.inject(
-//         gulp.src(app + '/*/constants/env-' + options.env + '.json'),
-//         {
-//           starttag: '/*inject-env*/',
-//           endtag: '/*endinject*/',
-//           transform: function (filePath, file) {
-//             var json;
-//             try {
-//               json = JSON.parse(file.contents.toString('utf8'));
-//             } catch (e) {
-//               console.log(e);
-//             }
-
-//             if (json) {
-//               json = injectFormat(json);
-//             }
-//             return json;
-//           }
-//         }))
-//     .pipe(gulp.dest(app + '/'));
-// });
-
-// gulp.task('build-vars', ['environment'], function () {
-//   return gulp.src(app + '/*/constants/*const.js')
-//     .pipe(
-//       $.inject(
-//         gulp.src(''),
-//         {
-//           starttag: '/*inject-build*/',
-//           endtag: '/*endinject*/',
-//           transform: function () {
-//             var obj = {};
-//             var buildVars = options.buildVars;
-
-//             if (buildVars) {
-//               // loop over build variables
-//               var variables = buildVars.split(',');
-//               for (var i = 0, variable; ((variable = variables[i])); i++) {
-//                 var splits = variable.split(':');
-//                 // add key and value to object
-//                 obj[splits[0]] = splits[1];
-//               }
-//               return injectFormat(obj);
-//             }
-//             else {
-//               return;
-//             }
-//           }
-//         }))
-//     .pipe(gulp.dest(app + '/'));
-// });
