@@ -28,11 +28,11 @@
 
 	`gulp watch-build --app "fd_mobile"`
 
-	`gulp watch --app "fd_mobile" --prod`
+	`gulp watch --app "fd_mobile" --env prod`
 
-	`gulp build --app "fd_mobile" --prod`
+	`gulp build --app "fd_mobile" --env prod`
 
-	`gulp watch-build --app "fd_mobile" --prod`
+	`gulp watch-build --app "fd_mobile" --env prod`
 
 4. add/rm platform:
 	
@@ -40,7 +40,7 @@
 
 5. build android/ios:
 
-	`gulp --cordova "build android/ios" --app "fd_mobile" --prod`   #long time downloading android sdk and xcode. shadowsocks required.
+	`gulp --cordova "build android/ios" --app "fd_mobile" --env prod --appversion 1.0.1`   #long time downloading android sdk and xcode. shadowsocks required.
 
 	`cordova build ios/android`   --- dont use this.
 
