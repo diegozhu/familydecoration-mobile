@@ -53,6 +53,71 @@
       });
     }
 
+    // this is used to clean template cached pictures when next time popping up window.
+    function _cleanCachedPics() {
+      var
+        ct = document.querySelector('.camera_category'),
+        pics = document.querySelectorAll('.camera_category>.photo');
+      if (ct) {
+        angular.forEach(pics, function(pic) {
+          ct.removeChild(pic);
+        });
+      }
+    }
+
+    vm.getPicture = function() {
+      function onSuccess(imageData) {
+        var
+          img = document.createElement('img'),
+          ct = document.querySelector('.camera_category');
+        img.setAttribute('src', 'data:image/jpeg;base64,' + imageData);
+        img.setAttribute('width', 134);
+        img.setAttribute('height', 75);
+        img.setAttribute('class', 'photo');
+        img.setAttribute('ng-click', function() {
+          vm.showImages();
+        });
+        ct.appendChild(img);
+      }
+
+      function onFail(msg) {
+        alert('failed message: ' + msg);
+      }
+
+      var config = {
+        quality: 50,
+        destinationType: 0,
+        saveToPhotoAlbum: true
+        // sourceType: 1 // 0: library; 1: camera
+      };
+
+      $fdPopup.show({
+        iconClass: 'ion-star',
+        title: '询问',
+        template: '请选择图片来源',
+        buttons: [
+          {
+            text: '拍摄',
+            type: 'button-positive',
+            onTap: function() {
+              navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
+                sourceType: 1
+              }));
+            }
+          },
+          {
+            text: '相册',
+            type: 'button-stable',
+            onTap: function() {
+              navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
+                sourceType: 0
+              }));
+            }
+          }
+        ]
+      });
+    };
+
     vm.doRefresh = function() {
       return projectService.getProjectProgress({
         projectId: $stateParams.projectId
@@ -81,7 +146,7 @@
       $ionicLoading.show({
         template: '正在提交...'
       });
-      var action = vm.addProgressVm.title === '新增监理意见' ? 'createNewSupervisorComment' : 'createNewProgress';
+      var action = vm.addProgressVm.type === 'comment' ? 'createNewSupervisorComment' : 'createNewProgress';
       projectService[action]({
         '@itemId': vm.planItem.id,
         '@content': temp
@@ -100,16 +165,20 @@
 
     vm.openAddSupervisorCommentModal = function() {
       vm.addmodal.show();
+      vm.addProgressVm.type = 'comment';
       vm.addProgressVm.title = '新增监理意见';
       vm.addProgressVm.placeholder = '监理内容';
       vm.addProgressVm.content = '';
+      _cleanCachedPics();
     };
 
     vm.openAddPracticalProgressModal = function() {
       vm.addmodal.show();
+      vm.addProgressVm.type = 'progress';
       vm.addProgressVm.title = '新增工程进度';
       vm.addProgressVm.content = '';
       vm.addProgressVm.placeholder = '工程进度';
+      _cleanCachedPics();
     };
 
     vm.showProgressDetail = function(planItem) {

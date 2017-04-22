@@ -3,7 +3,10 @@
     <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.addmodal.hide();"></button>
     <div class="title">{{vm.addProgressVm.title}}</div>
   </ion-header-bar>
-  <ion-content class="symptom-add-modal">
+  <ion-content class="detailed-info-add-modal">
+    <div ng-if="vm.addProgressVm.type=='comment'" class="camera_category">
+      <img class="camera" ng-click="vm.getPicture()" src="assets/images/camera.png"/>
+    </div>
     <div class="item item-divider" style="background:#1474a4!important;color:#fff">
       {{vm.planItem.itemName}}
       <span ng-hide="!vm.planItem.planStartTime && !vm.planItem.planEndTime" style="font-size:12px;">({{vm.planItem.planStartTime||'无'}}~{{vm.planItem.planEndTime||'无'}})</span>

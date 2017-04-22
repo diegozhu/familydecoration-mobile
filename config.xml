@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="com.philips.h2h.bama.beta" version="1.0.1.0419.1752" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" ios-CFBundleVersion="0419.1752">
+<widget id="com.philips.h2h.bama.beta" version="1.0.1.0419.2232" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" ios-CFBundleVersion="0419.2232">
     <name>Decoration</name>
     <description>FamilyDecorationApp</description>
     <author email="">FD</author>
@@ -63,6 +63,7 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <preference name="SplashScreenDelay" value="3000"/>
+    <preference name="DisallowOverscroll" value="true" />
     <plugin name="cordova-plugin-whitelist" spec="1"/>
     <plugin name="cordova-plugin-device" spec="~1.1.2"/>
     <plugin name="cordova-plugin-datepicker" spec="~0.9.3"/>

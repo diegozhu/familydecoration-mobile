@@ -1,7 +1,7 @@
 // Path
 //------------------
 /*inject:variables*/
-$path: '../..';
+$path: '..';
 /*endinject*/
 $ionicons-font-path: "#{$path}/assets/fonts";
 $img-path: "#{$path}/assets/images";
@@ -72,3 +72,8 @@ $font-path: "#{$path}/assets/fonts";
   "../../settings/styles/_notify",
   "../../settings/styles/_feedback",
   "../../settings/styles/_settings";
+
+
+// project module
+//------------------
+@import "../../project/styles/_progressdetail-modal";
