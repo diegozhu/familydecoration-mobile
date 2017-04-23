@@ -69,7 +69,7 @@
     }
 
     function _clearCache() {
-      navigator.camera.cleanup();
+      navigator.camera && navigator.camera.cleanup();
     }
 
     vm.pics = [];
@@ -80,7 +80,7 @@
           img = document.createElement('img'),
           ct = document.querySelector('.camera_category');
         vm.pics.push(fileURI);
-        img.setAttribute('src', fileURI);
+        img.setAttribute('src', fileURI + '?' + Math.random());
         img.setAttribute('width', 134);
         img.setAttribute('height', 75);
         img.setAttribute('class', 'photo');
@@ -93,7 +93,7 @@
 
       var config = {
         quality: 50,
-        destinationType: 1,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
         saveToPhotoAlbum: true
         // sourceType: 1 // 0: library; 1: camera
       };
@@ -155,7 +155,8 @@
         promise;
       function _upload(pics) {
         $ionicLoading.show({
-          template: '正在提交...'
+          template: '正在提交...',
+          delay: 0
         });
         var action = vm.addProgressVm.type === 'comment' ? 'createNewSupervisorComment' : 'createNewProgress';
         var params = {
@@ -169,7 +170,8 @@
         }
         projectService[action](params).finally(function() {
           $ionicLoading.show({
-            template: '提交成功'
+            template: '提交成功',
+            delay: 0
           });
           vm.doRefresh();
           $timeout(function() {
