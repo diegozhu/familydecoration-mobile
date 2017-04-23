@@ -14,8 +14,8 @@
         >
           <i index="{{$index}}" id="{{planItem.id}}">
             <h2 style="text-align: left;">{{planItem.itemName}}
-              <span ng-hide="!planItem.planStartTime && !planItem.planEndTime" style="font-size:12px;">({{planItem.planStartTime||'无'}}~{{planItem.planEndTime||'无'}})</span>
-              <span ng-show="!planItem.planStartTime && !planItem.planEndTime" style="font-size:12px;">(暂无计划时间)</span>
+              <span ng-hide="!planItem.planStartTime && !planItem.planEndTime" style="font-size:12px;white-space:normal;word-wrap:break-word;">({{planItem.planStartTime||'无'}}~{{planItem.planEndTime||'无'}})</span>
+              <span ng-show="!planItem.planStartTime && !planItem.planEndTime" style="font-size:12px;white-space:normal;word-wrap:break-word;">(暂无计划时间)</span>
             </h2>
             <p style="text-align: left;" >
               <span style="color: green;" ng-show="planItem.practicalProgress.length > 0">{{planItem.practicalProgress.length}}条进度</span>
