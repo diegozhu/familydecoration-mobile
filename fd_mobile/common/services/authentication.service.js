@@ -55,17 +55,21 @@
         return $q(function(resolve, reject) {
           var param = JSON.parse(sessionStorage.getItem('userInfo') || localStorage.getItem('userInfo') || '{}');
           param._preventDefaultExceptionHandler = true;
-          if (!!param.username && !!param.password) {
+          if (!!param.name && !!param.password) {
             $log.log('trying auto login.');
+            param.isPwdEncrypted = true;
             service.login(param).then(resolve).catch(reject);
           } else {
             reject();
           }
         });
       },
+      // isPwdEncrypted: do we need to encrypt our password or not, false is used for autologin.
       login: function(params) {
         return $q(function(resolve, reject) {
-          params.password = md5.createHash('familydecoration-' + params.password);
+          if (params.isPwdEncrypted !== true) {
+            params.password = md5.createHash('familydecoration-' + params.password);
+          }
           resource.login(params, function(res) {
             isLogin = true;
             angular.extend(params, {

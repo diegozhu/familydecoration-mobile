@@ -18,5 +18,10 @@
         password: vm.password
       });
     };
+
+    var promise = authenticationService.tryAutoLogin();
+    promise.then(function() {
+    }, function() {
+    });
   }
 })();
