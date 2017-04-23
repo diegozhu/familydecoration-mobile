@@ -16,7 +16,9 @@
     ionicDatePicker,
     $ionicModal,
     $timeout,
-    $ionicLoading
+    $ionicLoading,
+    $q,
+    urlBuilder
   ) {
     var vm = this;
 
@@ -63,20 +65,25 @@
           ct.removeChild(pic);
         });
       }
+      vm.pics = [];
     }
 
+    function _clearCache() {
+      navigator.camera.cleanup();
+    }
+
+    vm.pics = [];
+
     vm.getPicture = function() {
-      function onSuccess(imageData) {
+      function onSuccess(fileURI) {
         var
           img = document.createElement('img'),
           ct = document.querySelector('.camera_category');
-        img.setAttribute('src', 'data:image/jpeg;base64,' + imageData);
+        vm.pics.push(fileURI);
+        img.setAttribute('src', fileURI);
         img.setAttribute('width', 134);
         img.setAttribute('height', 75);
         img.setAttribute('class', 'photo');
-        img.setAttribute('ng-click', function() {
-          vm.showImages();
-        });
         ct.appendChild(img);
       }
 
@@ -86,7 +93,7 @@
 
       var config = {
         quality: 50,
-        destinationType: 0,
+        destinationType: 1,
         saveToPhotoAlbum: true
         // sourceType: 1 // 0: library; 1: camera
       };
@@ -142,25 +149,100 @@
     };
 
     vm.addprogress = function() {
-      var temp = vm.addProgressVm.content;
-      $ionicLoading.show({
-        template: '正在提交...'
-      });
-      var action = vm.addProgressVm.type === 'comment' ? 'createNewSupervisorComment' : 'createNewProgress';
-      projectService[action]({
-        '@itemId': vm.planItem.id,
-        '@content': temp
-      }).finally(function() {
+      var
+        content = vm.addProgressVm.content,
+        defs = [],
+        promise;
+      function _upload(pics) {
         $ionicLoading.show({
-          template: '提交成功'
+          template: '正在提交...'
         });
-        vm.doRefresh();
-        $timeout(function() {
-          vm.addmodal.hide();
-          $ionicLoading.hide();
-        }, 500);
-      });
-      vm.addProgressVm.content = '';
+        var action = vm.addProgressVm.type === 'comment' ? 'createNewSupervisorComment' : 'createNewProgress';
+        var params = {
+          '@itemId': vm.planItem.id,
+          '@content': content
+        };
+        if (vm.addProgressVm.type === 'comment' && pics !== false) {
+          angular.extend(params, {
+            '@pics': pics
+          });
+        }
+        projectService[action](params).finally(function() {
+          $ionicLoading.show({
+            template: '提交成功'
+          });
+          vm.doRefresh();
+          $timeout(function() {
+            vm.addmodal.hide();
+            $ionicLoading.hide();
+          }, 500);
+        });
+        vm.addProgressVm.content = '';
+        vm.addProgressVm.type === 'comment' && _cleanCachedPics();
+      }
+      if (vm.addProgressVm.type === 'comment') {
+        angular.forEach(vm.pics, function(fileURI) {
+          var
+            defer = $q.defer(),
+            win = function(r) {
+              _clearCache();
+              if (r.response.trim() === '0') {
+                defer.resolve(0); // this one failed.
+              }
+              else {
+                defer.resolve(r.response); // this one passed.
+              }
+            },
+            fail = function(err) {
+              _clearCache();
+              $fdToast.show({
+                text: 'upload error source ' + err.source + '; upload error target ' + err.target
+              });
+              defer.resolve(0);
+            };
+          /*global FileUploadOptions */
+          var
+            options = new FileUploadOptions();
+          options.fileKey = 'photo';
+          options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+          options.mimeType = 'image/jpeg';
+          options.params = {}; // if we need to send parameters to the server request
+          /*global FileTransfer */
+          var ft = new FileTransfer();
+          ft.upload(fileURI, encodeURI(urlBuilder.build('libs/upload_progress_pic.php')), win, fail, options);
+          defs.push(defer.promise);
+        });
+        promise = $q.all(defs);
+        promise.then(function(result) {
+          var
+            pics = [],
+            failed = [];
+          angular.forEach(result, function(res) {
+            res = JSON.parse(res);
+            var details = res.details;
+            if (details[0] && details[0].success) {
+              pics.push(details[0].file);
+            }
+            else {
+              failed.push(details[0].msg);
+            }
+          });
+          if (pics.length > 0) {
+            pics = pics.join('>>><<<');
+          }
+          else {
+            pics = false;
+          }
+          _upload(pics);
+        })
+        .catch(function(error) {
+          $log.log(error);
+          _cleanCachedPics();
+        });
+      }
+      else if (vm.addProgressVm.type === 'progress') {
+        _upload(false);
+      }
     };
 
     vm.openAddSupervisorCommentModal = function() {
@@ -170,6 +252,7 @@
       vm.addProgressVm.placeholder = '监理内容';
       vm.addProgressVm.content = '';
       _cleanCachedPics();
+      _clearCache();
     };
 
     vm.openAddPracticalProgressModal = function() {
@@ -179,6 +262,7 @@
       vm.addProgressVm.content = '';
       vm.addProgressVm.placeholder = '工程进度';
       _cleanCachedPics();
+      _clearCache();
     };
 
     vm.showProgressDetail = function(planItem) {
