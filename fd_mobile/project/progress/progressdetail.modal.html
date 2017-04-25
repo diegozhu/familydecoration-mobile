@@ -34,7 +34,7 @@
           <h2 style="text-align: left;" ng-bind-html="comment.content"></h2>
           <div ng-if="comment.pics">
             <div ng-repeat="pic in comment.pics">
-              <img ng-src="{{pic}}" width="75" height="50" />
+              <img ng-src="{{vm.parseImgUrl(pic)}}" ng-click="vm.showBigPic(pic)" width="75" height="50" />
             </div>
           </div>
           <p style="font-size:12px;">{{comment.auditorRealName}} {{comment.createTime}}</p>

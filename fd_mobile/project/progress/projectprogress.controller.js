@@ -22,6 +22,7 @@
   ) {
     var vm = this;
 
+    vm.imgurl = '';
     vm.addProgressVm = {
       title: ''
     };
@@ -31,6 +32,13 @@
       animation: 'slide-in-up'
     }).then(function(modal) {
       vm.modal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('project/progress/img.modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      vm.imgModal = modal;
     });
 
     $ionicModal.fromTemplateUrl('project/progress/addprogress.modal.html', {
@@ -243,6 +251,7 @@
               window.res = res;
               return false;
             }
+
           } catch (e) {
             $log.log(e);
           }
@@ -297,6 +306,10 @@
       _clearCache();
     };
 
+    vm.parseImgUrl = function(picUrl) {
+      return urlBuilder.build(picUrl);
+    };
+
     vm.showProgressDetail = function(planItem) {
       vm.planItem = planItem;
       planItem.practicalProgress.every(function(ele) {
@@ -309,6 +322,11 @@
       });
       vm.modal.show();
     };
+
+    vm.showBigPic = function(picUrl) {
+      vm.imgurl = picUrl;
+      vm.imgModal.show();
+    }
   });
 
 })();

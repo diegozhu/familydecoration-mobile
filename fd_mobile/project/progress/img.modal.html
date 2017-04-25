@@ -1,0 +1,12 @@
+<ion-modal-view>
+  <ion-header-bar class="header-fd">
+    <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.imgModal.hide();"></button>
+  </ion-header-bar>
+  <ion-content ng-click="vm.imgModal.hide()">
+    <div class="card clearfix">
+        <ion-item>
+          <img ng-src="{{vm.parseImgUrl(vm.imgurl)}}" width="100%" height="auto" />
+        </ion-item>
+    </div>
+  </ion-content>
+</ion-modal-view>
