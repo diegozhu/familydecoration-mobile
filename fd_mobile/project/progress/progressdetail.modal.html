@@ -33,9 +33,9 @@
         <ion-item ng-repeat="comment in vm.planItem.supervisorComment">
           <h2 style="text-align: left;" ng-bind-html="comment.content"></h2>
           <div ng-if="comment.pics">
-            <div ng-repeat="pic in comment.pics">
+            <span ng-repeat="pic in comment.pics" style="display:inline-block">
               <img ng-src="{{vm.parseImgUrl(pic)}}" ng-click="vm.showBigPic(pic)" width="75" height="50" />
-            </div>
+            </span>&nbsp;
           </div>
           <p style="font-size:12px;">{{comment.auditorRealName}} {{comment.createTime}}</p>
         </ion-item>
