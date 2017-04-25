@@ -101,7 +101,7 @@
       }
 
       function onFail(msg) {
-        if(msg === 'no image selected') {
+        if (msg === 'no image selected') {
           return ;
         }
         alert('failed message: ' + msg);
@@ -243,9 +243,8 @@
               window.res = res;
               return false;
             }
-
-          } catch(e) {
-
+          } catch (e) {
+            $log.log(e);
           }
           var
             pics = [],
