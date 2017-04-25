@@ -307,7 +307,7 @@
     };
 
     vm.parseImgUrl = function(picUrl) {
-      return urlBuilder.build(picUrl);
+      return picUrl.indexOf('http') == 0 ? picUrl : urlBuilder.build(picUrl);
     };
 
     vm.showProgressDetail = function(planItem) {
