@@ -44,12 +44,25 @@
       projectName: $stateParams.projectName
     });
 
+    var dataWeave = function(data) {
+      angular.forEach(data, function(item) {
+        if (item.supervisorComment) {
+          angular.forEach(item.supervisorComment, function(obj) {
+            if (obj.pics) {
+              obj.pics = obj.pics.split('>>><<<');
+            }
+          });
+        }
+      });
+      return data;
+    };
+
     if (planItems.data) {
-      vm.planItems = planItems.data;
+      vm.planItems = dataWeave(planItems.data);
     }
     else {
       planItems.then(function(res) {
-        vm.planItems = res.data;
+        vm.planItems = dataWeave(res.data);
       }, function(res) {
         $log.log(res.errMsg);
       });
@@ -108,7 +121,9 @@
             type: 'button-positive',
             onTap: function() {
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
-                sourceType: 1
+                sourceType: 1,
+                correctOrientation: true,
+                encodingType: navigator.camera.EncodingType.PNG
               }));
             }
           },
@@ -117,7 +132,9 @@
             type: 'button-stable',
             onTap: function() {
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
-                sourceType: 0
+                sourceType: 0,
+                correctOrientation: true,
+                encodingType: navigator.camera.EncodingType.PNG
               }));
             }
           }
@@ -129,7 +146,7 @@
       return projectService.getProjectProgress({
         projectId: $stateParams.projectId
       }).then(function(res) {
-        vm.planItems = res.data;
+        vm.planItems = dataWeave(res.data);
         vm.planItem && vm.planItems.every(function(planItem) {
           if (planItem.id !== vm.planItem.id) {
             return true;
@@ -207,7 +224,7 @@
             options = new FileUploadOptions();
           options.fileKey = 'photo';
           options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-          options.mimeType = 'image/jpeg';
+          options.mimeType = 'image/png';
           options.params = {}; // if we need to send parameters to the server request
           /*global FileTransfer */
           var ft = new FileTransfer();
