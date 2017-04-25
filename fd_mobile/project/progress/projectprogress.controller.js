@@ -326,7 +326,7 @@
     vm.showBigPic = function(picUrl) {
       vm.imgurl = picUrl;
       vm.imgModal.show();
-    }
+    };
   });
 
 })();
