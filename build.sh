@@ -18,7 +18,7 @@ else
 	echo
 	echo 例如：
 	echo
-	echo     ./build.sh $LASTBUILDVERSION aliyun
+	echo     ./build.sh $LASTBUILDVERSION prod
 	echo 
 	echo 最近一次构建版本号:$LASTBUILDVERSION
 	echo 可供选择的服务器地址配置文件:`ls $projectDir/fd_mobile/common/constants | grep "env-" | grep ".json" | sed "s/env-//g" | sed "s/.json//g"` | sed "s/ /,/g"
