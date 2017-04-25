@@ -5,7 +5,9 @@
     .module('fdmobile')
     .constant('CONSTANT', {
       'TODAY': new Date(),
-
+      /*inject:version*/
+      'VERSION': '0.1.13.0425.2115',
+      /*endinject*/
       'COMMA': ',',
 
       'NOTIFICATION_FREQUENCY_ANDROID': 15,
@@ -57,10 +59,10 @@
       'REPORT_IMAGE_THUMBNAIL_RESOLUTION': 'q50',
 
       /*inject:constants*/
-      'HOST': 'localhost',
+      'HOST': '192.168.1.3',
       'PORT': '80',
       'LOGGER': 'ON',
-      'BASEURI': '/FamilyDecoration/'
+      'BASEURI': '/zzn/'
       /*endinject*/
     });
 })();

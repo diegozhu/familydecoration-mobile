@@ -6,11 +6,12 @@
     .controller('LoginController', LoginController);
 
   //function LoginController($state, $stateParams, loginService) {
-  function LoginController($state, authenticationService) {
+  function LoginController($state, CONSTANT, authenticationService) {
     var vm = this;
 
     vm.username = '';
     vm.password = '';
+    vm.version = CONSTANT.VERSION;
 
     vm.login = function() {
       authenticationService.login({

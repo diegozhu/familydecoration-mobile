@@ -101,6 +101,9 @@
       }
 
       function onFail(msg) {
+        if(msg === 'no image selected') {
+          return ;
+        }
         alert('failed message: ' + msg);
       }
 
@@ -233,6 +236,17 @@
         });
         promise = $q.all(defs);
         promise.then(function(result) {
+          try {
+            var res = JSON.parse(result);
+            if (res.status === 'failing') {
+              $log.log(res);
+              window.res = res;
+              return false;
+            }
+
+          } catch(e) {
+
+          }
           var
             pics = [],
             failed = [];
