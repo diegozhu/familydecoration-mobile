@@ -4,7 +4,7 @@ VERSION=$1
 datetime=`date '+%m%d.%H%M'`
 exportDir="builds"
 projectDir=`pwd`
-SERVER="aliyun"
+SERVER="prod"
 LASTBUILDVERSION=`ls builds/ |grep ipa | sed "s/ios-//g" | sed "s/.ipa//g" | awk -F '.' '{print $1"."$2"."$3}' | uniq | sort -dr | head -n 1`
 
 if [ "$#" = "2" ]; then
