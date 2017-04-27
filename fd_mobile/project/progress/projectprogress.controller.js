@@ -180,18 +180,20 @@
       var
         content = vm.addProgressVm.content,
         defs = [],
-        promise;
+        promise,
+        isComment = vm.addProgressVm.type === 'comment';
+
       function _upload(pics) {
-        $ionicLoading.show({
+        !isComment && $ionicLoading.show({
           template: '正在提交...',
           delay: 0
         });
-        var action = vm.addProgressVm.type === 'comment' ? 'createNewSupervisorComment' : 'createNewProgress';
+        var action = isComment ? 'createNewSupervisorComment' : 'createNewProgress';
         var params = {
           '@itemId': vm.planItem.id,
           '@content': content
         };
-        if (vm.addProgressVm.type === 'comment' && pics !== false) {
+        if (isComment && pics !== false) {
           angular.extend(params, {
             '@pics': pics
           });
@@ -208,14 +210,21 @@
           }, 500);
         });
         vm.addProgressVm.content = '';
-        vm.addProgressVm.type === 'comment' && _cleanCachedPics();
+        if (isComment) {
+          _clearCache();
+          _cleanCachedPics();
+        }
       }
-      if (vm.addProgressVm.type === 'comment') {
+      if (isComment) {
+        $ionicLoading.show({
+          template: '正在提交...',
+          delay: 0
+        });
+        // start uploading pics
         angular.forEach(vm.pics, function(fileURI) {
           var
             defer = $q.defer(),
             win = function(r) {
-              _clearCache();
               if (r.response.trim() === '0') {
                 defer.resolve(0); // this one failed.
               }
@@ -224,7 +233,6 @@
               }
             },
             fail = function(err) {
-              _clearCache();
               $fdToast.show({
                 text: 'upload error source ' + err.source + '; upload error target ' + err.target
               });
@@ -242,6 +250,7 @@
           ft.upload(fileURI, encodeURI(urlBuilder.build('libs/upload_progress_pic.php')), win, fail, options);
           defs.push(defer.promise);
         });
+        // end
         promise = $q.all(defs);
         promise.then(function(result) {
           try {
