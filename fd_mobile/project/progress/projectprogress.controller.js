@@ -248,6 +248,14 @@
           /*global FileTransfer */
           var ft = new FileTransfer();
           ft.upload(fileURI, encodeURI(urlBuilder.build('libs/upload_progress_pic.php')), win, fail, options);
+          ft.onprogress = function(progressEvent) {
+            if (progressEvent.lengthComputable) {
+              $ionicLoading.show({
+                template: '正在提交...(' + (progressEvent.loaded / progressEvent.total * 100).toFixed(2) + '%)',
+                delay: 0
+              });
+            }
+          };
           defs.push(defer.promise);
         });
         // end
