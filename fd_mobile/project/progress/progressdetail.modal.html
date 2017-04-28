@@ -3,7 +3,7 @@
     <button class="button button-icon icon ion-ios-close-empty font-white" ng-click="vm.modal.hide();"></button>
     <div class="title">{{vm.planItem.parentItemName}}</div>
   </ion-header-bar>
-  <ion-content class="progressdetail-add-modal">
+  <ion-content class="progressdetail-add-modal" overflow-scroll="true" direction="x">
     <div class="item item-divider" style="background:#1474a4!important;color:#fff">
       {{vm.planItem.itemName}}
       <span ng-hide="!vm.planItem.planStartTime && !vm.planItem.planEndTime" style="font-size:12px;">({{vm.planItem.planStartTime||'无'}}~{{vm.planItem.planEndTime||'无'}})</span>
@@ -32,11 +32,13 @@
         </div>
         <ion-item ng-repeat="comment in vm.planItem.supervisorComment">
           <h2 style="text-align: left;" ng-bind-html="comment.content"></h2>
-          <div ng-if="comment.pics">
-            <span ng-repeat="pic in comment.pics" style="display:inline-block">
-              <img ng-src="{{vm.parseImgUrl(pic)}}" ng-click="vm.showBigPic(pic)" width="75" height="50" />
-            </span>&nbsp;
-          </div>
+          <ion-scroll direction="x">
+            <div class="pics" ng-if="comment.pics">
+              <span ng-repeat="pic in comment.pics">
+                <img ng-src="{{vm.parseImgUrl(pic)}}" ng-click="vm.showBigPic(pic)" width="75" height="50" />
+              </span>&nbsp;
+            </div>
+          </ion-scroll>
           <p style="font-size:12px;">{{comment.auditorRealName}} {{comment.createTime}}</p>
         </ion-item>
         <ion-item ng-show="vm.planItem.supervisorComment.length == 0">

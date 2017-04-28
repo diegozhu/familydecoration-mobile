@@ -20,8 +20,16 @@
     $q,
     urlBuilder
   ) {
-    var vm = this;
+    var
+      vm = this,
+      STAT = {
+        INIT: -1,
+        START: 0,
+        LOADING: 1,
+        DONE: 2
+      };
 
+    vm.status = STAT.INIT;
     vm.imgurl = '';
     vm.addProgressVm = {
       title: ''
@@ -78,6 +86,8 @@
 
     // this is used to clean template cached pictures when next time popping up window.
     function _cleanCachedPics() {
+      // make sure that current image loading process is initialized.
+      vm.status = STAT.INIT;
       var
         ct = document.querySelector('.camera_category'),
         pics = document.querySelectorAll('.camera_category>.photo');
@@ -97,18 +107,28 @@
 
     vm.getPicture = function() {
       function onSuccess(fileURI) {
+        // start the process of loading picture.
+        vm.status = STAT.START;
         var
           img = document.createElement('img'),
+          loadingImg = new Image(),
           ct = document.querySelector('.camera_category');
         vm.pics.push(fileURI);
-        img.setAttribute('src', fileURI + '?' + Math.random());
         img.setAttribute('width', 134);
         img.setAttribute('height', 75);
         img.setAttribute('class', 'photo');
         ct.appendChild(img);
+        loadingImg.addEventListener('load', function() {
+          vm.status = STAT.DONE;
+          img.src = this.src;
+        }, false);
+        loadingImg.setAttribute('src', fileURI + '?' + Math.random());
+        // loading picture.
+        vm.status = STAT.LOADING;
       }
 
       function onFail(msg) {
+        vm.status = STAT.INIT;
         if (msg === 'no image selected') {
           return ;
         }
@@ -134,7 +154,7 @@
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
                 sourceType: 1,
                 correctOrientation: true,
-                encodingType: navigator.camera.EncodingType.PNG
+                encodingType: navigator.camera.EncodingType.JPEG
               }));
             }
           },
@@ -145,7 +165,7 @@
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
                 sourceType: 0,
                 correctOrientation: true,
-                encodingType: navigator.camera.EncodingType.PNG
+                encodingType: navigator.camera.EncodingType.JPEG
               }));
             }
           }
@@ -182,6 +202,13 @@
         defs = [],
         promise,
         isComment = vm.addProgressVm.type === 'comment';
+
+      if (vm.status !== STAT.DONE) {
+        $fdToast.show({
+          text: '图片加载中...请稍后上传'
+        });
+        return;
+      }
 
       function _upload(pics) {
         !isComment && $ionicLoading.show({
@@ -243,7 +270,9 @@
             options = new FileUploadOptions();
           options.fileKey = 'photo';
           options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-          options.mimeType = 'image/png';
+          options.mimeType = 'image/jpeg';
+          options.chunkedMode = false;
+          options.httpMethod = 'POST';
           options.params = {}; // if we need to send parameters to the server request
           /*global FileTransfer */
           var ft = new FileTransfer();

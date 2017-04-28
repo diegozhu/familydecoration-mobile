@@ -4,5 +4,26 @@
             display: inline-block;
             margin: 2px 2px 0;
         }
+        img.photo {
+            border-radius: 3px;
+            background: url(#{$img-path}/loading.gif) 50% no-repeat;
+            border: 1px solid black;
+        }
+    }
+}
+
+.progressdetail-add-modal {
+    .card {
+        .list {
+            .item div.pics {
+                span {
+                    margin: 0 2px;
+                    display: inline-block;
+                    img {
+                        border-radius: 3px;
+                    }
+                }
+            }
+        }
     }
 }
