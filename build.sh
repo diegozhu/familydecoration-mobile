@@ -67,7 +67,7 @@ fi
 ipafile=$exportDir/ios-$VERSION.$datetime-$SERVER.ipa
 plistfile=$exportDir/ios-$VERSION.$datetime-$SERVER.plist
 
-cp  $projectDir/platforms/ios/build/device/fd.ipa $ipafile
+cp  $projectDir/platforms/ios/build/device/Decoration.ipa $ipafile
 cat $exportDir/fd_template.plist | sed "s/FD_FILE_NAME/ios-$VERSION.$datetime-$SERVER.ipa/g" | sed "s/FD_VERSION/$VERSION.$datetime/g" > $plistfile
 
 #echo sending ipa file
