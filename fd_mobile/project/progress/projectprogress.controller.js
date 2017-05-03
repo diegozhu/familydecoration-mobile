@@ -27,6 +27,11 @@
         START: 0,
         LOADING: 1,
         DONE: 2
+      },
+      isAndroid = function() {
+        var userAgent = navigator.userAgent.toLowerCase();
+        var isAndroid = userAgent.indexOf('android') > -1;
+        return isAndroid;
       };
 
     vm.status = STAT.INIT;
@@ -138,7 +143,7 @@
       var config = {
         quality: 50,
         destinationType: navigator.camera.DestinationType.FILE_URI,
-        saveToPhotoAlbum: true
+        saveToPhotoAlbum: isAndroid() ? false : true
         // sourceType: 1 // 0: library; 1: camera
       };
 
@@ -203,7 +208,7 @@
         promise,
         isComment = vm.addProgressVm.type === 'comment';
 
-      if (vm.status !== STAT.DONE) {
+      if (isComment && vm.status !== STAT.DONE) {
         $fdToast.show({
           text: '图片加载中...请稍后上传'
         });
