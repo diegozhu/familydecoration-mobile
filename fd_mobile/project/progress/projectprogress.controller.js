@@ -65,6 +65,27 @@
       projectName: $stateParams.projectName
     });
 
+    var sortPracticalProgress = function(arr) {
+      arr instanceof Array && arr.length > 0 && arr.sort(function(a, b) {
+        var result;
+        a = new Date(a.updateTime);
+        b = new Date(b.updateTime);
+        if (!isNaN(a.getTime()) && !isNaN(b.getTime())) {
+          result = b.getTime() - a.getTime();
+        }
+        else if (isNaN(a.getTime()) && !isNaN(b.getTime())) {
+          result = -1;
+        }
+        else if (!isNaN(a.getTime()) && isNaN(b.getTime())) {
+          result = 1;
+        }
+        else {
+          result = 0;
+        }
+        return result;
+      });
+    };
+
     var dataWeave = function(data) {
       angular.forEach(data, function(item) {
         if (item.supervisorComment) {
@@ -73,6 +94,9 @@
               obj.pics = obj.pics.split('>>><<<');
             }
           });
+        }
+        if (item.practicalProgress) {
+          sortPracticalProgress(item.practicalProgress);
         }
       });
       return data;
@@ -191,6 +215,7 @@
             ele.content = ele.content.replace(/\n/gi, '<br>');
             return true;
           });
+          sortPracticalProgress(planItem.practicalProgress);
           planItem.supervisorComment.every(function(ele) {
             ele.content = ele.content.replace(/\n/gi, '<br>');
             return true;
@@ -367,6 +392,7 @@
         ele.content = ele.content.replace(/\n/gi, '<br>');
         return true;
       });
+      sortPracticalProgress(planItem.practicalProgress);
       planItem.supervisorComment.every(function(ele) {
         ele.content = ele.content.replace(/\n/gi, '<br>');
         return true;
