@@ -95,8 +95,11 @@
             }
           });
         }
-        if (item.practicalProgress) {
+        if (item.practicalProgress.length > 0) {
           sortPracticalProgress(item.practicalProgress);
+          var latestProgressItem = item.practicalProgress[0];
+          item.latestPracticalProgress = latestProgressItem.content;
+          item.latestProgressFootnote = ' ' + latestProgressItem.committerRealName + ' ' + latestProgressItem.updateTime;
         }
       });
       return data;
@@ -215,7 +218,6 @@
             ele.content = ele.content.replace(/\n/gi, '<br>');
             return true;
           });
-          sortPracticalProgress(planItem.practicalProgress);
           planItem.supervisorComment.every(function(ele) {
             ele.content = ele.content.replace(/\n/gi, '<br>');
             return true;

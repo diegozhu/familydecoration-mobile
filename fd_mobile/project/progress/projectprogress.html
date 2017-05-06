@@ -24,7 +24,11 @@
               <span ng-show="planItem.supervisorComment.length == 0">暂无条监理意见</span>
             </p>
             <p style="text-align: left;">
-              最新进度：<span style="color: cadetblue;" ng-show="planItem.practicalProgress.length > 0">{{planItem.practicalProgress[0].content}}</span>
+              最新进度：
+              <br />
+              <span style="color: cadetblue;" ng-show="planItem.practicalProgress.length > 0">{{planItem.latestPracticalProgress}}</span>
+              <br />
+              <span style="color: darkslategray; font-size: 10px;" ng-show="planItem.practicalProgress.length > 0">{{planItem.latestProgressFootnote}}</span>
             </p>
           </i>
         </ion-item>
