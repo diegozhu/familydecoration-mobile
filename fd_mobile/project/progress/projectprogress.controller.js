@@ -87,7 +87,11 @@
     };
 
     var dataWeave = function(data) {
-      angular.forEach(data, function(item) {
+      var
+        index,
+        latestUpdateTime,
+        topEl;
+      angular.forEach(data, function(item, i) {
         if (item.supervisorComment) {
           angular.forEach(item.supervisorComment, function(obj) {
             if (obj.pics) {
@@ -100,8 +104,20 @@
           var latestProgressItem = item.practicalProgress[0];
           item.latestPracticalProgress = latestProgressItem.content;
           item.latestProgressFootnote = ' ' + latestProgressItem.committerRealName + ' ' + latestProgressItem.updateTime;
+          if (
+            (latestUpdateTime && latestUpdateTime < new Date(latestProgressItem.updateTime).getTime()) ||
+            !latestUpdateTime
+          ) {
+            latestUpdateTime = new Date(latestProgressItem.updateTime).getTime();
+            index = i;
+          }
         }
       });
+      if (latestUpdateTime !== undefined) {
+        data[index].top = true;
+        topEl = data.splice(index, 1);
+        data.unshift(topEl[0]);
+      }
       return data;
     };
 
