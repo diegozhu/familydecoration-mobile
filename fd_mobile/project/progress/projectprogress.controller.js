@@ -105,10 +105,10 @@
           item.latestPracticalProgress = latestProgressItem.content;
           item.latestProgressFootnote = ' ' + latestProgressItem.committerRealName + ' ' + latestProgressItem.updateTime;
           if (
-            (latestUpdateTime && latestUpdateTime < new Date(latestProgressItem.updateTime).getTime()) ||
+            (latestUpdateTime && latestUpdateTime < new Date(latestProgressItem.updateTime.replace(/-/gi, '/')).getTime()) ||
             !latestUpdateTime
           ) {
-            latestUpdateTime = new Date(latestProgressItem.updateTime).getTime();
+            latestUpdateTime = new Date(latestProgressItem.updateTime.replace(/-/gi, '/')).getTime();
             index = i;
           }
         }
