@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="com.philips.h2h.bama.beta" version="1.0.1.0419.2232" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" ios-CFBundleVersion="0419.2232">
+<widget id="com.philips.h2h.bama.beta" version="1.0.1.0503.1653" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" ios-CFBundleVersion="0503.1653">
     <name>Decoration</name>
     <description>FamilyDecorationApp</description>
     <author email="">FD</author>
@@ -63,7 +63,8 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <preference name="SplashScreenDelay" value="3000"/>
-    <preference name="DisallowOverscroll" value="true" />
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="AndroidLaunchMode" value="singleTop"/>
     <plugin name="cordova-plugin-whitelist" spec="1"/>
     <plugin name="cordova-plugin-device" spec="~1.1.2"/>
     <plugin name="cordova-plugin-datepicker" spec="~0.9.3"/>
@@ -74,5 +75,5 @@
     <plugin name="cordova-plugin-camera" spec="~2.3.0"/>
     <plugin name="cordova-plugin-canvas2image" spec="~0.7.0"/>
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.0"/>
-    <allow-navigation href="http://192.168.3.195:8100"/>
+    <allow-navigation href="*"/>
 </widget>

@@ -202,6 +202,7 @@
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
                 sourceType: 1,
                 correctOrientation: true,
+                allowEdit: true,
                 encodingType: navigator.camera.EncodingType.JPEG
               }));
             }
@@ -213,6 +214,7 @@
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
                 sourceType: 0,
                 correctOrientation: true,
+                allowEdit: true,
                 encodingType: navigator.camera.EncodingType.JPEG
               }));
             }
