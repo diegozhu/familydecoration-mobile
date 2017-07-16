@@ -27,6 +27,11 @@
         START: 0,
         LOADING: 1,
         DONE: 2
+      },
+      isAndroid = function() {
+        var userAgent = navigator.userAgent.toLowerCase();
+        var isAndroid = userAgent.indexOf('android') > -1;
+        return isAndroid;
       };
 
     vm.status = STAT.INIT;
@@ -60,8 +65,33 @@
       projectName: $stateParams.projectName
     });
 
+    var sortPracticalProgress = function(arr) {
+      arr instanceof Array && arr.length > 0 && arr.sort(function(a, b) {
+        var result;
+        a = new Date(a.updateTime);
+        b = new Date(b.updateTime);
+        if (!isNaN(a.getTime()) && !isNaN(b.getTime())) {
+          result = b.getTime() - a.getTime();
+        }
+        else if (isNaN(a.getTime()) && !isNaN(b.getTime())) {
+          result = -1;
+        }
+        else if (!isNaN(a.getTime()) && isNaN(b.getTime())) {
+          result = 1;
+        }
+        else {
+          result = 0;
+        }
+        return result;
+      });
+    };
+
     var dataWeave = function(data) {
-      angular.forEach(data, function(item) {
+      var
+        index,
+        latestUpdateTime,
+        topEl;
+      angular.forEach(data, function(item, i) {
         if (item.supervisorComment) {
           angular.forEach(item.supervisorComment, function(obj) {
             if (obj.pics) {
@@ -69,7 +99,25 @@
             }
           });
         }
+        if (item.practicalProgress.length > 0) {
+          sortPracticalProgress(item.practicalProgress);
+          var latestProgressItem = item.practicalProgress[0];
+          item.latestPracticalProgress = latestProgressItem.content;
+          item.latestProgressFootnote = ' ' + latestProgressItem.committerRealName + ' ' + latestProgressItem.updateTime;
+          if (
+            (latestUpdateTime && latestUpdateTime < new Date(latestProgressItem.updateTime.replace(/-/gi, '/')).getTime()) ||
+            !latestUpdateTime
+          ) {
+            latestUpdateTime = new Date(latestProgressItem.updateTime.replace(/-/gi, '/')).getTime();
+            index = i;
+          }
+        }
       });
+      if (latestUpdateTime !== undefined) {
+        data[index].top = true;
+        topEl = data.splice(index, 1);
+        data.unshift(topEl[0]);
+      }
       return data;
     };
 
@@ -138,7 +186,7 @@
       var config = {
         quality: 50,
         destinationType: navigator.camera.DestinationType.FILE_URI,
-        saveToPhotoAlbum: true
+        saveToPhotoAlbum: isAndroid() ? false : true
         // sourceType: 1 // 0: library; 1: camera
       };
 
@@ -154,6 +202,7 @@
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
                 sourceType: 1,
                 correctOrientation: true,
+                allowEdit: true,
                 encodingType: navigator.camera.EncodingType.JPEG
               }));
             }
@@ -165,6 +214,7 @@
               navigator.camera.getPicture(onSuccess, onFail, angular.extend(config, {
                 sourceType: 0,
                 correctOrientation: true,
+                allowEdit: true,
                 encodingType: navigator.camera.EncodingType.JPEG
               }));
             }
@@ -203,7 +253,7 @@
         promise,
         isComment = vm.addProgressVm.type === 'comment';
 
-      if (vm.status !== STAT.DONE) {
+      if (isComment && vm.status !== STAT.DONE) {
         $fdToast.show({
           text: '图片加载中...请稍后上传'
         });
@@ -362,6 +412,7 @@
         ele.content = ele.content.replace(/\n/gi, '<br>');
         return true;
       });
+      sortPracticalProgress(planItem.practicalProgress);
       planItem.supervisorComment.every(function(ele) {
         ele.content = ele.content.replace(/\n/gi, '<br>');
         return true;
