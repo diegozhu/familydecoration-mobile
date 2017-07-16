@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.philips.h2h.bama.beta" ios-CFBundleVersion="0428.2223" version="0.1.16.0428.2223" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Decoration</name>
+<widget id="com.philips.h2h.bama.beta" ios-CFBundleVersion="0716.1205" version="1.0.1.0716.1205" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>佳诚装饰</name>
     <description>FamilyDecorationApp</description>
     <author email="">FD</author>
     <content src="index.html" />
@@ -65,7 +65,6 @@
     <preference name="DisallowOverscroll" value="true" />
     <allow-navigation href="*" />
     <engine name="android" spec="~5.2.1" />
-    <engine name="ios" spec="~4.1.1" />
     <plugin name="cordova-plugin-camera" spec="~2.3.0" />
     <plugin name="cordova-plugin-canvas2image" spec="~0.7.0" />
     <plugin name="cordova-plugin-datepicker" spec="~0.9.3" />
@@ -76,4 +75,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.0" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="~0.8.4" />
+    <engine name="ios" spec="~4.4.0" />
 </widget>

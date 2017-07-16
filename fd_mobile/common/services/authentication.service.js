@@ -1,12 +1,10 @@
 (function() {
   'use strict';
-
   angular
     .module('fdmobile')
     .factory('authenticationService', authenticationService);
 
   function authenticationService($ionicLoading, md5, $fdPopup, $cacheFactory, $resource, urlBuilder, $q, $log, CONSTANT, $fdToast, $translate, $state, $templateCache, $rootScope) {
-
     var resource = $resource(urlBuilder.build('security/login'), null, {
       login: {
         method: 'POST',
@@ -20,6 +18,11 @@
           return s.join('&');
         },
         param: {
+          manufacturer: '',
+          model: '',
+          platform: '',
+          version: '',
+          app: true,
           name: '',
           password: ''
         }
@@ -68,6 +71,10 @@
           if (params.isPwdEncrypted !== true) {
             params.password = md5.createHash('familydecoration-' + params.password);
           }
+          params.manufacturer = window.device.version;
+          params.model = window.device.version;
+          params.platform = window.device.version;
+          params.version = window.device.version;
           resource.login(params, function(res) {
             isLogin = true;
             angular.extend(params, {
