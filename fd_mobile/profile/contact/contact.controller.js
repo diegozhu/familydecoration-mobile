@@ -6,7 +6,7 @@
   function DontactController() {
     var vm = this;
     vm.call = function(phoneNumber) {
-      window.open('tel:' + phoneNumber);
+      window.cordova.InAppBrowser.open('tel:' + phoneNumber.replace(/\s/g,''), '_system');
     };
   }
 })();

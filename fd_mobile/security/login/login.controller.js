@@ -5,7 +5,6 @@
     .module('fdmobile.login')
     .controller('LoginController', LoginController);
 
-  //function LoginController($state, $stateParams, loginService) {
   function LoginController($state, CONSTANT, authenticationService) {
     var vm = this;
 
@@ -20,9 +19,10 @@
       });
     };
 
-    var promise = authenticationService.tryAutoLogin();
-    promise.then(function() {
-    }, function() {
+    authenticationService.checkUpdate().then(function(newVersion) {
+      if (!newVersion) {
+        authenticationService.tryAutoLogin();
+      }
     });
   }
 })();

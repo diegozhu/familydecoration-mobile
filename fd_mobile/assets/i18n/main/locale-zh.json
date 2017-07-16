@@ -1,5 +1,7 @@
 {
   "main_HEADER": "首页",
+  "UPDATE_NOW": "立即更新",
+  "UPDATE_LATER": "稍后更新",
   "main_LOGOUT": "退出",
   "main_TASK_TODAY": "今天",
   "main_POPUP_MEDICINE_INTAKE": "服药计划",

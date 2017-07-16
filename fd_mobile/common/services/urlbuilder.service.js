@@ -23,7 +23,7 @@
 
   function urlBuilder(CONSTANT) {
 
-    var protocol = 'http://',
+    var protocol = CONSTANT.PROTOCAL,
       host = CONSTANT.HOST,
       port = CONSTANT.PORT,
       baseURI = !CONSTANT.BASEURI ? '/' : CONSTANT.BASEURI,

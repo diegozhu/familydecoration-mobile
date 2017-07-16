@@ -7,8 +7,11 @@
       <div class="item" ng-show="vm.checking">
         <i class="ion-load-d spin"></i>&nbsp;{{'CHECKING' | translate}}
       </div>
-      <div class="item" ng-show="!vm.checking">
+      <div class="item" ng-show="!vm.checking && vm.newVersionInfo == ''">
         <i class="ion-checkmark-circled spin"></i>&nbsp;{{'LATEST' | translate}}
+      </div>
+      <div class="item" ng-show="vm.newVersionInfo != ''">
+        <i class="ion-checkmark-circled spin"></i>&nbsp;{{vm.newVersionInfo}}
       </div>
     </div>
   </ion-content>

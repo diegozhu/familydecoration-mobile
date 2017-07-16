@@ -5,7 +5,7 @@
     .module('fdmobile')
     .factory('authenticationService', authenticationService);
 
-  function authenticationService(md5, $fdPopup, $cacheFactory, $resource, urlBuilder, $q, $log, CONSTANT, $fdToast, $translate, $state, $templateCache, $rootScope) {
+  function authenticationService($ionicLoading, md5, $fdPopup, $cacheFactory, $resource, urlBuilder, $q, $log, CONSTANT, $fdToast, $translate, $state, $templateCache, $rootScope) {
 
     var resource = $resource(urlBuilder.build('security/login'), null, {
       login: {
@@ -32,9 +32,7 @@
 
     var events = {
       login: 'fd.event.login',
-      logout: 'fd.event.logout',
-      newVersion: 'fd.event.newVersion',
-      disableLogin: 'fd.event.disableLogin'
+      logout: 'fd.event.logout'
     };
 
     var isLogin = false;
@@ -109,67 +107,45 @@
         });
       },
       checkUpdate: function() {
-        return $q(function(resolve, reject) {
-          resolve();
-          var a = true;
-          if (a) {
-            return ;
-          }
-          var url = '/fd_patient/fd_patient_latest_version' + (CONSTANT.IS_IOS ? '_ios' : '_android' ) + '.json?rand=' + parseInt((Math.random()) * 10000);
-          $resource(urlBuilder.buildRaw(url)).get(function(res) {
+        $ionicLoading.show({ template: '正在检查更新...' });
+        return $q(function(resolve) {
+          var url = 'app/latest_version' + (CONSTANT.IS_IOS ? '_ios' : '_android' ) + '.json?rand=' + parseInt((Math.random()) * 10000);
+          $resource(urlBuilder.build(url)).get(function(res) {
+            $ionicLoading.hide();
             $log.log(res);
+            var newVersion;
             if (CONSTANT.VERSION < res.version) {
-              var newVersion = angular.extend({}, res);
-              delete newVersion.$resolved;
-              delete newVersion.$promise;
-              newVersion.url = res.url.startsWith('http') ? res.url : urlBuilder.buildRaw('/fd_patient/' + res.url);
-              $rootScope.$broadcast(events.newVersion, newVersion);
-              resolve(newVersion);
-            } else {
-              reject('already latest');
+              newVersion = angular.extend({}, res);
+              newVersion.url = res.url.startsWith('http') ? res.url : urlBuilder.build('app/' + res.url);
+              $fdPopup.alert({
+                iconClass: 'ion-star',
+                disableBackButtonClose: true,
+                title: $translate.instant('UPDATE') + ' ' + newVersion.version,
+                template: newVersion['desc_' + $translate.use()] || newVersion.desc,
+                buttons: [{
+                  text: $translate.instant('UPDATE_NOW'),
+                  type: 'button-positive',
+                  onTap: function(event) {
+                    window.cordova.InAppBrowser.open(newVersion.url, '_system');
+                    event.defaultPrevented = false;
+                    return true;
+                  }
+                }
+                ,{
+                  text: $translate.instant('UPDATE_LATER'),
+                  onTap: function() {
+                    localStorage.setItem('new-version-' + newVersion.version + '-last-alert-time', new Date());
+                    return true;
+                  }
+                }
+                ]
+              });
             }
-          }, reject);
+            resolve(newVersion);
+          });
         });
       }
     };
-
-    service.checkUpdate().then(function(newVersion) {
-      var a = true;
-      if (a) {
-        return ;
-      }
-      var alert = {
-        iconClass: 'ion-star',
-        disableBackButtonClose: true,
-        title: $translate.instant('UPDATE') + ' ' + newVersion.version,
-        template: newVersion['desc_' + $translate.use()] || newVersion.desc,
-        buttons: [{
-          text: $translate.instant('UPDATE_NOW'),
-          type: 'button-positive',
-          onTap: function(event) {
-            window.open(newVersion.url, '_system');
-            event.defaultPrevented = false;
-            return true;
-          }
-        }]
-      };
-      var lastAlertTime = localStorage.getItem('new-version-' + newVersion.version + '-last-alert-time');
-      if (!newVersion.force) {
-        if (lastAlertTime && (new Date()).getTime() - (new Date(lastAlertTime)).getTime() < 12 * 60 * 60 * 1000) {
-          return ;
-        }
-        alert.buttons.push({
-          text: $translate.instant('UPDATE_LATER'),
-          onTap: function() {
-            localStorage.setItem('new-version-' + newVersion.version + '-last-alert-time', new Date());
-            return true;
-          }
-        });
-      } else {
-        $rootScope.$broadcast(events.disableLogin);
-      }
-      $fdPopup.alert(alert);
-    });
     return service;
   }
 })();

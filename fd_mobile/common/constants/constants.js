@@ -6,7 +6,7 @@
     .constant('CONSTANT', {
       'TODAY': new Date(),
       /*inject:version*/
-      'VERSION': '0.1.13.0425.2115',
+      'VERSION': '1.0.1',
       /*endinject*/
       'COMMA': ',',
 
@@ -59,10 +59,10 @@
       'REPORT_IMAGE_THUMBNAIL_RESOLUTION': 'q50',
 
       /*inject:constants*/
-      'HOST': '192.168.1.3',
-      'PORT': '80',
-      'LOGGER': 'ON',
-      'BASEURI': '/zzn/'
+      'HOST': 'dqjczs.sinaapp.com',
+      'PORT': '443',
+      'PROTOCAL': 'https://',
+      'LOGGER': 'ON'
       /*endinject*/
     });
 })();
