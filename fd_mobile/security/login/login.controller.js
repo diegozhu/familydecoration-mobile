@@ -5,7 +5,7 @@
     .module('fdmobile.login')
     .controller('LoginController', LoginController);
 
-  function LoginController($state, CONSTANT, authenticationService) {
+  function LoginController($log, $state, CONSTANT, authenticationService) {
     var vm = this;
 
     vm.username = '';
@@ -19,10 +19,16 @@
       });
     };
 
-    authenticationService.checkUpdate().then(function(newVersion) {
-      if (!newVersion) {
-        authenticationService.tryAutoLogin();
-      }
-    });
+    //if already fired, will run callback instantly
+    document.addEventListener('deviceready', function() {
+      $log.log('deviceready');
+      authenticationService.checkUpdate().then(function(newVersion) {
+        $log.log('checkUpdate');
+        if (!newVersion) {
+          $log.log('tryAutoLogin');
+          authenticationService.tryAutoLogin();
+        }
+      });
+    }, false);
   }
 })();
