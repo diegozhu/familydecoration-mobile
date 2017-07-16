@@ -71,9 +71,10 @@
           if (params.isPwdEncrypted !== true) {
             params.password = md5.createHash('familydecoration-' + params.password);
           }
-          params.manufacturer = window.device.version;
-          params.model = window.device.version;
-          params.platform = window.device.version;
+          params.app = true;
+          params.manufacturer = window.device.manufacturer;
+          params.model = window.device.model;
+          params.platform = window.device.platform;
           params.version = window.device.version;
           resource.login(params, function(res) {
             isLogin = true;
