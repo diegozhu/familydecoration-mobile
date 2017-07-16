@@ -1,6 +1,6 @@
 1. first install ionic,gulp,bower, run:
 
-	`npm install -g cordova ionic gulp bower`
+	`npm install -g cordova@7.0.1 ionic gulp bower`
 
 	I guess you've already have nodejs and git . now , grab a cup of coffee, this will take a long time. remember to turn on your shadowsocks. :)
 
@@ -35,8 +35,11 @@
 	`gulp watch-build --app "fd_mobile" --env prod`
 
 4. add/rm platform:
-	
-	`cordova platform add/rm ios/android` (you probably need to mkdir www; mkdir platforms; first)
+
+	`cordova platform add android@6.2.3 --nosave --nofetch`
+	`cordova platform add ios@4.2.0 --nosave --nofetch`
+	`cordova platform rm ios`
+	`cordova platform rm android`
 
 5. build android/ios:
 
