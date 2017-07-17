@@ -31,8 +31,8 @@
     </form>
 
     <div class="login-link">
-      <a class="font-small font-white" ui-sref="firststep">{{'SECURITY_LOGIN_FORGET' | translate}}</a>
-      <div class="font-small font-white" ui-sref="firststep">{{ vm.version }}</div>
+      <!-- <a class="font-small font-white" ui-sref="firststep">{{'SECURITY_LOGIN_FORGET' | translate}}</a> -->
+      <div class="font-small font-white" ng-click="vm.clickVersion()" >{{ vm.version }}</div>
     </div>
   </ion-content>
 </ion-view>
