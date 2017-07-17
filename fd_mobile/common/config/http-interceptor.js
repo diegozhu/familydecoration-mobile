@@ -9,6 +9,9 @@
   function httpInterceptor($q, loggingService, $fdToast, $log, $translate, $timeout, $injector) {
     return {
       request: function(config) {
+        if (typeof config.params === 'object') {
+          config.params.app = true;
+        }
         return config;
       },
       response: function(_response) {
