@@ -12,5 +12,19 @@
             "alias": "myalias",
             "password" : "123456"
         }
+    },
+    "ios" :{
+        "debug" :{
+            "developmentTeam": "7YY4NV42A9",
+            "provisioningProfile": "61ad40ab-c955-466f-8697-18f30eb95da9",
+            "codeSignIdentity": "iPhone Distribution",
+            "packageType": "enterprise"
+        },
+        "release": {
+            "developmentTeam": "7YY4NV42A9",
+            "provisioningProfile": "61ad40ab-c955-466f-8697-18f30eb95da9",
+            "codeSignIdentity": "iPhone Distribution",
+            "packageType": "enterprise"
+        }
     }
 }
