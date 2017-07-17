@@ -57,6 +57,14 @@ gulp config --setWidgetAttr="ios-CFBundleVersion=$VERSION"
 echo gulp building
 gulp build --app fd_mobile --env $SERVER --appversion $VERSION --cordova "xxx"
 
+echo 
+if [ "$?" -ne "0" ]; then
+	echo build error.
+	echo
+	echo
+	exit $?
+fi
+
 echo build ios release
 cordova build ios --release --device
 mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.release.ipa
