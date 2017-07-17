@@ -60,6 +60,7 @@ gulp build --app fd_mobile --env $SERVER --appversion $VERSION
 echo build ios release
 cordova build ios --release --device
 mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.release.ipa
+mv builds/$VERSION.release.ipa builds/latest.ipa
 
 echo build ios debug
 cordova build ios --debug --device
@@ -68,6 +69,7 @@ mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.debug.ipa
 echo build android relase
 cordova build android --release
 mv platforms/android/build/outputs/apk/android-release.apk builds/$VERSION.release.apk
+mv builds/$VERSION.release.apk builds/latest.apk
 
 echo build android debug
 cordova build android --debug
