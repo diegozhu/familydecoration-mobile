@@ -72,10 +72,10 @@
             params.password = md5.createHash('familydecoration-' + params.password);
           }
           params.app = true;
-          params.manufacturer = window.device.manufacturer;
-          params.model = window.device.model;
-          params.platform = window.device.platform;
-          params.version = window.device.version;
+          params.manufacturer = window.device && window.device.manufacturer;
+          params.model = window.device && window.device.model;
+          params.platform = window.device && window.device.platform;
+          params.version = window.device && window.device.version;
           resource.login(params, function(res) {
             isLogin = true;
             angular.extend(params, {
