@@ -55,7 +55,7 @@ gulp config --setWidgetAttr="version=$VERSION"
 gulp config --setWidgetAttr="android-versionCode=$VERSION"
 gulp config --setWidgetAttr="ios-CFBundleVersion=$VERSION"
 echo gulp building
-gulp build --app fd_mobile --env $SERVER --appversion $VERSION
+gulp build --app fd_mobile --env $SERVER --appversion $VERSION --cordova "xxx"
 
 echo build ios release
 cordova build ios --release --device
