@@ -145,7 +145,7 @@
                 //     localStorage.setItem('new-version-' + newVersion.version + '-last-alert-time', new Date());
                 //     return true;
                 //   }
-                }
+                //}
                 ]
               });
             }
