@@ -73,6 +73,3 @@
 		b) app level user related data , like user's configurations.
 		c) session level user related data, like user's tasks, need to refresh every logout/login
 	3. log server enhancement. $log from angular is far from production usage(not clever enough to filter). we need to implement our own log service which have tag feature to filter. this shound't be complex, I'll have it done this week.
-	4. authentication service, user login/logout work(including cacheFactory cleanning, autologin/silent in background when session timeout feature), forgot my password feature.
-	5. take a look at cordova camera plugins and location service plugin. I guess you can start here. Checkout uploadPics function in my-data/symptom-statement\service\symptom.service.js 
-	

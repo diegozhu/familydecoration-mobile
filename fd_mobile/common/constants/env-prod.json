@@ -2,5 +2,6 @@
   "HOST": "dqjczs.sinaapp.com",
   "PORT": "443",
   "PROTOCAL":"https://",
+  "BASEURI": "/",
   "LOGGER": "ON"
 }
