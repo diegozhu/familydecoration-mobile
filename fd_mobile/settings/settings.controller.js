@@ -5,7 +5,7 @@
     .module('fdmobile.settings')
     .controller('SettingsController', SettingsController);
 
-  SettingsController.$inject = ['$state', '$stateParams', '$translate'];
+  SettingsController.$inject = ['$state', '$stateParams', '$translate', 'CONSTANT'];
 
   function SettingsController($state, $stateParams, $translate, CONSTANT) {
     var vm = this;
