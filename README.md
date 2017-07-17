@@ -37,8 +37,11 @@
 4. add/rm platform:
 
 	`cordova platform add android@6.2.3 --nosave --nofetch`
+
 	`cordova platform add ios@4.4.0 --nosave --nofetch`
+	
 	`cordova platform rm ios`
+	
 	`cordova platform rm android`
 
 5. build android/ios:
