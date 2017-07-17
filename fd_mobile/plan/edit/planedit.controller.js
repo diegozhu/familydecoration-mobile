@@ -123,7 +123,7 @@
       $log.log(planItem);
       var dateConfig = {
         callback: function(val) {  //Mandatory
-          console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+          $log.log('Return value from the datepicker popup is : ' + val, new Date(val));
         },
         disabledDates: [ //Optional
           // new Date(2016, 2, 16),

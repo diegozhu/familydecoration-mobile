@@ -139,7 +139,7 @@
                     return true;
                   }
                 }
-                ,{
+                , {
                   text: $translate.instant('UPDATE_LATER'),
                   onTap: function() {
                     localStorage.setItem('new-version-' + newVersion.version + '-last-alert-time', new Date());

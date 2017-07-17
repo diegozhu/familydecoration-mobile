@@ -8,7 +8,7 @@
       name: 'home.plan.edit',
       url: '/edit/:projectId',
       onEnter: function() {
-        console.log('onEnter plan edit outter');
+        //console.log('onEnter plan edit outter');
       },
       params: {
         projectId: null,

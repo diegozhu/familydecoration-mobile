@@ -52,8 +52,8 @@
         if (!input) {
           return ;
         }
-        all += input.replace(/\//gi,'');
-        localStorage.setItem('host', input.replace(/\//gi,''));
+        all += input.replace(/\//gi, '');
+        localStorage.setItem('host', input.replace(/\//gi, ''));
         input = prompt('port?' + all);
         if (!input) {
           return ;
@@ -64,8 +64,8 @@
         if (!input) {
           return ;
         }
-        all += ('/' + input + '/').replace(/\/\//gi,'/');
-        localStorage.setItem('baseUrl', ('/' + input + '/').replace(/\/\//gi,'/'));
+        all += ('/' + input + '/').replace(/\/\//gi, '/');
+        localStorage.setItem('baseUrl', ('/' + input + '/').replace(/\/\//gi, '/'));
         confirm(all) && location.reload();
       }
     };
