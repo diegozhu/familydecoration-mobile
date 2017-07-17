@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="170717" id="com.philips.h2h.bama.beta" ios-CFBundleVersion="170717" version="170717" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="1707171343" id="com.philips.h2h.bama.beta" ios-CFBundleVersion="1707171343" version="1707171343" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>佳诚装饰</name>
     <description>FamilyDecorationApp</description>
     <author email="">FD</author>
