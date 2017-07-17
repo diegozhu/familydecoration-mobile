@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=`date '+%y%m%d'`
+VERSION=`date '+%y%m%d%H%M'`
 exportDir="builds"
 projectDir=`pwd`
 SERVER="prod"
