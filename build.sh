@@ -26,39 +26,50 @@ fi
 
 cpwd=`pwd`
 
-echo $VERSION
+echo 'version(year,month,day): '$VERSION
 cd $projectDir
 
 #git stash
 #git stash drop
-git pull
+#git pull
 
 echo entering project dir $projectDir
 
+echo bower installing
 bower install 
+echo npm installing
 npm install
 
+echo cleaning platforms
 rm -rf platforms/*
+echo cleaning plugins
 rm -rf plugins/*
 
+echo adding ios@4.4.0
 cordova platform add ios@4.4.0 --nosave --nofetch
+echo adding android@6.2.3
 cordova platform add android@6.2.3 --nosave --nofetch
 
-#chmod -Rv 755 * >> /dev/null 2>&1
-#chmod +x $projectDir/hooks/after_prepare/update_platform_config.js
-
-
+echo gulp configuring
 gulp config --setWidgetAttr="version=$VERSION"
 gulp config --setWidgetAttr="android-versionCode=$VERSION"
 gulp config --setWidgetAttr="ios-CFBundleVersion=$VERSION"
+echo gulp building
 gulp build --app fd_mobile --env $SERVER --appversion $VERSION
 
+echo build ios release
 cordova build ios --release --device
 mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.release.ipa
+
+echo build ios debug
 cordova build ios --debug --device
 mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.debug.ipa
+
+echo build android relase
 cordova build android --release
 mv android/build/outputs/apk/android-release.apk builds/$VERSION.release.apk
+
+echo build android debug
 cordova build android --debug
 mv android/build/outputs/apk/android-debug.apk builds/$VERSION.debug.apk
 
