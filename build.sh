@@ -67,11 +67,11 @@ mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.debug.ipa
 
 echo build android relase
 cordova build android --release
-mv android/build/outputs/apk/android-release.apk builds/$VERSION.release.apk
+mv platforms/android/build/outputs/apk/android-release.apk builds/$VERSION.release.apk
 
 echo build android debug
 cordova build android --debug
-mv android/build/outputs/apk/android-debug.apk builds/$VERSION.debug.apk
+mv platforms/android/build/outputs/apk/android-debug.apk builds/$VERSION.debug.apk
 
 
 echo
