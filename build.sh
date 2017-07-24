@@ -70,9 +70,9 @@ cordova build ios --release --device
 mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.release.ipa
 cp builds/$VERSION.release.ipa builds/latest.ipa
 
-echo build ios debug
-cordova build ios --debug --device
-mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.debug.ipa
+# echo build ios debug   # we don't have debug profile , so comments out for now.
+# cordova build ios --debug --device
+# mv platforms/ios/build/device/佳诚装饰.ipa builds/$VERSION.debug.ipa
 
 echo build android relase
 cordova build android --release
