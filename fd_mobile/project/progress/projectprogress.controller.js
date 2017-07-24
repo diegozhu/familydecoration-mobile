@@ -265,7 +265,7 @@
         promise,
         isComment = vm.addProgressVm.type === 'comment';
 
-      if (isComment && vm.status === STAT.DONE) {
+      if (isComment && vm.status !== STAT.DONE) {
         $fdToast.show({
           text: '图片加载中...请稍后上传'
         });
