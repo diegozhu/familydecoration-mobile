@@ -31,7 +31,8 @@
           <i ng-show="vm.planItem.isEditable" class="col-10 icon icon-fd-add" ng-click="vm.openAddSupervisorCommentModal()" style="float: right;"></i>
         </div>
         <ion-item ng-repeat="comment in vm.planItem.supervisorComment">
-          <h2 style="text-align: left;" ng-bind-html="comment.content"></h2>
+          <h2 style="text-align: left;" ng-show="comment.pass !== '1'" ng-bind-html="comment.content"></h2>
+          <h2 style="text-align: left; color: green;" ng-show="comment.pass === '1'" ng-bind-html="comment.content"></h2>
           <ion-scroll direction="x">
             <div class="pics" ng-if="comment.pics">
               <span ng-repeat="pic in comment.pics">
@@ -39,7 +40,8 @@
               </span>&nbsp;
             </div>
           </ion-scroll>
-          <p style="font-size:12px;">{{comment.auditorRealName}} {{comment.createTime}}</p>
+          <p style="font-size:12px;" ng-show="comment.pass !== '1'">{{comment.auditorRealName}} {{comment.createTime}}</p>
+          <p style="font-size:12px; color: green;" ng-show="comment.pass === '1'">{{comment.auditorRealName}} {{comment.createTime}} (验收通过)</p>
         </ion-item>
         <ion-item ng-show="vm.planItem.supervisorComment.length == 0">
           <h2 style="text-align: left;">无</h2>

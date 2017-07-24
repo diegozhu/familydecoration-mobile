@@ -17,6 +17,12 @@
       <textarea style="height: 300px;" placeholder="{{vm.addProgressVm.placeholder}}" ng-model="vm.addProgressVm.content"></textarea>
     </div>
     <br />
+    <div ng-show="vm.addProgressVm.showCheckpass" style="padding: 0 16px;height: 40px;text-align: right;">
+      <label>
+        <input type="checkbox" class="font-white bg-pumpkin" ng-model="vm.addProgressVm.checkpass" />&nbsp;
+        验收通过
+      </label>
+    </div>
     <div class="fd-button">
       <button class="font-white bg-pumpkin" ng-click="vm.addprogress();">添加</button>
     </div>

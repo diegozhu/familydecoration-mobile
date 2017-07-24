@@ -22,6 +22,7 @@
               <span ng-show="planItem.practicalProgress.length == 0">暂无进度</span>,
               <span style="color: green;" ng-show="planItem.supervisorComment.length > 0">{{planItem.supervisorComment.length}}条监理意见</span>
               <span ng-show="planItem.supervisorComment.length == 0">暂无条监理意见</span>
+              <span style="color: green;" ng-show="planItem.pass == 1">[验收通过]</span>
             </p>
             <p style="text-align: left;" ng-if="planItem.practicalProgress.length > 0">
               <span style="color: crimson; font-weight: 900;" ng-if="planItem.top==true"><img style="display: inline-block;" src="./assets/pin.png" /></span>

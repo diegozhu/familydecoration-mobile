@@ -55,10 +55,10 @@
 
     var updatePlanItemCallback = function(startTime, endTime, id, planItem, minDate, maxDate) {
       var err;
-      if (typeof startTime !== Date) {
+      if (startTime && typeof startTime !== Date) {
         startTime = new Date(startTime);
       }
-      if (typeof endTime !== Date) {
+      if (endTime && typeof endTime !== Date) {
         endTime = new Date(endTime);
       }
       function isWithinPeriod(t, minDate, maxDate, type) {

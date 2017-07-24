@@ -3,9 +3,9 @@
 
   angular.module('fdmobile.project.progress').controller('ProjectProgressController', function(
     planItems,
+    $log,
     projectPeriod,
     projectService,
-    $log,
     $fdPopup,
     $scope,
     planService,
@@ -37,7 +37,9 @@
     vm.status = STAT.INIT;
     vm.imgurl = '';
     vm.addProgressVm = {
-      title: ''
+      title: '',
+      checkpass: false,
+      showCheckpass: false   //验收是否通过
     };
 
     $ionicModal.fromTemplateUrl('project/progress/progressdetail.modal.html', {
@@ -99,6 +101,13 @@
             }
           });
         }
+        if (item.supervisorComment.length > 0) {
+          var lastSupervisorComment = item.supervisorComment[item.supervisorComment.length - 1];
+          if (lastSupervisorComment.pass === '1') {
+            item.pass = 1;
+            item.passContent = lastSupervisorComment.content;
+          }
+        }
         if (item.practicalProgress.length > 0) {
           sortPracticalProgress(item.practicalProgress);
           var latestProgressItem = item.practicalProgress[0];
@@ -157,6 +166,7 @@
       function onSuccess(fileURI) {
         // start the process of loading picture.
         vm.status = STAT.START;
+        $log.log('loadingImg start.');
         var
           img = document.createElement('img'),
           loadingImg = new Image(),
@@ -167,11 +177,13 @@
         img.setAttribute('class', 'photo');
         ct.appendChild(img);
         loadingImg.addEventListener('load', function() {
+          $log.log('loadingImg load , done.');
           vm.status = STAT.DONE;
           img.src = this.src;
         }, false);
         loadingImg.setAttribute('src', fileURI + '?' + Math.random());
         // loading picture.
+        $log.log('loadingImg loading.');
         vm.status = STAT.LOADING;
       }
 
@@ -253,7 +265,7 @@
         promise,
         isComment = vm.addProgressVm.type === 'comment';
 
-      if (isComment && vm.status !== STAT.DONE) {
+      if (isComment && vm.status === STAT.DONE) {
         $fdToast.show({
           text: '图片加载中...请稍后上传'
         });
@@ -270,6 +282,9 @@
           '@itemId': vm.planItem.id,
           '@content': content
         };
+        if (vm.addProgressVm.checkpass) {
+          params['@pass'] = 1;
+        }
         if (isComment && pics !== false) {
           angular.extend(params, {
             '@pics': pics
@@ -388,6 +403,13 @@
       vm.addProgressVm.title = '新增监理意见';
       vm.addProgressVm.placeholder = '监理内容';
       vm.addProgressVm.content = '';
+
+      var id = vm.planItem.id;
+      vm.addProgressVm.showCheckpass = id.endsWith('c7') ||
+        id.endsWith('c17') ||
+        id.endsWith('c12') ||
+        id.endsWith('c23') ||
+        id.endsWith('c24');
       _cleanCachedPics();
       _clearCache();
     };
